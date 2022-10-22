@@ -5,7 +5,7 @@ export const MainRouts = () => {
     return (
         <>
             <NavBar
-                title={'Hnadas'}
+                title={'Navbar'}
                 have_menu={
                     !window.location.href.includes('login')
                 }
