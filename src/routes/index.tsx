@@ -1,14 +1,12 @@
-import { Route, Routes } from "react-router-dom";
-import { NavBar } from "../Components/Navbar/NavBar";
+import { Route, Routes } from 'react-router-dom'
+import { NavBar } from '../Components/Navbar/NavBar'
 
 export const MainRouts = () => {
     return (
         <>
             <NavBar
                 title={'Navbar'}
-                have_menu={
-                    !window.location.href.includes('login')
-                }
+                have_menu={!window.location.href.includes('login')}
             />
             <Routes>
                 <Route
@@ -25,6 +23,14 @@ export const MainRouts = () => {
                     element={
                         <>
                             <h1>about</h1>
+                        </>
+                    }
+                />
+                <Route
+                    path="/egress"
+                    element={
+                        <>
+                            <h1>egress</h1>
                         </>
                     }
                 />
