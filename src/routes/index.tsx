@@ -19,7 +19,7 @@ export const MainRouts = () => {
                     }
                 />
                 <Route
-                    path="/about"
+                    path="about"
                     element={
                         <>
                             <h1>about</h1>
@@ -27,7 +27,7 @@ export const MainRouts = () => {
                     }
                 />
                 <Route
-                    path="/egress"
+                    path="egress"
                     element={
                         <>
                             <h1>egress</h1>
