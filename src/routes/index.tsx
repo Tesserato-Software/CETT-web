@@ -27,7 +27,7 @@ export const MainRouts = () => {
                     }
                 />
                 <Route
-                    path="egress"
+                    path="/egress"
                     element={
                         <>
                             <h1>egress</h1>
