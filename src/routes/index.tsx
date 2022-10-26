@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import { Container } from '../Components/fakeHeader'
 import { NavBar } from '../Components/Navbar/NavBar'
 
 export const MainRouts = () => {
@@ -8,6 +9,7 @@ export const MainRouts = () => {
                 title={'Navbar'}
                 have_menu={!window.location.href.includes('login')}
             />
+            <Container/>
             <Routes>
                 <Route
                     index
