@@ -8,9 +8,7 @@ export const MainRouts = () => {
         <>
             <NavBar
                 title={'Navbar'}
-                have_menu={
-                    !window.location.href.includes('login')
-                }
+                have_menu={!window.location.href.includes('login')}
             />
             <Routes>
                 <Route
