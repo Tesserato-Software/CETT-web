@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { NavBar } from "../Components/Navbar/NavBar";
+import { Hierarchy } from "../Page/Hierarchy";
+import { HierarchyList } from "../Page/Hierarchy/List";
 
 export const MainRouts = () => {
     return (
@@ -21,13 +23,11 @@ export const MainRouts = () => {
                     }
                 />
                 <Route
-                    path="/about"
-                    element={
-                        <>
-                            <h1>about</h1>
-                        </>
-                    }
-                />
+                    path="hierarchy"
+                    element={<Hierarchy/>}
+                >
+                    <Route path="list" element={<HierarchyList/>}/>
+                </Route>
             </Routes>
         </>
     )
