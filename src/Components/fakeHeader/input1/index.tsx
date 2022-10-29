@@ -8,30 +8,39 @@ export const Input1 = () => {
         <div>
             <input
                 onChange={event => {
-                    console.log(event.target.value)
-
                     let type_of_input = !isNaN(Number(event.target.value))
                         ? 'number'
                         : event.target.value.split('').every(l => isNaN(+l))
-                            ? 'string'
-                            : 'date'
+                        ? 'string'
+                        : 'date'
+
+                    console.log(type_of_input)
 
                     setData({
                         input1: event?.target.value,
                         input2: data?.input2?.map(item => {
-                            if (type_of_input === 'number') {
+                            if (type_of_input === 'string') {
                                 return {
                                     ...item,
-                                    is_enabled: item.name === 'CGM'
+                                    is_enabled: item.name === 'Nome'
                                 }
                             }
                             if (type_of_input === 'string') {
                                 return {
                                     ...item,
-                                    is_enabled: item.name === 'nome'
+                                    is_enabled: item.name === 'Email'
                                 }
                             }
-                            return {...item, is_enabled: item.is_enabled = false}
+                            if (type_of_input === 'string') {
+                                return {
+                                    ...item,
+                                    is_enabled: item.name === 'Permissao'
+                                }
+                            }
+                            return {
+                                ...item,
+                                is_enabled: (item.is_enabled = false)
+                            }
                         })
                     })
                 }}
@@ -40,10 +49,11 @@ export const Input1 = () => {
                 ?.filter(d => !!d.checked)
                 .map((item, index) => (
                     <div key={index}>
-                        <span>{item.name}: {(!!item.checked) && item.checked}</span>
+                        <span>
+                            {item.name}: {!!item.checked && item.checked}
+                        </span>
                     </div>
-                ))
-            }
+                ))}
         </div>
     )
 }

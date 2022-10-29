@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { headerContext } from '..'
 
 export const Input2 = () => {
-    const {data, setData} = useContext(headerContext)
+    const { data, setData } = useContext(headerContext)
 
     return (
         <div>
@@ -12,27 +12,26 @@ export const Input2 = () => {
                     <div
                         key={index}
                         onClick={() => {
-                            
                             setData({
                                 ...data,
-                                input2:
-                                    data?.input2?.map((item, itemIndex) => {
-                                        if (itemIndex === index) {
-                                            return {
-                                                ...item,
-                                                checked: !!item.checked ? undefined : data.input1
-                                            }
+                                input2: data?.input2?.map((item, itemIndex) => {
+                                    if (itemIndex === index) {
+                                        return {
+                                            ...item,
+                                            checked: !!item.checked
+                                                ? undefined
+                                                : data.input1
                                         }
-                                        return item
-                                    })
+                                    }
+                                    return item
+                                })
                             })
                         }}
                     >
                         <span>{item.name}</span>
                         {item.checked && <span> X</span>}
                     </div>
-                )
-            )}
+                ))}
         </div>
     )
 }
