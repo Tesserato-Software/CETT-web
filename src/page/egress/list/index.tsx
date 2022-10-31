@@ -23,14 +23,14 @@ export const EgressList = () => {
             </header>
             <section className='egress-grid'>
                 <header className='grid-header'>
-                    <span>ID</span>
-                    <span>NOME</span>
-                    <span>CGM</span>
-                    <span>N Arquivo</span>
-                    <span>Data nascimento</span>
-                    <span>Nome mãe</span>
+                    <span title='ID'>ID</span>
+                    <span title='NOME'>NOME</span>
+                    <span title='CGM'>CGM</span>
+                    <span title='N Arquivo'>N Arquivo</span>
+                    <span title='Data nascimento'>Data nascimento</span>
+                    <span title='Nome mãe'>Nome mãe</span>
                 </header>
-                <div>
+                <div className='grid'>
                     <div className='row'>
                         <span>1</span>
                         <span>João</span>
