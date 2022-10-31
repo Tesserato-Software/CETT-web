@@ -2,6 +2,8 @@ import { Route, Routes } from 'react-router-dom'
 import { NavBar } from '../Components/Navbar/NavBar'
 import { Egress } from '../page/egress'
 import { EgressList } from '../page/egress/list'
+import { Hierarchy } from "../page/Hierarchy";
+import { HierarchyList } from "../page/Hierarchy/List";
 
 export const MainRouts = () => {
     return (
@@ -36,6 +38,12 @@ export const MainRouts = () => {
                         path="list"
                         element={<EgressList/>}
                     />
+                </Route>
+                <Route
+                    path="hierarchy"
+                    element={<Hierarchy/>}
+                >
+                    <Route path="list" element={<HierarchyList/>}/>
                 </Route>
             </Routes>
         </>
