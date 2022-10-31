@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import { NavBar } from '../Components/Navbar/NavBar'
+import { Egress } from '../page/egress'
+import { EgressList } from '../page/egress/list'
 
 export const MainRouts = () => {
     return (
@@ -28,12 +30,13 @@ export const MainRouts = () => {
                 />
                 <Route
                     path="egress"
-                    element={
-                        <>
-                            <h1>egress</h1>
-                        </>
-                    }
-                />
+                    element={<EgressList/>}
+                >
+                    <Route
+                        path="list"
+                        element={<EgressList/>}
+                    />
+                </Route>
             </Routes>
         </>
     )
