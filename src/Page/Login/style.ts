@@ -16,6 +16,7 @@ export const LoginDiv = styled.div
     filter: drop-shadow(0px 11px 14px rgba(0, 0, 0, 0.25));
     backdrop-filter: blur(8px);
     border-radius: 20px;
+    margin-bottom: 3.5rem;
 }
 h1{
     align-self: center;
@@ -59,6 +60,9 @@ form{
     font-bold: 500;
     border: none;
 }
+
+
+
 
 
 

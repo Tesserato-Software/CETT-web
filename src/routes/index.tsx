@@ -1,10 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import { NavBar } from "../Components/Navbar/NavBar";
+import { Atacharchive } from "../page/AtachArchive";
 import { Egress } from "../page/egress";
 import { EgressList } from "../page/egress/list";
 import { Hierarchy } from "../page/Hierarchy";
 import { HierarchyList } from "../page/Hierarchy/List";
 import { Login } from "../page/Login";
+import { AtachEgress } from './../page/AtachEgress/index';
+
 
 export const MainRouts = () => {
   return (
@@ -33,6 +36,19 @@ export const MainRouts = () => {
             </>
           }
         />
+
+        <Route
+          path="archive"
+          element={<Atacharchive/>}
+        />
+        <Route
+          path="atachegress"
+          element={<AtachEgress/>}
+        />
+
+
+
+
         <Route path="egress" element={<EgressList />}>
           <Route path="list" element={<EgressList />} />
         </Route>
