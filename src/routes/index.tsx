@@ -54,11 +54,8 @@ export const MainRouts = () => {
                         element={<DeleteEgress/>}
                     />
                 </Route>
-                <Route
-                    path="hierarchy"
-                    element={<Hierarchy/>}
-                >
-                    <Route path="list" element={<HierarchyList/>}/>
+                <Route path="hierarchy" element={<Hierarchy />}>
+                    <Route path="list" element={<HierarchyList />} />
                 </Route>
             </Routes>
         </>
