@@ -1,10 +1,12 @@
 import { Route, Routes } from 'react-router-dom'
 import { NavBar } from '../Components/Navbar/NavBar'
-import { Egress } from '../Page/egress'
-import { EgressList } from '../Page/egress/list'
-import { Hierarchy } from '../Page/Hierarchy'
-import { HierarchyList } from '../Page/Hierarchy/List'
-import { UsersList, UsersRegister } from '../Page/Users'
+import { Egress } from '../page/egress'
+import { CreateEgress } from '../page/egress/create'
+import { DeleteEgress } from '../page/egress/delete'
+import { EgressList } from '../page/egress/list'
+import { UpdateEgress } from '../page/egress/update'
+import { Hierarchy } from '../page/Hierarchy'
+import { HierarchyList } from '../page/Hierarchy/List'
 
 export const MainRouts = () => {
     return (
@@ -31,8 +33,11 @@ export const MainRouts = () => {
                         </>
                     }
                 />
-                <Route path="egress" element={<EgressList />}>
+                <Route path="egress" element={<Egress />}>
                     <Route path="list" element={<EgressList />} />
+                    <Route path="create" element={<CreateEgress />} />
+                    <Route path="edit" element={<UpdateEgress />} />
+                    <Route path="delete" element={<DeleteEgress />} />
                 </Route>
                 <Route path="hierarchy" element={<Hierarchy />}>
                     <Route path="list" element={<HierarchyList />} />
