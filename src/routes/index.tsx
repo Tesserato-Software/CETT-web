@@ -3,6 +3,7 @@ import { NavBar } from '../Components/Navbar/NavBar'
 import { Egress } from '../page/egress'
 import { EgressList } from '../page/egress/list'
 import { Hierarchy } from "../page/Hierarchy";
+import { CreateHierarchy } from '../Page/Hierarchy/create';
 import { HierarchyList } from "../page/Hierarchy/List";
 
 export const MainRouts = () => {
@@ -44,7 +45,9 @@ export const MainRouts = () => {
                     element={<Hierarchy/>}
                 >
                     <Route path="list" element={<HierarchyList/>}/>
+                    <Route path="create" element={<CreateHierarchy/>}/>
                 </Route>
+                
             </Routes>
         </>
     )
