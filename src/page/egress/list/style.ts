@@ -16,10 +16,37 @@ export const ListContainer = styled.section`
     }
     section.egress-grid{
         width: 100%;
+        color: #fff;
         header {
             width: 100%;
             display: grid;
-            grid-template-columns: 70px 1rem 120px 40px .2fr 1fr;
+            grid-template-columns: .2fr 1fr .2fr .2fr .4fr .7fr;
+            gap: 5px;
+            margin-bottom: 20px;
+            font-weight: bolder;
+            font-size: 1.6rem;
+            span{
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+        div.grid{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            div.row{
+                display: grid;
+                grid-template-columns: .2fr 1fr .2fr .2fr .4fr .7fr;
+                span{
+                    max-width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
         }
     }
 `;
