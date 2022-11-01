@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-export const EgressDiv = styled.div ` 
-
+export const DetachEgressDiv = styled.div `
 display: flex;
 flex-direction: column;
 
@@ -79,7 +78,6 @@ button{
     align-items: center;
     margin-top: 2rem;
 }
-
 
 
 `

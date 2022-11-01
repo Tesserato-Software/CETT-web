@@ -7,6 +7,8 @@ import { Hierarchy } from "../page/Hierarchy";
 import { HierarchyList } from "../page/Hierarchy/List";
 import { Login } from "../page/Login";
 import { AtachEgress } from './../page/AtachEgress/index';
+import { DetachEgress } from './../page/DetachEgress/index';
+import { DetachArchive } from './../page/DetachArchive/index';
 
 
 export const MainRouts = () => {
@@ -45,6 +47,16 @@ export const MainRouts = () => {
           path="atachegress"
           element={<AtachEgress/>}
         />
+          <Route
+          path="detachegress"
+          element={<DetachEgress/>}
+        />
+      
+          <Route
+          path="detachearchive"
+          element={<DetachArchive/>}
+        />
+
 
 
 

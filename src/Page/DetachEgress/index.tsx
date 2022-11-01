@@ -1,11 +1,10 @@
 import React from "react";
-import { EgressDiv } from "./styles";
+import { DetachEgressDiv } from "./style";
 
-export const AtachEgress = () => {
+export const DetachEgress = () => {
     return (
-      <EgressDiv>
-       
-       <h1>Anexar Arquivo ao Aluno</h1>
+        <DetachEgressDiv>
+             <h1>Desanexar Arquivo ao Aluno</h1>
          <div className="container">
          
          <div className="list-archive">
@@ -51,9 +50,12 @@ export const AtachEgress = () => {
 
       </div>
       <div className="button">
-        <button className="btn">Anexar</button>
+        <button className="btn">
+          Desanexar</button>
       </div>
         
-      </EgressDiv>
-    )
-}	
+        </DetachEgressDiv>
+    );
+
+
+}
