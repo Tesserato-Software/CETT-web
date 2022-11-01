@@ -1,9 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
 import { NavBar } from '../Components/Navbar/NavBar'
-import { Egress } from '../page/egress'
-import { EgressList } from '../page/egress/list'
-import { Hierarchy } from '../page/Hierarchy'
-import { HierarchyList } from '../page/Hierarchy/List'
+import { Egress } from '../Page/egress'
+import { EgressList } from '../Page/egress/list'
+import { Hierarchy } from '../Page/Hierarchy'
+import { HierarchyList } from '../Page/Hierarchy/List'
+import { UsersList, UsersRegister } from '../Page/Users'
 
 export const MainRouts = () => {
     return (
@@ -36,6 +37,10 @@ export const MainRouts = () => {
                 <Route path="hierarchy" element={<Hierarchy />}>
                     <Route path="list" element={<HierarchyList />} />
                 </Route>
+                <Route path="users" element={<UsersList />}>
+                    <Route path="list" element={<UsersList />} />
+                </Route>
+                <Route path="users/register" element={<UsersRegister />} />
             </Routes>
         </>
     )
