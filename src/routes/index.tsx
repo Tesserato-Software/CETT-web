@@ -8,9 +8,9 @@ import { UpdateEgress } from '../page/egress/update';
 import { Hierarchy } from "../page/Hierarchy";
 import { HierarchyList } from "../page/Hierarchy/List";
 import { Login } from "../page/Login";
-import { AtachEgress } from './../page/AtachEgress/index';
-import { DetachEgress } from './../page/DetachEgress/index';
-import { DetachArchive } from './../page/DetachArchive/index';
+import { AtachEgress } from '../page/AtachEgress/index';
+import { DetachEgress } from '../page/DetachEgress/index';
+import { DetachArchive } from '../page/DetachArchive/index';
 import { Atacharchive } from '../page/AtachArchive';
 
 
