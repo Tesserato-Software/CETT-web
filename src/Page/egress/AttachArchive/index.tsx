@@ -1,11 +1,29 @@
 import React from "react";
-import { EgressDiv } from "./styles";
+import { ArchiveDiv } from './styles';
 
-export const AtachEgress = () => {
+export const AttachArchive = () => {
 	return (
-		<EgressDiv>
-			<h1>Anexar Arquivo ao Aluno</h1>
+		<ArchiveDiv>
+			<h1>Anexar Aluno ao Arquivo</h1>
 			<div className="container">
+				<div className="lista-aluno">
+					<table>
+						<thead>
+							<tr className="cabeca-aluno">
+								<th>Id</th>
+								<th>Nome</th>
+								<th>Selecionar</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr className="corpo">
+								<td>1</td>
+								<td>João Henrique Alves</td>
+								<td><input className="aluno" type="checkbox" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 				<div className="list-archive">
 					<table>
 						<thead>
@@ -24,29 +42,10 @@ export const AtachEgress = () => {
 						</tbody>
 					</table>
 				</div>
-				<div className="lista-aluno">
-					<table>
-						<thead>
-							<tr className="cabeca-aluno">
-								<th>Id</th>
-								<th>Nome</th>
-								<th>Selecionar</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr className="corpo">
-								<td>1</td>
-								<td>João Henrique Alves</td>
-								<td><input className="aluno" type="checkbox" /></td>
-							</tr>
-
-						</tbody>
-					</table>
-				</div>
 			</div>
 			<div className="button">
 				<button className="btn">Anexar</button>
 			</div>
-		</EgressDiv>
+		</ArchiveDiv>
 	)
-}	
+}
