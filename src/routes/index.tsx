@@ -24,6 +24,7 @@ import { CreateHierarchy } from '../page/Hierarchy/create'
 import { Excel } from '../page/Excel'
 import { DeleteHierarchy } from '../page/Hierarchy/delete'
 import { UpdateHierarchy } from '../page/Hierarchy/update'
+import { AttachUser } from '../page/Hierarchy/attachuser'
 
 export const MainRouts = () => {
     return (
@@ -81,6 +82,7 @@ export const MainRouts = () => {
                     <Route path="create" element={<CreateHierarchy />} />
                     <Route path="update" element={<UpdateHierarchy />} />
                     <Route path="delete" element={<DeleteHierarchy />} />
+                    <Route path="add-user" element={<AttachUser />} />
                 </Route>
 
                 <Route path="users" element={<Users />}>
