@@ -1,10 +1,8 @@
- import styled from 'styled-components';
+import styled from 'styled-components';
 
 
 
- export const ArchiveDiv = styled.div 
- 
- `
+export const ArchiveDiv = styled.div`
     display: flex;
     flex-direction: column;
     
@@ -22,7 +20,7 @@
         display: flex;
         justify-content: space-around;
         margin-top: 6rem;
-}
+    }
     .lista-aluno{	
         width: 30rem;
         height: 30rem;
@@ -80,13 +78,5 @@
         justify-content: center;
         align-items: center;
         margin-top: 2rem;
-    }
-
-
-
-
-
-
-
- 
- `
+    } 
+`;
