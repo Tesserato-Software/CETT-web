@@ -7,6 +7,12 @@ import { EgressList } from '../page/egress/list'
 import { UpdateEgress } from '../page/egress/update';
 import { Hierarchy } from "../page/Hierarchy";
 import { HierarchyList } from "../page/Hierarchy/List";
+import { Login } from "../page/Login";
+import { AtachEgress } from './../page/AtachEgress/index';
+import { DetachEgress } from './../page/DetachEgress/index';
+import { DetachArchive } from './../page/DetachArchive/index';
+import { Atacharchive } from '../page/AtachArchive';
+
 
 export const MainRouts = () => {
     return (
@@ -25,6 +31,9 @@ export const MainRouts = () => {
                         </>
                     }
                 />
+
+              <Route path="login" element={<Login />} />
+
                 <Route
                     path="about"
                     element={
@@ -37,6 +46,24 @@ export const MainRouts = () => {
                     path="egress"
                     element={<Egress/>}
                 >
+                    <Route
+                      path="archive"
+                      element={<Atacharchive/>}
+                    />
+                    <Route
+                      path="atachegress"
+                      element={<AtachEgress/>}
+                    />
+                      <Route
+                      path="detachegress"
+                      element={<DetachEgress/>}
+                    />
+                  
+                      <Route
+                      path="detachearchive"
+                      element={<DetachArchive/>}
+                    />
+
                     <Route
                         path="list"
                         element={<EgressList/>}
@@ -53,6 +80,11 @@ export const MainRouts = () => {
                         path="delete"
                         element={<DeleteEgress/>}
                     />
+                    
+                  <Route path="egress" element={<EgressList />}>
+                    <Route path="list" element={<EgressList />} />
+                  </Route>
+
                 </Route>
                 <Route path="hierarchy" element={<Hierarchy />}>
                     <Route path="list" element={<HierarchyList />} />
