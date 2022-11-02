@@ -76,20 +76,6 @@ export const MainRouts = () => {
                     />
                 </Route>
 
-                <Route path="archive" element={<Hierarchy />}>
-
-                    {/* VINC BY EGRESS */}
-                    <Route
-                        path="attach-egress"
-                        element={<AtachEgress />}
-                    />
-                    <Route
-                        path="detach-egress"
-                        element={<DetachEgress />}
-                    />
-
-                </Route>
-
                 <Route path="excel" element={<Excel />}>
                     <Route
                         path="import"
@@ -103,10 +89,17 @@ export const MainRouts = () => {
                 </Route>
 
                 <Route path="archive" element={<Archives />}>
-                        <Route path="list" element={<EgressList />} />
-                        <Route path="create" element={<CreateArchive />} />
-                        <Route path="edit" element={<UpdateEgress />} />
-                        <Route path="delete" element={<DeleteEgress />} />
+                    <Route path="create" element={<CreateArchive />} />
+
+                    {/* VINC BY EGRESS */}
+                    <Route
+                        path="attach-egress"
+                        element={<AtachEgress />}
+                    />
+                    <Route
+                        path="detach-egress"
+                        element={<DetachEgress />}
+                    />
                 </Route>
                 
                 <Route path="hierarchy" element={<Hierarchy />}>
