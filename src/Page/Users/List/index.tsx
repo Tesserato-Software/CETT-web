@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Container, ListContainer } from './style'
+import {
+    Container,
+    ListContainer,
+    ListItems,
+    ListItem,
+    ListHeader,
+    ListSpan,
+    ListeHeaderItem
+} from './style'
 
 type user = {
     name: string
@@ -15,72 +23,86 @@ const data = [
     {
         name: 'Lisboa',
         id: 1,
-        role: 'Coordenador'
+        role: 'Coordenador',
+        email: 'teste@teste.com'
     },
     {
         name: 'Bortoliero',
         id: 2,
-        role: 'Coordenador'
+        role: 'Coordenador',
+        email: 'teste@teste.com'
     },
     {
         name: 'Gabriel',
         id: 3,
-        role: 'Coordenador'
+        role: 'Coordenador',
+        email: 'teste@teste.com'
     },
     {
         name: 'Watanabe',
         id: 4,
-        role: 'Coordenador'
+        role: 'Coordenador',
+        email: 'teste@teste.com'
     },
     {
         name: 'Lisboa',
         id: 5,
-        role: 'Coordenador'
+        role: 'Coordenador',
+        email: 'teste@teste.com'
     },
     {
         name: 'Lisboa',
         id: 6,
-        role: 'Coordenador'
+        role: 'Coordenador',
+        email: 'teste@teste.com'
     },
     {
         name: 'Lisboa',
         id: 7,
-        role: 'Coordenador'
+        role: 'Coordenador',
+        email: 'teste@teste.com'
     },
     {
         name: 'Lisboa',
         id: 8,
-        role: 'Coordenador'
+        role: 'Coordenador',
+        email: 'teste@teste.com'
     },
     {
         name: 'Lisboa',
         id: 9,
-        role: 'Coordenador'
+        role: 'Coordenador',
+        email: 'teste@teste.com'
     },
     {
         name: 'Lisboa',
         id: 9,
-        role: 'Coordenador'
+        role: 'Coordenador',
+        email: 'teste@teste.com'
     },
     {
         name: 'Lisboa',
         id: 10,
-        role: 'Coordenador'
+        role: 'Coordenador',
+        email: 'teste@teste.com'
     },
     {
         name: 'Lisboa',
         id: 11,
-        role: 'Coordenador'
+        role: 'Coordenador',
+        email: 'teste@teste.com'
     },
     {
         name: 'Lisboa',
         id: 12,
-        role: 'Coordenador'
+        role: 'Coordenador',
+        email: 'teste@teste.com'
     },
     {
         name: 'Lisboa',
         id: 13,
-        role: 'Coordenador'
+        role: 'Coordenador',
+        email: 'teste@teste.com'
     }
 ]
 
@@ -97,6 +119,13 @@ const roles = [
         value: 3,
         label: 'Estagiário'
     }
+]
+
+const columns = [
+    { value: 1, label: 'ID' },
+    { value: 2, label: 'NOME' },
+    { value: 3, label: 'E-MAIL' },
+    { value: 4, label: 'CARGO' }
 ]
 
 export const UsersList = () => {
@@ -144,13 +173,23 @@ export const UsersList = () => {
                 <button>Cadastrar Usuário</button>
             </Container>
             <ListContainer className="users-list-list-container">
-                <ul>
-                    {filteredNames.map(user => (
-                        <li key={user.id}>
-                            <span>{user.name}</span> - <span>{user.role}</span>
-                        </li>
+                <ListHeader>
+                    {columns.map(column => (
+                        <ListeHeaderItem key={column.value}>
+                            {column.label}
+                        </ListeHeaderItem>
                     ))}
-                </ul>
+                </ListHeader>
+                <ListItems>
+                    {filteredNames.map(user => (
+                        <ListItem key={user.id}>
+                            <ListSpan>{user.id}</ListSpan>
+                            <ListSpan>{user.name}</ListSpan>
+                            <ListSpan>{user.email}</ListSpan>
+                            <ListSpan>{user.role}</ListSpan>
+                        </ListItem>
+                    ))}
+                </ListItems>
             </ListContainer>
         </>
     )
