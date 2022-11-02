@@ -33,7 +33,11 @@ export const ForgetContainer = styled.div`
                 font-weight: 500;
                 color: #FFFF;    
                 outline: none;
-                border: none;            
+                border: none;
+                &:disabled{
+                    opacity: .7;
+                    cursor: not-allowed;
+                }     
             }
         }
     }

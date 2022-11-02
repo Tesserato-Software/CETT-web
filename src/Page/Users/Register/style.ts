@@ -34,6 +34,10 @@ export const Container = styled.div`
         color: #fff;
         text-decoration: none;
         cursor: pointer;
+        &:disabled{
+            opacity: .7;
+            cursor: not-allowed;
+        }
     }
     .Link {
         width: 30%;

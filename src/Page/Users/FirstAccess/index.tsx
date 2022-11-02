@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FirstAccessContainer } from './style'
 
 export const FirstAccess = () => {
+    const [passwords, setPasswords] = useState<string[]>(['', ''])
+
     return (
         <FirstAccessContainer>
             <aside>
@@ -10,12 +12,18 @@ export const FirstAccess = () => {
             </aside>
             <section>
                 <label>Escreva sua senha:</label>
-                <input type="password" />
+                <input type="password"
+                    onChange={e => setPasswords([e.target.value, passwords[0]])}
+                />
                 <br/>
                 <label>Confirme a sua senha:</label>
-                <input type="password" />
+                <input type="password"
+                    onChange={e => setPasswords([e.target.value, passwords[1]])}
+                />
             </section>
-            <button>Salvar</button>
+            <button
+                disabled={passwords[0].length <= 8 || passwords[1].length  <= 8 || passwords[0] !== passwords[1]}
+            >Salvar</button>
         </FirstAccessContainer>
     )
 }

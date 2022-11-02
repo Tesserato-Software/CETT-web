@@ -103,7 +103,7 @@ export const MainRouts = () => {
                 </Route>
 
                 <Route path="users" element={<Users />}>
-                    <Route path="register" element={<UsersRegister />} />
+                    <Route path="create" element={<UsersRegister />} />
                     <Route path="list" element={<UsersList />} />
                     <Route path="update" element={<UsersUpdate />} />
                     <Route path="delete" element={<UsersDelete />} />

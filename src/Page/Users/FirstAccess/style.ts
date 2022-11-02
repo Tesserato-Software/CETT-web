@@ -42,5 +42,9 @@ export const FirstAccessContainer = styled.div`
         font-size: 1.3rem;
         margin-left: 20%;
         cursor: pointer;
+        &:disabled{
+            opacity: .7;
+            cursor: not-allowed;
+        }
     }
 `;
