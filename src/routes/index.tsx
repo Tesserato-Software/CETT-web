@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { NavBar } from '../Components/Navbar/NavBar'
+
 import { Egress } from '../page/egress'
 import { CreateEgress } from '../page/egress/create'
 import { DeleteEgress } from '../page/egress/delete'
@@ -8,20 +9,19 @@ import { UpdateEgress } from '../page/egress/update';
 import { Hierarchy } from "../page/Hierarchy";
 import { HierarchyList } from "../page/Hierarchy/List";
 import { Login } from "../page/Login";
-import { AtachEgress } from '../page/AtachEgress/index';
-import { DetachEgress } from '../page/DetachEgress/index';
-import { DetachArchive } from '../page/DetachArchive/index';
-import { Atacharchive } from '../page/AtachArchive';
+import { AttachEgress } from '../page/archive/AttachEgress/index';
+import { DetachEgress } from '../page/archive/DetachEgress/index';
+import { DetachArchive } from '../page/egress/DetachArchive/index';
+import { AttachArchive } from '../page/egress/AttachArchive';
 import { UsersList } from '../page/Users/List'
 import { UsersRegister } from '../page/Users/Register'
 import { Users } from '../page/Users'
-import { InputArchive } from '../page/InputArchive/attach/index';
-import { ExportExcel } from '../page/InputArchive/export'
+import { InputArchive } from '../page/Excel/attach/index';
+import { ExportExcel } from '../page/Excel/export'
 import { Archives } from '../page/archive'
 import { CreateArchive } from '../page/archive/create'
 import { CreateHierarchy } from '../page/Hierarchy/create';
 import { Excel } from '../page/Excel'
-
 
 export const MainRouts = () => {
     return (
@@ -72,7 +72,7 @@ export const MainRouts = () => {
                     />
                     <Route
                         path="attach-user-archive"
-                        element={<Atacharchive />}
+                        element={<AttachArchive />}
                     />
                 </Route>
 
@@ -94,7 +94,7 @@ export const MainRouts = () => {
                     {/* VINC BY EGRESS */}
                     <Route
                         path="attach-egress"
-                        element={<AtachEgress />}
+                        element={<AttachEgress />}
                     />
                     <Route
                         path="detach-egress"
