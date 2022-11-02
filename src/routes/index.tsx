@@ -26,6 +26,8 @@ import { CreateHierarchy } from '../page/Hierarchy/create'
 import { Excel } from '../page/Excel'
 import { DeleteHierarchy } from '../page/Hierarchy/delete'
 import { UpdateHierarchy } from '../page/Hierarchy/update'
+import { AttachUser } from '../page/Hierarchy/attachuser'
+import { DettachUser } from '../page/Hierarchy/dettachuser'
 import { ListArchive } from '../page/archive/list'
 import { DeleteArchive } from '../page/archive/delete'
 import { FirstAccess } from '../page/Users/FirstAccess'
@@ -91,6 +93,8 @@ export const MainRouts = () => {
                     <Route path="create" element={<CreateHierarchy />} />
                     <Route path="update" element={<UpdateHierarchy />} />
                     <Route path="delete" element={<DeleteHierarchy />} />
+                    <Route path="add-user" element={<AttachUser />} />
+                    <Route path="remove-user" element={<DettachUser />} />
                 </Route>
 
                 <Route path="users" element={<Users />}>
