@@ -24,22 +24,22 @@ export const DeleteArchiveContainer = styled.div`
             align-items: center;
             justify-content: space-between;
             button{
-            margin: 0 1rem;
-            background-color: #b3b3b3;
-            color: #000;
-            border: none;
-            outline: none;
-            padding: .8rem 1rem;
-            font-size: 1.7rem;
-            width: 100%;
-            min-width: 300px;
-            border-radius: 8px;
-            cursor: pointer;
-            &.confirm {
-            background-color: #e13763;
-            color: #fff;
-        }
+                margin: 0 1rem;
+                background-color: #b3b3b3;
+                color: #000;
+                border: none;
+                outline: none;
+                padding: .8rem 1rem;
+                font-size: 1.7rem;
+                width: 100%;
+                min-width: 300px;
+                border-radius: 8px;
+                cursor: pointer;
+                &.confirm {
+                    background-color: #e13763;
+                    color: #fff;
+                }
+            }
         }
     }
-}
 `;

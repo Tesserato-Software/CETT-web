@@ -29,6 +29,7 @@ import { UpdateHierarchy } from '../page/Hierarchy/update'
 import { ListArchive } from '../page/archive/list'
 import { DeleteArchive } from '../page/archive/delete'
 import { FirstAccess } from '../page/Users/FirstAccess'
+import { ForgetPassword } from '../page/Users/ForgetPassword'
 
 export const MainRouts = () => {
     return (
@@ -50,6 +51,7 @@ export const MainRouts = () => {
 
                 <Route path="login" element={<Login />} />
                 <Route path="first-access" element={<FirstAccess />} />
+                <Route path="forget-password" element={<ForgetPassword />} />
 
                 <Route path="egress" element={<Egress />}>
                     <Route path="list" element={<EgressList />} />
