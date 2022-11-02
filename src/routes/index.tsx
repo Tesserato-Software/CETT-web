@@ -27,6 +27,7 @@ import { Excel } from '../page/Excel'
 import { DeleteHierarchy } from '../page/Hierarchy/delete'
 import { UpdateHierarchy } from '../page/Hierarchy/update'
 import { ListArchive } from '../page/archive/list'
+import { DeleteArchive } from '../page/archive/delete'
 
 export const MainRouts = () => {
     return (
@@ -74,6 +75,7 @@ export const MainRouts = () => {
                 <Route path="archive" element={<Archives />}>
                     <Route path="create" element={<CreateArchive />} />
                     <Route path="list" element={<ListArchive />} />
+                    <Route path="delete" element={<DeleteArchive />} />
 
                     {/* VINC BY EGRESS */}
                     <Route path="attach-egress" element={<AttachEgress />} />
