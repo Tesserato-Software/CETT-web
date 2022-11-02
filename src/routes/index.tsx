@@ -32,6 +32,11 @@ import { ListArchive } from '../page/archive/list'
 import { DeleteArchive } from '../page/archive/delete'
 import { FirstAccess } from '../page/Users/FirstAccess'
 import { ForgetPassword } from '../page/Users/ForgetPassword'
+import { School } from "../page/School";
+import { SchoolList } from "../page/School/List";
+import { SchoolCreate } from "../page/School/Create";
+import { SchoolUpdate } from "../page/School/Update";
+import { SchoolDelete } from "../page/School/Delete";
 
 export const MainRouts = () => {
     return (
@@ -102,6 +107,15 @@ export const MainRouts = () => {
                     <Route path="list" element={<UsersList />} />
                     <Route path="update" element={<UsersUpdate />} />
                     <Route path="delete" element={<UsersDelete />} />
+                </Route>
+                <Route
+                    path="school"
+                    element={<School/>}
+                >
+                    <Route path="list" element={<SchoolList/>}/>
+                    <Route path="create" element={<SchoolCreate/>}/>
+                    <Route path="update" element={<SchoolUpdate/>}/>
+                    <Route path="delete" element={<SchoolDelete/>}/>
                 </Route>
             </Routes>
         </>
