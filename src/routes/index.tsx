@@ -17,6 +17,7 @@ import { UsersRegister } from '../page/Users/Register'
 import { Users } from '../page/Users'
 import { InputArchive } from '../page/InputArchive/attach/index';
 import { ExportExcel } from '../page/InputArchive/export'
+import { CreateHierarchy } from '../page/Hierarchy/create';
 
 
 export const MainRouts = () => {
@@ -104,16 +105,35 @@ export const MainRouts = () => {
                         <Route path="edit" element={<UpdateEgress />} />
                         <Route path="delete" element={<DeleteEgress />} />
                     </Route>
-
                 </Route>
+                
+                
+          
+
+
                 <Route path="hierarchy" element={<Hierarchy />}>
                     <Route path="list" element={<HierarchyList />} />
+                    <Route path="create" element={<CreateHierarchy />} />
+
                 </Route>
-                <Route path="users" element={<Users />}>
-                    <Route path="list" element={<UsersList />} />
+                
+                
+                
+                
+                <Route 
+                    path="users" 
+                    element={<Users />}>
+                <Route 
+                    path="list" 
+                    element={<UsersList />} />
                 </Route>
-                <Route path="users/register" element={<UsersRegister />} /> // LDJKAHKWHJDAKWHJ
-            </Routes>
+                <Route 
+                    path="users/register" 
+                    element={<UsersRegister />} /> 
+
+
+
+                </Routes>
         </>
     )
 }
