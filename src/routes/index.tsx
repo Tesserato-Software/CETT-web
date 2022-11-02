@@ -24,6 +24,7 @@ import { CreateHierarchy } from '../page/Hierarchy/create';
 import { Excel } from '../page/Excel'
 import { DeleteHierarchy } from '../page/Hierarchy/delete'
 import { UpdateHierarchy } from '../page/Hierarchy/update'
+import { ListArchive } from '../page/archive/list'
 
 export const MainRouts = () => {
     return (
@@ -92,6 +93,7 @@ export const MainRouts = () => {
 
                 <Route path="archive" element={<Archives />}>
                     <Route path="create" element={<CreateArchive />} />
+                    <Route path="list" element={<ListArchive />} />
 
                     {/* VINC BY EGRESS */}
                     <Route

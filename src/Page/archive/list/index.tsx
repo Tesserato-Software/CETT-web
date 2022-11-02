@@ -1,10 +1,9 @@
 import React from 'react'
-import { CreateArchiveContainer } from './style'
+import { ListArchiveContainer } from './style'
 
-export const CreateArchive = () => {
+export const ListArchive = () => {
   return (
-    <CreateArchiveContainer>
-      <div className='but'>
+    <ListArchiveContainer>
         <div className="conteudo">
           <div>
             <div>
@@ -21,8 +20,6 @@ export const CreateArchive = () => {
            </div> 
         </div>
         
-        <input type="submit" value="Criar nova caixa"/>
-      </div>
-    </CreateArchiveContainer>
+    </ListArchiveContainer>
   )
 }
