@@ -28,6 +28,7 @@ import { DeleteHierarchy } from '../page/Hierarchy/delete'
 import { UpdateHierarchy } from '../page/Hierarchy/update'
 import { ListArchive } from '../page/archive/list'
 import { DeleteArchive } from '../page/archive/delete'
+import { FirstAccess } from '../page/Users/FirstAccess'
 
 export const MainRouts = () => {
     return (
@@ -48,6 +49,7 @@ export const MainRouts = () => {
                 />
 
                 <Route path="login" element={<Login />} />
+                <Route path="first-access" element={<FirstAccess />} />
 
                 <Route path="egress" element={<Egress />}>
                     <Route path="list" element={<EgressList />} />
