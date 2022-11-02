@@ -1,11 +1,6 @@
 import React from 'react'
-import { UsersList as UsersListContainer } from './List'
-import { UsersRegister as UsersRegisterContainer } from './Register'
+import { Outlet } from 'react-router-dom'
 
-export const UsersList = () => {
-    return <UsersListContainer />
-}
-
-export const UsersRegister = () => {
-    return <UsersRegisterContainer />
+export const Users = () => {
+    return <Outlet />
 }

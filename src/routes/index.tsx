@@ -14,6 +14,7 @@ import { DetachArchive } from '../page/DetachArchive/index';
 import { Atacharchive } from '../page/AtachArchive';
 import { UsersList } from '../page/Users/List'
 import { UsersRegister } from '../page/Users/Register'
+import { Users } from '../page/Users'
 
 
 export const MainRouts = () => {
