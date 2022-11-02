@@ -18,6 +18,7 @@ import { Users } from '../page/Users'
 import { InputArchive } from '../page/InputArchive/attach/index';
 import { ExportExcel } from '../page/InputArchive/export'
 import { CreateHierarchy } from '../page/Hierarchy/create';
+import { UpdateHierarchy } from '../page/Hierarchy/update';
 
 
 export const MainRouts = () => {
@@ -114,7 +115,7 @@ export const MainRouts = () => {
                 <Route path="hierarchy" element={<Hierarchy />}>
                     <Route path="list" element={<HierarchyList />} />
                     <Route path="create" element={<CreateHierarchy />} />
-
+                    <Route path="update" element={<UpdateHierarchy />} />
                 </Route>
                 
                 
