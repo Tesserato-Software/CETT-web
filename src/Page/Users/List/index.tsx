@@ -176,7 +176,7 @@ export const UsersList = () => {
                         })}
                     </select>
                 </div>
-                <Link className="Link" to="/users/register">
+                <Link className="Link" to="/users/create">
                     Cadastrar Usuário
                 </Link>
             </Container>
