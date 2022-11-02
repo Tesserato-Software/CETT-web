@@ -7,6 +7,15 @@
  `
     display: flex;
     flex-direction: column;
+    
+    h1{
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #FFFF;
+        margin-top: 3rem;
+        justify-content: center;
+        display: flex;
+    }
 
 
     .container{
@@ -60,8 +69,10 @@
         width: 10.5rem;
         height: 2.6rem;
         border-radius: 8px;
-        padding: 0.5rem;
         background-color: #E13763;
+        color: #FFFF;
+        font-weight: 500;
+        font-size: 1rem;
     }
 
     .button{

@@ -1,12 +1,11 @@
 import React from "react";
-import { ArchiveDiv } from './styles';
+import { DetachArchiveDiv } from "./style";
 
 
-
-export const Atacharchive = () => {
-  return (
-     <ArchiveDiv>
-      <h1>Anexar Aluno ao Arquivo</h1>
+export const DetachArchive = () => {
+    return (
+       <DetachArchiveDiv>
+         <h1>Desanexar Aluno do arquivo</h1>
       <div className="container">
   
         <div className="lista-aluno">
@@ -47,9 +46,11 @@ export const Atacharchive = () => {
         </div>
       </div>
       <div className="button">
-        <button className="btn">Anexar</button>
+        <button className="btn">Desanexar</button>
       </div>
-     </ArchiveDiv>
-     
-  )
-}
+
+      </DetachArchiveDiv>
+        
+       
+    );
+    };
