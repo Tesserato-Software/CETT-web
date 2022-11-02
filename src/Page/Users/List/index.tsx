@@ -77,12 +77,6 @@ const data = [
     },
     {
         name: 'Lisboa',
-        id: 9,
-        role: 'Coordenador',
-        email: 'teste@teste.com'
-    },
-    {
-        name: 'Lisboa',
         id: 10,
         role: 'Coordenador',
         email: 'teste@teste.com'
@@ -104,6 +98,12 @@ const data = [
         id: 13,
         role: 'Coordenador',
         email: 'teste@teste.com'
+    },
+    {
+        name: 'Nataly',
+        id: 14,
+        role: 'Coordenador',
+        email: 'nataly@teste.com'
     }
 ]
 
