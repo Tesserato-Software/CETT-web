@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CreateArchiveContainer = styled.div`
+export const ListArchiveContainer = styled.div`
      * {
       margin: 0;
       padding: 0;
@@ -31,20 +31,5 @@ export const CreateArchiveContainer = styled.div`
           }
         }
      }
-
-     input {
-          width: 372px;
-          height: 57px;
-          background-color: #E13763;
-          color: #fff;
-          border: none;
-          border-radius: 8px;
-          font-size: 20px;
-          cursor: pointer;
-     }
-    
-     div.but {
-          display: flex;
-          align-items: center;
-     }
+       
 `;

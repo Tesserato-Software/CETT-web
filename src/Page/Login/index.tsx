@@ -18,7 +18,7 @@ export const Login = () => {
                         <input type='password' id='password'/>
                     </div>
                     <button className='button-login' type='submit'>Entrar</button>
-                    </form>
+                </form>
             </div>
         </LoginDiv>
                 
