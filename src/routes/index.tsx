@@ -18,6 +18,7 @@ import { Users } from '../page/Users'
 import { InputArchive } from '../page/InputArchive/attach/index';
 import { ExportExcel } from '../page/InputArchive/export'
 import { CreateHierarchy } from '../page/Hierarchy/create';
+import { Excel } from '../page/Excel'
 
 
 export const MainRouts = () => {
@@ -41,46 +42,9 @@ export const MainRouts = () => {
                 <Route path="login" element={<Login />} />
 
                 <Route
-                    path="about"
-                    element={
-                        <>
-                            <h1>about</h1>
-                        </>
-                    }
-                />
-                <Route
                     path="egress"
                     element={<Egress />}
                 >
-                    <Route
-                        path="archive"
-                        element={<Atacharchive />}
-                    />
-                    <Route
-                        path="export"
-                        element={<ExportExcel />}
-                    />
-                    <Route
-                        path="atachegress"
-                        element={<AtachEgress />}
-                    />
-                    <Route
-                        path="detachegress"
-                        element={<DetachEgress />}
-                    />
-                    <Route
-                        path="archive"
-                        element={<Atacharchive />}
-                    />
-                    <Route
-                        path="InputArchive"
-                        element={<InputArchive />}
-                    />
-
-                    <Route
-                        path="detachearchive"
-                        element={<DetachArchive />}
-                    />
 
                     <Route
                         path="list"
@@ -99,41 +63,63 @@ export const MainRouts = () => {
                         element={<DeleteEgress />}
                     />
 
-                    <Route path="egress" element={<Egress />}>
-                        <Route path="list" element={<EgressList />} />
-                        <Route path="create" element={<CreateEgress />} />
-                        <Route path="edit" element={<UpdateEgress />} />
-                        <Route path="delete" element={<DeleteEgress />} />
-                    </Route>
+                    {/* VINC BY ARCHIVE */}
+                    <Route
+                        path="detach-user-archive"
+                        element={<DetachArchive />}
+                    />
+                    <Route
+                        path="attach-user-archive"
+                        element={<Atacharchive />}
+                    />
                 </Route>
-                
-                
-          
+
+                <Route path="archive" element={<Hierarchy />}>
+
+                    {/* VINC BY EGRESS */}
+                    <Route
+                        path="attach-egress"
+                        element={<AtachEgress />}
+                    />
+                    <Route
+                        path="detach-egress"
+                        element={<DetachEgress />}
+                    />
+
+                </Route>
+
+                <Route path="excel" element={<Excel />}>
+                    <Route
+                        path="import"
+                        element={<InputArchive />}
+                    />
+
+                    <Route
+                        path="export"
+                        element={<ExportExcel />}
+                    />
+                </Route>
 
 
                 <Route path="hierarchy" element={<Hierarchy />}>
                     <Route path="list" element={<HierarchyList />} />
                     <Route path="create" element={<CreateHierarchy />} />
-
                 </Route>
-                
-                
-                
-                
+
                 <Route 
                     path="users" 
-                    element={<Users />}>
-                <Route 
-                    path="list" 
-                    element={<UsersList />} />
+                    element={<Users />}
+                >
+                    <Route 
+                        path="register"
+                        element={<UsersRegister />}
+                    />
+                    <Route 
+                        path="list" 
+                        element={<UsersList />}
+                    />
                 </Route>
-                <Route 
-                    path="users/register" 
-                    element={<UsersRegister />} /> 
-
-
-
-                </Routes>
+            </Routes>
         </>
     )
 }
