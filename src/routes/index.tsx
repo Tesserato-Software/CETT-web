@@ -15,6 +15,7 @@ import { Atacharchive } from '../page/AtachArchive';
 import { UsersList } from '../page/Users/List'
 import { UsersRegister } from '../page/Users/Register'
 import { Users } from '../page/Users'
+import { InputArchive } from './../page/InputArchive/index';
 
 
 export const MainRouts = () => {
@@ -60,6 +61,14 @@ export const MainRouts = () => {
                     <Route
                         path="detachegress"
                         element={<DetachEgress />}
+                    />
+                    <Route
+                        path="archive"
+                        element={<Atacharchive />}
+                    />
+                    <Route
+                        path="InputArchive"
+                        element={<InputArchive />}
                     />
 
                     <Route
