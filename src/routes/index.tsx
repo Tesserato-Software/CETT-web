@@ -35,7 +35,7 @@ export const MainRouts = () => {
                     }
                 />
 
-              <Route path="login" element={<Login />} />
+                <Route path="login" element={<Login />} />
 
                 <Route
                     path="about"
@@ -47,49 +47,49 @@ export const MainRouts = () => {
                 />
                 <Route
                     path="egress"
-                    element={<Egress/>}
+                    element={<Egress />}
                 >
                     <Route
-                      path="archive"
-                      element={<Atacharchive/>}
+                        path="archive"
+                        element={<Atacharchive />}
                     />
                     <Route
-                      path="atachegress"
-                      element={<AtachEgress/>}
+                        path="atachegress"
+                        element={<AtachEgress />}
                     />
-                      <Route
-                      path="detachegress"
-                      element={<DetachEgress/>}
+                    <Route
+                        path="detachegress"
+                        element={<DetachEgress />}
                     />
-                  
-                      <Route
-                      path="detachearchive"
-                      element={<DetachArchive/>}
+
+                    <Route
+                        path="detachearchive"
+                        element={<DetachArchive />}
                     />
 
                     <Route
                         path="list"
-                        element={<EgressList/>}
+                        element={<EgressList />}
                     />
                     <Route
                         path="create"
-                        element={<CreateEgress/>}
+                        element={<CreateEgress />}
                     />
                     <Route
                         path="edit"
-                        element={<UpdateEgress/>}
+                        element={<UpdateEgress />}
                     />
                     <Route
                         path="delete"
-                        element={<DeleteEgress/>}
+                        element={<DeleteEgress />}
                     />
-                    
-                <Route path="egress" element={<Egress />}>
-                    <Route path="list" element={<EgressList />} />
-                    <Route path="create" element={<CreateEgress />} />
-                    <Route path="edit" element={<UpdateEgress />} />
-                    <Route path="delete" element={<DeleteEgress />} />
-                </Route>
+
+                    <Route path="egress" element={<Egress />}>
+                        <Route path="list" element={<EgressList />} />
+                        <Route path="create" element={<CreateEgress />} />
+                        <Route path="edit" element={<UpdateEgress />} />
+                        <Route path="delete" element={<DeleteEgress />} />
+                    </Route>
 
                 </Route>
                 <Route path="hierarchy" element={<Hierarchy />}>
