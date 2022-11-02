@@ -6,7 +6,6 @@ export const Atacharchive = () => {
 		<ArchiveDiv>
 			<h1>Anexar Aluno ao Arquivo</h1>
 			<div className="container">
-
 				<div className="lista-aluno">
 					<table>
 						<thead>

@@ -15,7 +15,8 @@ import { Atacharchive } from '../page/AtachArchive';
 import { UsersList } from '../page/Users/List'
 import { UsersRegister } from '../page/Users/Register'
 import { Users } from '../page/Users'
-import { InputArchive } from './../page/InputArchive/index';
+import { InputArchive } from '../page/InputArchive/attach/index';
+import { ExportExcel } from '../page/InputArchive/export'
 
 
 export const MainRouts = () => {
@@ -53,6 +54,10 @@ export const MainRouts = () => {
                     <Route
                         path="archive"
                         element={<Atacharchive />}
+                    />
+                    <Route
+                        path="export"
+                        element={<ExportExcel />}
                     />
                     <Route
                         path="atachegress"
@@ -107,7 +112,7 @@ export const MainRouts = () => {
                 <Route path="users" element={<Users />}>
                     <Route path="list" element={<UsersList />} />
                 </Route>
-                <Route path="users/register" element={<UsersRegister />} />
+                <Route path="users/register" element={<UsersRegister />} /> // LDJKAHKWHJDAKWHJ
             </Routes>
         </>
     )
