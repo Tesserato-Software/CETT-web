@@ -2,10 +2,32 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    width: 90%;
+    margin: 2rem auto 1rem auto;
+    justify-content: space-between;
+    div { 
+        display: grid;
+        grid-template-columns: 1fr 1fr .3fr;
+        gap:.5rem;
+        width: 70%;
+        .input {
+            background-color: #D9D9D9;
+            padding: 4px;
+            border-radius: 8px;
+            width: 100%;
+        }
+    }
+    .Link {
+        background-color: #E13763;
+        padding: .3rem;
+        border: 1px solid #E13763;
+        border-radius: 8px;
+        color: #fff;
+        text-decoration: none;
+    }
+    .select {
+        border-radius: 8px;
+    }
 `
 
 export const ListContainer = styled.div`

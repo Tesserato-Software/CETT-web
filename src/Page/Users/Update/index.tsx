@@ -17,7 +17,7 @@ const roles = [
     }
 ]
 
-export const UsersRegister = () => {
+export const UsersUpdate = () => {
     const [role, setRole] = useState({})
 
     console.log(role)
@@ -25,7 +25,7 @@ export const UsersRegister = () => {
     return (
         <form>
             <Container>
-                <h1>Cadastro de Usuário</h1>
+                <h1>Editar Usuário</h1>
                 <input
                     className="input"
                     type="text"
@@ -66,7 +66,7 @@ export const UsersRegister = () => {
                 </select>
                 <ContainerButton>
                     <button className="button" type="submit">
-                        Cadastrar
+                        Salvar
                     </button>
                     <Link className="Link" to="/users/list">
                         Voltar
