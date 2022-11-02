@@ -8,6 +8,7 @@ import {
     ListSpan,
     ListeHeaderItem
 } from './style'
+import { Link } from 'react-router-dom'
 
 type user = {
     name: string
@@ -143,34 +144,41 @@ export const UsersList = () => {
     return (
         <>
             <Container className="users-list-form-container">
-                <input
-                    type="text"
-                    placeholder="Nome"
-                    name="name"
-                    value={name}
-                    onChange={event => setName(event?.target.value)}
-                />
-                <input
-                    type="email"
-                    placeholder="E-mail"
-                    name="email"
-                    value={email}
-                    onChange={event => setEmail(event?.target.value)}
-                />
-                <select
-                    placeholder="Permissão"
-                    name="role"
-                    onChange={event => setRole(event?.target.value)}
-                >
-                    {roles.map(role => {
-                        return (
-                            <option key={role.value} value={role.value}>
-                                {role.label}
-                            </option>
-                        )
-                    })}
-                </select>
-                <button>Cadastrar Usuário</button>
+                <div>
+                    <input
+                        className="input"
+                        type="text"
+                        placeholder="Nome"
+                        name="name"
+                        value={name}
+                        onChange={event => setName(event?.target.value)}
+                    />
+                    <input
+                        className="input"
+                        type="email"
+                        placeholder="E-mail"
+                        name="email"
+                        value={email}
+                        onChange={event => setEmail(event?.target.value)}
+                    />
+                    <select
+                        className="select"
+                        placeholder="Permissão"
+                        name="role"
+                        onChange={event => setRole(event?.target.value)}
+                    >
+                        {roles.map(role => {
+                            return (
+                                <option key={role.value} value={role.value}>
+                                    {role.label}
+                                </option>
+                            )
+                        })}
+                    </select>
+                </div>
+                <Link className="Link" to="/users/register">
+                    Cadastrar Usuário
+                </Link>
             </Container>
             <ListContainer className="users-list-list-container">
                 <ListHeader>
