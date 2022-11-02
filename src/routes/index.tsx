@@ -22,6 +22,8 @@ import { Archives } from '../page/archive'
 import { CreateArchive } from '../page/archive/create'
 import { CreateHierarchy } from '../page/Hierarchy/create';
 import { Excel } from '../page/Excel'
+import { DeleteHierarchy } from '../page/Hierarchy/delete'
+import { UpdateHierarchy } from '../page/Hierarchy/update'
 
 export const MainRouts = () => {
     return (
@@ -105,6 +107,8 @@ export const MainRouts = () => {
                 <Route path="hierarchy" element={<Hierarchy />}>
                     <Route path="list" element={<HierarchyList />} />
                     <Route path="create" element={<CreateHierarchy />} />
+                    <Route path="update" element={<UpdateHierarchy />} />
+                    <Route path="delete" element={<DeleteHierarchy />} />
                 </Route>
 
                 <Route 
