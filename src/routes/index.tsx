@@ -10,6 +10,8 @@ import { HierarchyList } from '../page/Hierarchy/List'
 import { Users } from '../page/Users'
 import { UsersList } from '../page/Users/List'
 import { UsersRegister } from '../page/Users/Register'
+import { UsersUpdate } from '../page/Users/Update'
+import { UsersDelete } from '../page/Users/Delete'
 
 export const MainRouts = () => {
     return (
@@ -48,6 +50,8 @@ export const MainRouts = () => {
                 <Route path="users" element={<Users />}>
                     <Route path="list" element={<UsersList />} />
                     <Route path="register" element={<UsersRegister />} />
+                    <Route path="update" element={<UsersUpdate />} />
+                    <Route path="delete" element={<UsersDelete />} />
                 </Route>
             </Routes>
         </>
