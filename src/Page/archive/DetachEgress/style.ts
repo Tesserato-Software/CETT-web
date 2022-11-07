@@ -17,7 +17,7 @@ export const DetachEgressDiv = styled.div`
 		justify-content: space-around;
 		margin-top: 6rem;
 	}
-	.lista-aluno{	
+	.list-student{	
 		width: 30rem;
 		height: 30rem;
 		display: flex;
@@ -31,7 +31,7 @@ export const DetachEgressDiv = styled.div`
 		width: 100%;
 	}
 
-	.cabeca-aluno{	
+	.header-list{	
 		display: flex;
 	}
 

@@ -9,14 +9,14 @@ export const DetachEgress = () => {
 				<div className="list-archive">
 					<table>
 						<thead>
-							<tr className="cabeca">
+							<tr>
 								<th>Id Arquivo</th>
 								<th></th>
 								<th>Selecionar</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr className="corpo">
+							<tr>
 								<td>1</td>
 								<td> 1-50</td>
 								<td><input type="checkbox" /></td>
@@ -24,10 +24,10 @@ export const DetachEgress = () => {
 						</tbody>
 					</table>
 				</div>
-				<div className="lista-aluno">
+				<div className="list-student">
 					<table>
 						<thead>
-							<tr className="cabeca-aluno">
+							<tr className="header-list">
 								<th>Id</th>
 								<th>Nome</th>
 								<th>Selecionar</th>

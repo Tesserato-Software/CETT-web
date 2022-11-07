@@ -19,7 +19,7 @@ export const DetachArchiveDiv = styled.div`
 		justify-content: space-around;
 		margin-top: 6rem;
 	}
-	.lista-aluno{	
+	.lsit-students{	
 		width: 30rem;
 		height: 30rem;
 		display: flex;
@@ -33,7 +33,7 @@ export const DetachArchiveDiv = styled.div`
 		width: 100%;
 	}
 
-	.cabeca-aluno{	
+	.header-list{	
 	display: flex;
 
 	}
@@ -46,7 +46,7 @@ export const DetachArchiveDiv = styled.div`
 	
 	}
 
-	.aluno {
+	.student {
 		margin-right: 3rem;
 		
 	}

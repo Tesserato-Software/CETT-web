@@ -6,20 +6,20 @@ export const DetachArchive = () => {
 		<DetachArchiveDiv>
 			<h1>Desanexar Aluno do arquivo</h1>
 			<div className="container">
-				<div className="lista-aluno">
+				<div className="lsit-students">
 					<table>
 						<thead>
-							<tr className="cabeca-aluno">
+							<tr className="header-list">
 								<th>Id</th>
 								<th>Nome</th>
 								<th>Selecionar</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr className="corpo">
+							<tr>
 								<td>1</td>
 								<td>João Henrique Alves</td>
-								<td><input className="aluno" type="checkbox" /></td>
+								<td><input className="student" type="checkbox" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -27,14 +27,14 @@ export const DetachArchive = () => {
 				<div className="list-archive">
 					<table>
 						<thead>
-							<tr className="cabeca">
+							<tr >
 								<th>Id Arquivo</th>
 								<th></th>
 								<th>Selecionar</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr className="corpo">
+							<tr>
 								<td>1</td>
 								<td> 1-50</td>
 								<td><input type="checkbox" /></td>
