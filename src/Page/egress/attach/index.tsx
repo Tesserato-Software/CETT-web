@@ -1,51 +1,37 @@
-import React from "react";
-import { ArchiveDiv } from './styles';
+import React, { useState } from "react";
+import { AttachArchiveDiv } from "../../../Components/AttachEgress";
+import { AttachDiv } from "./styles";
+import { api } from './../../../services/api';
 
 export const AttachArchive = () => {
+
+	api.get('egress/dashboard-attach-archive/{id}')
+
 	return (
-		<ArchiveDiv>
-			<h1>Anexar Aluno ao Arquivo</h1>
-			<div className="container">
-				<div className="list-student">
-					<table>
-						<thead>
-							<tr className="header-list">
-								<th>Id</th>
-								<th>Nome</th>
-								<th>Selecionar</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>João Henrique Alves</td>
-								<td><input className="aluno" type="checkbox" /></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div className="list-archive">
-					<table>
-						<thead>
-							<tr>
-								<th>Id Arquivo</th>
-								<th></th>
-								<th>Selecionar</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td> 1-50</td>
-								<td><input type="checkbox" /></td>
-							</tr>
-						</tbody>
-					</table>
+		<AttachDiv>
+			<div className="div-container-egress">
+				<div className="container">
+					<div className="div-head">
+						<span>ID</span>
+						<span>NOME</span>
+						<span className="CGM">CGM</span>
+					</div>
+					<div className="view-egress">
+						<span className="id">4</span>
+						<span className="name">Eduardo Henrique Lisboa alves </span>
+						<span className="CGM">123445657</span>
+					</div>
 				</div>
 			</div>
-			<div className="button">
-				<button className="btn">Anexar</button>
+
+			<div className="archive">
+				<strong>Arquivos</strong>
+				<div className="archive-option">
+					<span>ID</span>
+					<span>Selcionar</span>
+				</div>
+				<AttachArchiveDiv />
 			</div>
-		</ArchiveDiv>
-	)
-}
+		</AttachDiv>
+	);
+};
