@@ -64,7 +64,7 @@ export const MainRouts = () => {
                     <Route path="list" element={<EgressList />} />
                     <Route path="create" element={<CreateEgress />} />
                     <Route path="edit" element={<UpdateEgress />} />
-                    <Route path="delete" element={<DeleteEgress />} />
+                    <Route path="delete/:id" element={<DeleteEgress />} />
 
                     {/* VINC BY ARCHIVE */}
                     <Route
