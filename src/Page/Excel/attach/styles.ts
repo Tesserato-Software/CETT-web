@@ -34,14 +34,16 @@ export const InputDiv = styled.div `
         margin-top: 2rem;
     }
 
-    .submit {
+    button {
         background: #E13763;
         border-radius: 8px;
         border: none;
         width: 10rem;
         height: 2rem;
+        font-size: 1.3rem;
         margin-top: 2rem;
         margin-bottom: 2rem;
         color: #fff;
+        cursor: pointer;
     }
 `;
