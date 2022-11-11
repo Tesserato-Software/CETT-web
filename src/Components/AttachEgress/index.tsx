@@ -14,7 +14,7 @@ export const AttachArchiveDiv = (props: Archives) => {
         <AttachDiv>
             <div className="data-archive">
                 <span>{props.id}</span>
-                <input type="checkbox" value={props.id} />
+                <input type="RADIO" value={props.id} />
             </div>
 
         </AttachDiv>

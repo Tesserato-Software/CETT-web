@@ -21,10 +21,18 @@ export const AttachArchive = () => {
 
 	useEffect(() => {
 		api.get(`/egress/dashboard-attach-archive/${id}`).then((response) => {
-			setArchives(response.data.archives)
+			setArchives(response.data.archives);
 			setEgress(response.data.egresses);
 		});
 	}, []);
+
+	const onSubmit = () => {
+		api.post(`/egress/attach-archive/${id}`, { archives }).then(
+			(res) => { }
+		);
+
+		return alert(`Egresso anexao em arquivo ${id} com sucesso!`);
+	};
 
 	console.log(egress);
 
@@ -66,16 +74,19 @@ export const AttachArchive = () => {
 					</div>
 
 					{archives.map((archive) => {
-						return <AttachArchiveDiv id={archive.id}
-						/>;
+						return (
+							<AttachArchiveDiv
+								id={archive.id}
+								key={archive.id}
+							/>
+						);
 					})}
 				</div>
 			</div>
 
 			<div className="container-button">
-				<button>Anexar</button>
+				<button onSubmit={onSubmit}>Anexar</button>
 			</div>
-
 		</AttachDiv>
 	);
 };
