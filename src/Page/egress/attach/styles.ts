@@ -69,16 +69,26 @@ export const AttachDiv = styled.div`
             background-color: #e7e7e7;
             border-radius: 8px;
             padding: 1rem;
-            gap: 7rem;
+            width: 100%;
+            height: 40px;
             margin: 0 auto;
             align-items: center;
-            max-width: 100%;
+          
 
             span {
-                font-size: 18px;
+                font-size: 20px;
             }
             .CGM {
-                margin-left: 28vh;
+                position : absolute;
+                margin-left: 54rem;
+            }
+            .id{
+                
+                position : absolute;
+            }
+            .name{
+                margin-left: 8rem;
+                position : absolute;
             }
         }
     }

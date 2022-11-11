@@ -72,7 +72,7 @@ export const MainRouts = () => {
                         element={<DetachArchive />}
                     />
                     <Route
-                        path="attach"
+                        path="attach/:id"
                         element={<AttachArchive />}
                     />
                 </Route>

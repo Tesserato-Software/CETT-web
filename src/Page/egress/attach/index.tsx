@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { AttachArchiveDiv } from "../../../Components/AttachEgress";
 import { AttachDiv } from "./styles";
 import { api } from "./../../../services/api";
+import { useParams } from "react-router-dom";
 
 interface Egresses {
 	id: number;
@@ -13,12 +14,15 @@ interface Archives {
 }
 
 export const AttachArchive = () => {
+	const { id } = useParams();
+
 	const [egress, setEgress] = useState<Egresses[]>([]);
 	const [archives, setArchives] = useState<Archives[]>([]);
 
 	useEffect(() => {
-		api.get("/egress/dashboard-attach-archive/70").then((response) => {
-			setEgress(response.data);
+		api.get(`/egress/dashboard-attach-archive/${id}`).then((response) => {
+			setArchives(response.data.archives)
+			setEgress(response.data.egresses);
 		});
 	}, []);
 
