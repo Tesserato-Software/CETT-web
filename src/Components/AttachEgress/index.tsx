@@ -1,7 +1,11 @@
 import { AttachDiv } from "./style"
 
+interface Archives {
+    id: number;
+}
 
-export const AttachArchiveDiv = () => {
+
+export const AttachArchiveDiv = (props: Archives) => {
 
 
 
@@ -9,8 +13,8 @@ export const AttachArchiveDiv = () => {
     return (
         <AttachDiv>
             <div className="data-archive">
-                <span>1</span>
-                <input type="checkbox" />
+                <span>{props.id}</span>
+                <input type="checkbox" value={props.id} />
             </div>
 
         </AttachDiv>

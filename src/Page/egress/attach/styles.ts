@@ -1,17 +1,22 @@
 import styled from "styled-components";
 
 export const AttachDiv = styled.div`
-    display: flex;
-    flex-direction: center;
-    gap: 20%;
-    justify-content: space-between;;
-    margin: 0 auto;
-    padding-top: 15%;
-   
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    
+    .container-all {
+        display: flex;
+        flex-direction: center;
+        gap: 20%;
+        justify-content: space-between;
+        margin: 0 auto;
+        padding-top:10%;
+    }
 
     .div-container-egress {
-
-        .container{
+        .container {
             display: flex;
             flex-direction: column;
             margin: 0 auto;
@@ -32,14 +37,12 @@ export const AttachDiv = styled.div`
                 rgba(255, 255, 255, 0) 100%
             );
 
-            box-sizing: border-box;
-            border-radius: 25px;
-            padding: 2rem;
-            width: 110vh;
-            margin-left: 3%;
-            height: 30vh;
-            
-            
+        box-sizing: border-box;
+        border-radius: 25px;
+        padding: 2rem;
+        width: 110vh;
+        margin-left: 3%;
+        height: 30vh;
 
         .div-head {
             flex-direction: row;
@@ -55,13 +58,10 @@ export const AttachDiv = styled.div`
                 font-size: 25px;
                 color: #fff;
                 justify-content: space-around;
-                
-                
             }
             .CGM {
                 margin-left: 42vh;
             }
-               
         }
 
         .view-egress {
@@ -74,49 +74,56 @@ export const AttachDiv = styled.div`
             align-items: center;
             max-width: 100%;
 
-            span{
+            span {
                 font-size: 18px;
-
             }
-            .CGM{
+            .CGM {
                 margin-left: 28vh;
             }
-            
         }
-
     }
-    .archive{
+    .archive {
         box-sizing: border-box;
         border-radius: 15px;
-        background-color: #00476F;
+        background-color: #00476f;
         margin-right: 3%;
         width: 55vh;
         display: flex;
         flex-direction: column;
         align-items: center;
         overflow-y: scroll;
-        
-        strong{
+        //scrol bar style
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        strong {
             font-size: 25px;
             color: #fff;
             margin-top: 1rem;
             margin-bottom: 1rem;
-           
-            
         }
-        .archive-option{
+        .archive-option {
             display: flex;
             magrgin: 0 auto;
             gap: 15rem;
             border-bottom: solid 1px #fff;
-            
-
         }
-        span{
+        span {
             font-size: 23px;
             color: #fff;
         }
-        .data-archive{
+        .data-archive {
             margin-top: 1rem;
             display: flex;
             background-color: #fff;
@@ -124,17 +131,35 @@ export const AttachDiv = styled.div`
             padding: 0.3rem;
             gap: 24rem;
             justify-content: space-around;
-            span{
+            span {
                 color: #000;
                 margin-left: 1rem;
             }
-            input{
+            input {
                 margin-right: 1rem;
             }
-            
-
         }
+
+
     }
 
-    
+    .container-button{
+            display: flex;
+            justify-content: center;
+            margin-top: 10rem;
+            
+            
+           button{
+                width: 10%;
+                height:60px;
+                background-color:#E13763;
+                font-weight: normal;
+                color:#fff; 
+                font-size: 20px;
+                border: solid 1px #E13763;
+                border-radius: 8px;
+           }
+        }
+
+       
 `;
