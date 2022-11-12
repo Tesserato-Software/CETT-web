@@ -28,7 +28,6 @@ export const HierarchyList = () => {
     useEffect(() => {
         axios.get('http://localhost:56277/hierarchy/list')
             .then((response) => {
-                console.log("🚀 ~ file: index.tsx ~ line 30 ~ .then ~ response", response)
                 setList(response.data);
             })
             .catch((error) => {
