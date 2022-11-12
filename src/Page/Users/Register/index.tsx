@@ -131,13 +131,32 @@ export const UsersRegister = () => {
                 </select>
                 <ContainerButton>
                     {/* validateLength */}
-                    <button className="button" type="submit"
+                    <button
+                        className="button"
+                        type="submit"
                         disabled={
-                            !validateLength(formData.name.value, formData.name.min, formData.name.max) ||
-                            !validateLength(formData.email.value, formData.email.min, formData.email.max) ||
-                            !validateLength(formData.password.value, formData.password.min, formData.password.max) ||
-                            !validateLength(formData.confirmPassword.value, formData.confirmPassword.min, formData.confirmPassword.max) ||
-                            formData.password.value !== formData.confirmPassword.value
+                            !validateLength(
+                                formData.name.value,
+                                formData.name.min,
+                                formData.name.max
+                            ) ||
+                            !validateLength(
+                                formData.email.value,
+                                formData.email.min,
+                                formData.email.max
+                            ) ||
+                            !validateLength(
+                                formData.password.value,
+                                formData.password.min,
+                                formData.password.max
+                            ) ||
+                            !validateLength(
+                                formData.confirmPassword.value,
+                                formData.confirmPassword.min,
+                                formData.confirmPassword.max
+                            ) ||
+                            formData.password.value !==
+                                formData.confirmPassword.value
                         }
                     >
                         Cadastrar

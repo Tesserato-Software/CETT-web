@@ -6,7 +6,7 @@ import {
     ListItem,
     ListHeader,
     ListSpan,
-    ListeHeaderItem
+    ListHeaderItem
 } from './style'
 import { Link } from 'react-router-dom'
 
@@ -183,9 +183,9 @@ export const UsersList = () => {
             <ListContainer className="users-list-list-container">
                 <ListHeader>
                     {columns.map(column => (
-                        <ListeHeaderItem key={column.value}>
+                        <ListHeaderItem key={column.value}>
                             {column.label}
-                        </ListeHeaderItem>
+                        </ListHeaderItem>
                     ))}
                 </ListHeader>
                 <ListItems>

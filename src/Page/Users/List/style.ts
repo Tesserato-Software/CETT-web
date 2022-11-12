@@ -76,7 +76,7 @@ export const ListSpan = styled.div`
     align-items: center;
 `
 
-export const ListeHeaderItem = styled.div`
+export const ListHeaderItem = styled.div`
     padding-left: .3rem;
     padding-bottom: .3rem;
     width: 100%;
