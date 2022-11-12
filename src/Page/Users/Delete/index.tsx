@@ -1,10 +1,21 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { api } from '../../../services/api'
 import { Container, ContainerButton } from './style'
+import { toast } from 'react-toastify'
 
 export const UsersDelete = () => {
+    const { id } = useParams()
+
+    const handleSubmit = () => {        
+        api.delete(`user/delete/${id}`)
+        .then(() => {
+            toast.success('Usuário deletado com sucesso!')
+        })
+        .catch(() => toast.error('Erro ao deletar usuário!'))
+    }
+
     return (
-        <form>
             <Container>
                 <h1>Deletar Usuário</h1>
                 <div className="row">
@@ -14,11 +25,10 @@ export const UsersDelete = () => {
                     <Link to="/users/list" className="button">
                         Voltar
                     </Link>
-                    <Link className="Link" to="/users/list">
+                    <button className="Link" onClick={handleSubmit}>
                         Deletar
-                    </Link>
+                    </button>
                 </ContainerButton>
             </Container>
-        </form>
     )
 }

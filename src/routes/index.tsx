@@ -105,8 +105,8 @@ export const MainRouts = () => {
                 <Route path="users" element={<Users />}>
                     <Route path="create" element={<UsersRegister />} />
                     <Route path="list" element={<UsersList />} />
-                    <Route path="update" element={<UsersUpdate />} />
-                    <Route path="delete" element={<UsersDelete />} />
+                    <Route path="update/:id" element={<UsersUpdate />} />
+                    <Route path="delete/:id" element={<UsersDelete />} />
                 </Route>
                 <Route
                     path="school"
