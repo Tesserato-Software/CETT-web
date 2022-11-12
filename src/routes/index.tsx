@@ -11,14 +11,14 @@ import { HierarchyList } from '../page/Hierarchy/List'
 import { Login } from '../page/Login'
 import { AttachEgress } from '../page/archive/AttachEgress/index'
 import { DetachEgress } from '../page/archive/DetachEgress/index'
-import { DetachArchive } from '../page/egress/DetachArchive/index'
-import { AttachArchive } from '../page/egress/AttachArchive'
+import { DetachArchive } from '../page/egress/dettach/index'
+import { AttachArchive } from '../page/egress/attach'
 import { Users } from '../page/Users'
 import { UsersList } from '../page/Users/List'
 import { UsersRegister } from '../page/Users/Register'
 import { UsersUpdate } from '../page/Users/Update'
 import { UsersDelete } from '../page/Users/Delete'
-import { InputArchive } from '../page/Excel/attach/index'
+import { InputExcel } from '../page/Excel/attach/index'
 import { ExportExcel } from '../page/Excel/export'
 import { Archives } from '../page/archive'
 import { CreateArchive } from '../page/archive/create'
@@ -64,21 +64,21 @@ export const MainRouts = () => {
                     <Route path="list" element={<EgressList />} />
                     <Route path="create" element={<CreateEgress />} />
                     <Route path="edit" element={<UpdateEgress />} />
-                    <Route path="delete" element={<DeleteEgress />} />
+                    <Route path="delete/:id" element={<DeleteEgress />} />
 
                     {/* VINC BY ARCHIVE */}
                     <Route
-                        path="detach-user-archive"
+                        path="dettach"
                         element={<DetachArchive />}
                     />
                     <Route
-                        path="attach-user-archive"
+                        path="attach"
                         element={<AttachArchive />}
                     />
                 </Route>
 
                 <Route path="excel" element={<Excel />}>
-                    <Route path="import" element={<InputArchive />} />
+                    <Route path="import" element={<InputExcel />} />
 
                     <Route path="export" element={<ExportExcel />} />
                 </Route>
@@ -110,12 +110,12 @@ export const MainRouts = () => {
                 </Route>
                 <Route
                     path="school"
-                    element={<School/>}
+                    element={<School />}
                 >
-                    <Route path="list" element={<SchoolList/>}/>
-                    <Route path="create" element={<SchoolCreate/>}/>
-                    <Route path="update" element={<SchoolUpdate/>}/>
-                    <Route path="delete" element={<SchoolDelete/>}/>
+                    <Route path="list" element={<SchoolList />} />
+                    <Route path="create" element={<SchoolCreate />} />
+                    <Route path="update" element={<SchoolUpdate />} />
+                    <Route path="delete" element={<SchoolDelete />} />
                 </Route>
             </Routes>
         </>

@@ -10,6 +10,7 @@ export const InputDiv = styled.div `
     backdrop-filter: blur(21px);
     border-radius: 25px;
     border: 5px solid rgba(255, 255, 255, 0.09);
+    color: #fff;
 
     .input-archive {
         text-align: center;
@@ -34,14 +35,14 @@ export const InputDiv = styled.div `
         margin-top: 2rem;
     }
 
-    .submit {
+    button {
         background: #E13763;
         border-radius: 8px;
         border: none;
-        width: 10rem;
-        height: 2rem;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
+        padding: .4rem 1rem;
+        font-size: 1.3rem;
+        margin: 2rem 0;
+        cursor: pointer;
         color: #fff;
     }
 `;
