@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { AttachArchiveDiv } from "../../../Components/AttachEgress";
 import { AttachDiv } from "./styles";
 import { api } from "./../../../services/api";
@@ -14,9 +14,8 @@ interface Archives {
 }
 
 export const AttachArchive = () => {
+	let archiveId;
 	const { id } = useParams();
-
-	const archiveId = useRef<HTMLInputElement>(null);
 	const [egress, setEgress] = useState<Egresses[]>([]);
 	const [archives, setArchives] = useState<Archives[]>([]);
 
@@ -24,20 +23,22 @@ export const AttachArchive = () => {
 		api.get(`/egress/dashboard-attach-archive/${id}`).then((response) => {
 			setArchives(response.data.archives);
 			setEgress(response.data.egresses);
-		});
+		}).catch(err => console.log(err));
 	}, []);
 
-	const onChangeArchive =
+	const onChangeArchive = (event: any) => {		
+		archiveId = event.target.value;
+	}
 
-	const onSubmit = () => {
-		api.post(`/egress/attach-archive/${id}`, { archives }).then(
-			(res) => { }
-		);
+	// const onSubmit = () => {
+	// 	api.post(`/egress/attach-archive/${id}`, { archives }).then(
+	// 		(res) => { }
+	// 	);
 
-		return alert(`Egresso anexao em arquivo ${id} com sucesso!`);
-	};
+	// 	return alert(`Egresso anexao em arquivo ${id} com sucesso!`);
+	// };
 
-	console.log(egress);
+	// console.log(egress);
 
 	return (
 		<AttachDiv>
@@ -80,6 +81,7 @@ export const AttachArchive = () => {
 						console.log(archive);
 						return (
 							<AttachArchiveDiv
+								onChangeArchive={onChangeArchive}
 								id={archive.id}
 								key={archive.id}
 							/>
@@ -89,7 +91,7 @@ export const AttachArchive = () => {
 			</div>
 
 			<div className="container-button">
-				<button onSubmit={onSubmit}>Anexar</button>
+				<button>Anexar</button>
 			</div>
 		</AttachDiv>
 	);
