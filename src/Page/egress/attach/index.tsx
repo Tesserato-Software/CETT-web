@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AttachArchiveDiv } from "../../../Components/AttachEgress";
 import { AttachDiv } from "./styles";
 import { api } from "./../../../services/api";
@@ -16,6 +16,7 @@ interface Archives {
 export const AttachArchive = () => {
 	const { id } = useParams();
 
+	const archiveId = useRef<HTMLInputElement>(null);
 	const [egress, setEgress] = useState<Egresses[]>([]);
 	const [archives, setArchives] = useState<Archives[]>([]);
 
@@ -25,6 +26,8 @@ export const AttachArchive = () => {
 			setEgress(response.data.egresses);
 		});
 	}, []);
+
+	const onChangeArchive =
 
 	const onSubmit = () => {
 		api.post(`/egress/attach-archive/${id}`, { archives }).then(
@@ -74,6 +77,7 @@ export const AttachArchive = () => {
 					</div>
 
 					{archives.map((archive) => {
+						console.log(archive);
 						return (
 							<AttachArchiveDiv
 								id={archive.id}

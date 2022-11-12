@@ -68,7 +68,7 @@ export const MainRouts = () => {
 
                     {/* VINC BY ARCHIVE */}
                     <Route
-                        path="dettach"
+                        path="dettach/:id"
                         element={<DetachArchive />}
                     />
                     <Route
