@@ -26,8 +26,9 @@ export const UserSection = styled.div`
         margin: 0 1.5rem 0.3rem 0 ;
     }
 
-    input{
+    button{
         border: none;
+        padding: 0.2rem;
     }
 
     .opt{
