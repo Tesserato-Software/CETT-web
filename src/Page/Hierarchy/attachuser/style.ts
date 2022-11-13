@@ -14,9 +14,9 @@ export const AttachContainer = styled.div`
 export const UserSection = styled.div`
     border-bottom: 0.1rem solid #000;
     display: flex;
+    flex-direction: column;
     color: #fff;
     .user {
-        flex: 1;
         font-size: 1.5rem;
     }
 
@@ -33,5 +33,14 @@ export const UserSection = styled.div`
 
     .opt{
         margin-right: 1rem;
+    }
+    a {
+        margin-left: 1rem;
+        text-decoration: none;
+        color: #fff;
+        background-color: #ff0070;
+    }
+    li {
+        list-style: none;
     }
 `;

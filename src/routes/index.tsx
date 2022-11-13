@@ -96,7 +96,7 @@ export const MainRouts = () => {
                 <Route path="hierarchy" element={<Hierarchy />}>
                     <Route path="list" element={<HierarchyList />} />
                     <Route path="create" element={<CreateHierarchy />} />
-                    <Route path="update" element={<UpdateHierarchy />} />
+                    <Route path="update/:id" element={<UpdateHierarchy />} />
                     <Route path="delete" element={<DeleteHierarchy />} />
                     <Route path="add-user" element={<AttachUser />} />
                     <Route path="remove-user" element={<DettachUser />} />
@@ -105,8 +105,8 @@ export const MainRouts = () => {
                 <Route path="users" element={<Users />}>
                     <Route path="create" element={<UsersRegister />} />
                     <Route path="list" element={<UsersList />} />
-                    <Route path="update" element={<UsersUpdate />} />
-                    <Route path="delete" element={<UsersDelete />} />
+                    <Route path="update/:id" element={<UsersUpdate />} />
+                    <Route path="delete/:id" element={<UsersDelete />} />
                 </Route>
                 <Route
                     path="school"

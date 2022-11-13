@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { validateLength } from '../../../utils/formValidator'
 import { Container, ContainerButton } from './style'
+import { api } from '../../../services/api';
+import { toast } from 'react-toastify';
 
 const roles = [
     {
@@ -19,32 +21,98 @@ const roles = [
 ]
 
 export const UsersUpdate = () => {
-    const [role, setRole] = useState({}),
-        [formData, setFormData] = useState({
-            name: {
-                value: '',
-                min: 4,
-                max: 30
-            },
-            email: {
-                value: '',
-                min: 6,
-                max: 30
-            },
-            password: {
-                value: '',
-                min: 8,
-                max: 30
-            },
-            confirmPassword: {
-                value: '',
-                min: 8,
-                max: 30
-            }
+    const { id } = useParams()
+    const [user, setUser] = useState<{
+        full_name: string;
+        email: string;
+        hierarchy_id: number;
+        password: string;
+    }>({
+        full_name: '',
+        email: '',
+        hierarchy_id: 0,
+        password: ''
+    })
+    const [formData, setFormData] = useState({
+        name: {
+            value: '',
+            min: 4,
+            max: 30
+        },
+        email: {
+            value: '',
+            min: 6,
+            max: 30
+        },
+        password: {
+            value: '',
+            min: 8,
+            max: 30
+        },
+        confirmPassword: {
+            value: '',
+            min: 8,
+            max: 30
+        },
+        hierarchy_id: {
+            value: 0,
+        }
+    })
+
+    useEffect(() => {
+        api.get(`user/get-user/${id}`)
+        .then((response) => {
+            const { full_name, email, hierarchy_id, password } = response.data[0]
+
+            setFormData({
+                ...formData,
+                name: {
+                    ...formData.name,
+                    value: full_name
+                },
+                email: {
+                    ...formData.email,
+                    value: email
+                },
+                hierarchy_id: {
+                    ...formData.hierarchy_id,
+                    value: hierarchy_id
+                },
+                password: {
+                    ...formData.password,
+                    value: password
+                }
+            })
         })
+    }, [])
+
+    const getValueData = (data: any, obj: any) => {
+        const { value } = data[obj]
+
+        return value;
+    }
+
+    const handleSubmit = () => {
+        api.put(`user/update/${id}`, {
+            hierarchy_id: getValueData(formData, 'hierarchy_id'), 
+            full_name: getValueData(formData, 'name'),
+            email: getValueData(formData, 'email') ,
+            password: getValueData(formData, 'password')
+        })
+        .then(() => {
+            setUser({
+                full_name: '',
+                email: '',
+                hierarchy_id: 0,
+                password: ''
+            })
+        
+            return toast.success('Usuário atualizado com sucesso!');
+        })
+        .catch(() => toast.error('Erro ao atualizar usuário!'))
+    }
 
     return (
-        <form>
             <Container>
                 <h1>Editar Usuário</h1>
                 <input
@@ -62,6 +130,7 @@ export const UsersUpdate = () => {
                     min={formData.name.min}
                     max={formData.name.max}
                     name="name"
+                    value={formData.name.value}
                     placeholder="Nome"
                 />
                 <input
@@ -79,6 +148,7 @@ export const UsersUpdate = () => {
                     min={formData.email.min}
                     max={formData.email.max}
                     name="email"
+                    value={formData.email.value}
                     placeholder="E-mail"
                 />
                 <input
@@ -96,6 +166,7 @@ export const UsersUpdate = () => {
                     min={formData.password.min}
                     max={formData.password.max}
                     name="password"
+                    value={formData.password.value}
                     placeholder="Senha"
                 />
                 <input
@@ -113,13 +184,21 @@ export const UsersUpdate = () => {
                     min={formData.confirmPassword.min}
                     max={formData.confirmPassword.max}
                     name="confirmPassword"
+                    value={formData.confirmPassword.value}
                     placeholder="Confirme a Senha"
                 />
                 <select
                     className="select"
                     placeholder="Permissão"
                     name="role"
-                    onChange={event => setRole(event?.target.value)}
+                    value={formData.hierarchy_id.value}
+                    onChange={event => setFormData({
+                        ...formData,
+                        hierarchy_id: {
+                            ...formData.hierarchy_id,
+                            value: Number(event.target.value)
+                        }
+                    })}
                 >
                     {roles.map(role => {
                         return (
@@ -131,7 +210,8 @@ export const UsersUpdate = () => {
                 </select>
                 <ContainerButton>
                     {/* validateLength */}
-                    <button className="button" type="submit"
+                    <button className="button"
+                        onClick={handleSubmit}
                         disabled={
                             !validateLength(formData.name.value, formData.name.min, formData.name.max) ||
                             !validateLength(formData.email.value, formData.email.min, formData.email.max) ||
@@ -147,6 +227,5 @@ export const UsersUpdate = () => {
                     </Link>
                 </ContainerButton>
             </Container>
-        </form>
     )
 }

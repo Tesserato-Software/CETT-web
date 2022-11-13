@@ -44,6 +44,7 @@ export const Container = styled.div`
         color: #fff;
         text-decoration: none;
         text-align: center;
+        cursor: pointer;
     }
 `
 
