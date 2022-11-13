@@ -6,12 +6,13 @@ export const LoginDiv = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;
-	.container {
-		display: flex;
-		flex-direction: column;
+	div.container {
+		display: grid;
+        place-items: center;
+        grid-template-rows: 50px 1fr;
 		background-color: #fff;
-		width: 100%;
-		height: 100%;
+		width: 70%;
+		height: 80%;
 		background: radial-gradient(
 				97.66% 97.66% at 50% 2.34%,
 				rgba(255, 255, 255, 0) 0%,
@@ -25,47 +26,43 @@ export const LoginDiv = styled.div`
 		filter: drop-shadow(0px 11px 14px rgba(0, 0, 0, 0.25));
 		backdrop-filter: blur(8px);
 		border-radius: 20px;
-		margin-bottom: 3.5rem;
         h1 {
             align-self: center;
-            margin-top: 2rem;
             color: #fff;
             font-size: 2rem;
             font-weight: 500;
-            margin-bottom: 2rem;
         }
     
         form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 2rem;
+            display: grid;
+            place-items: center;
+            padding-top: 20px;
+            grid-template-rows: 1fr 1fr .5fr;
+            height: 100%;
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                color: #fff;
+                /* padding: 4rem 0; */
+                input {
+                    width: 20rem;
+                    height: 2.5rem;
+                    border-radius: 5px;
+                    border: none;
+                    padding-left: 1rem;
+                    font-size: 1rem;
+                }
+            }
+            .button-login {
+                width: 10.5rem;
+                height: 2.6rem;
+                border-radius: 8px;
+                background-color: #e13763;
+                color: #fff;
+                font-weight: 500;
+                border: none;
+            }
         }
     
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 3.5rem;
-            color: #fff;
-        }
-        .form-group input {
-            width: 20rem;
-            height: 2.5rem;
-            border-radius: 5px;
-            border: none;
-            padding-left: 1rem;
-            font-size: 1rem;
-        }
-    
-        .button-login {
-            margin-top: 4.3rem;
-            width: 10.5rem;
-            height: 2.6rem;
-            border-radius: 8px;
-            background-color: #e13763;
-            color: #fff;
-            font-bold: 500;
-            border: none;
-        }
 	}
 `;
