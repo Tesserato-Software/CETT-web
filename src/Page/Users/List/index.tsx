@@ -11,26 +11,8 @@ import {
 } from './style'
 import { Link } from 'react-router-dom'
 import { api } from '../../../services/api'
-
-type hierarchy = {
-    id: number
-    school_id: number
-    name: string
-    can_update: boolean
-    can_delete: boolean
-}
-
-type user = {
-    full_name: string
-    id: number
-    hierarchy: hierarchy[]
-    email: string
-}
-
-const roles = [
-    { value: 'Estagiario', label: 'Estagiário' },
-    { value: 'Administrador', label: 'Administrador'}
-]
+import { toast } from 'react-toastify';
+import { user } from '../../../models/User'
 
 const columns = [
     { value: 1, label: 'ID' },
@@ -41,13 +23,23 @@ const columns = [
 ]
 
 export const UsersList = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     const [users, setUsers] = useState<user[]>([])
     const [name, setName] = useState<string>('')
     const [email, setEmail] = useState<string>('')
-    const [role, setRole] = useState({})
+    const [role, setRole] = useState<any>({})
+    const [roles, setRoles] = useState<any>([])
 
     useEffect(() => {
-        api.get('user/list').then(response => setUsers(response.data))
+        setIsLoading(true)
+        api.get('user/list')
+        .then(response => setUsers(response.data))
+        .catch(() => toast.error('Erro ao buscar os usuários!'))
+        .finally(() => setIsLoading(false))
+
+        api.get('hierarchy/list')
+        .then(response => setRoles(response.data))
+        .catch(() => toast.error('Erro ao buscar as hierarquias!'))
     }, [])
 
     const filteredNames =
@@ -79,10 +71,10 @@ export const UsersList = () => {
                         name="role"
                         onChange={event => setRole(event?.target.value)}
                     >
-                        {roles.map(role => {
+                        {roles.map((role: any) => {
                             return (
-                                <option key={role.value} value={role.value}>
-                                    {role.label}
+                                <option key={role.id} value={role.id}>
+                                    {role.name}
                                 </option>
                             )
                         })}
@@ -100,7 +92,7 @@ export const UsersList = () => {
                         </ListHeaderItem>
                     ))}
                 </ListHeader>
-                <ListItems>
+               { isLoading ? <div className="loading">Carregando...</div> : <ListItems>
                     {filteredNames.map(user => (
                         <ListItem key={user.id}>
                             <ListSpan>{user.id}</ListSpan>
@@ -113,7 +105,7 @@ export const UsersList = () => {
                             </ListSpanLink>
                         </ListItem>
                     ))}
-                </ListItems>
+                </ListItems>}
             </ListContainer>
         </>
     )
