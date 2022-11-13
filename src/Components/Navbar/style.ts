@@ -17,6 +17,7 @@ export const CustomDiv = styled.div`
         color: #fff;
     }
     svg{
+        cursor: pointer;
         transform: scale(2);
     }
 `;
