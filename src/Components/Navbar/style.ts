@@ -12,6 +12,10 @@ export const CustomDiv = styled.div`
     img{
         width: 50px;
         object-fit: contain;
+        transition: all .2s ease-in-out;
+    }
+    img:hover{
+        transform: scale(1.04);
     }
     h1{
         color: #fff;

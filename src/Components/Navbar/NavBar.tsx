@@ -1,4 +1,5 @@
 import { CustomDiv } from "./style";
+import { Link } from 'react-router-dom'
 import LogoBranco from "../../assets/logo_branco_transparent.png";
 import * as VscIcons from "react-icons/vsc";
 import { useState } from "react";
@@ -17,7 +18,9 @@ export const NavBar = ({
 	return (
 		<ClickAwayListener onClickAway={() => setIsOpen(false)}>
 			<CustomDiv>
-				<img src={LogoBranco} />
+				<Link to="/">
+					<img src={LogoBranco} />
+				</Link>
 				<h1>{title ?? ""}</h1>
 				{have_menu && (
 					<VscIcons.VscMenu onClick={() => setIsOpen(true)} />
