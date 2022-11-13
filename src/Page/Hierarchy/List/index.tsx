@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { DateTime } from 'ts-luxon';
+import { api } from '../../../services/api';
 
 type users = {
     id:             number;
@@ -26,7 +27,7 @@ export const HierarchyList = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true)
 
     useEffect(() => {
-        axios.get('http://localhost:56277/hierarchy/list')
+        api.get('/hierarchy/list')
             .then((response) => {
                 setList(response.data);
             })

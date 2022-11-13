@@ -37,21 +37,28 @@ import { SchoolList } from "../page/School/List";
 import { SchoolCreate } from "../page/School/Create";
 import { SchoolUpdate } from "../page/School/Update";
 import { SchoolDelete } from "../page/School/Delete";
+import { ShouldResetPassword } from '../Components/ShouldResetPassword/index'
 
-export const MainRouts = () => {
+
+export const MainRouts = ({ shouldResetPassword }: any) => {
     return (
         <>
             <NavBar
                 title={'Navbar'}
                 have_menu={!window.location.href.includes('login')}
             />
+            {shouldResetPassword ? 
+            <Routes>
+                <Route path="should-reset-password" element={<ShouldResetPassword />} /> 
+            </Routes>
+                : 
             <Routes>
                 <Route
                     index
                     path="/"
                     element={<EgressList />}
                 />
-
+                
                 <Route path="login" element={<Login />} />
                 <Route path="first-access" element={<FirstAccess />} />
                 <Route path="forget-password" element={<ForgetPassword />} />
@@ -114,7 +121,7 @@ export const MainRouts = () => {
                     <Route path="delete" element={<SchoolDelete />} />
                 </Route>
                 
-            </Routes>
+            </Routes>}
         </>
     )
 }
