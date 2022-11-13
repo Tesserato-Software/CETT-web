@@ -37,6 +37,16 @@ export const ListContainer = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
+    .loading {
+        width: 90%;
+        padding: .3rem;
+        margin-bottom: .4rem;
+        margin-top: .2rem;
+        background-color: #D9D9D9;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+    }
 ` 
 
 export const ListItems = styled.ul`
@@ -52,7 +62,24 @@ export const ListItem = styled.li`
     border-radius: 8px;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+
+    .LinkUpdate {
+        text-decoration: none;
+        color: #000;
+        background-color: rgba(52, 68, 88, .5);
+        border-radius: 8px;
+        padding: .3rem;
+    }
+`
+
+export const ListSpanLink = styled.div`
+    background-color: #D9D9D9;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 `
 
 export const ListHeader = styled.div`
@@ -63,7 +90,7 @@ export const ListHeader = styled.div`
     margin-top: 1rem;
     width: 90%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 `
 
@@ -72,7 +99,7 @@ export const ListSpan = styled.div`
     border-radius: 8px;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 `
 
@@ -80,6 +107,6 @@ export const ListHeaderItem = styled.div`
     padding-left: .3rem;
     padding-bottom: .3rem;
     width: 100%;
-    justify-content: space-around;
+    justify-content: space-between;
     display: flex;
 `
