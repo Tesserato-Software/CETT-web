@@ -49,11 +49,7 @@ export const MainRouts = () => {
                 <Route
                     index
                     path="/"
-                    element={
-                        <>
-                            <h1>index</h1>
-                        </>
-                    }
+                    element={<EgressList />}
                 />
 
                 <Route path="login" element={<Login />} />
