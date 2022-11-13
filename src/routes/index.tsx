@@ -18,7 +18,7 @@ import { UsersList } from '../page/Users/List'
 import { UsersRegister } from '../page/Users/Register'
 import { UsersUpdate } from '../page/Users/Update'
 import { UsersDelete } from '../page/Users/Delete'
-import { InputArchive } from '../page/Excel/attach/index'
+import { InputExcel } from '../page/Excel/attach/index'
 import { ExportExcel } from '../page/Excel/export'
 import { Archives } from '../page/archive'
 import { CreateArchive } from '../page/archive/create'
@@ -64,7 +64,7 @@ export const MainRouts = () => {
                     <Route path="list" element={<EgressList />} />
                     <Route path="create" element={<CreateEgress />} />
                     <Route path="edit" element={<UpdateEgress />} />
-                    <Route path="delete" element={<DeleteEgress />} />
+                    <Route path="delete/:id" element={<DeleteEgress />} />
 
                     {/* VINC BY ARCHIVE */}
                     <Route
@@ -78,7 +78,7 @@ export const MainRouts = () => {
                 </Route>
 
                 <Route path="excel" element={<Excel />}>
-                    <Route path="import" element={<InputArchive />} />
+                    <Route path="import" element={<InputExcel />} />
 
                     <Route path="export" element={<ExportExcel />} />
                 </Route>
@@ -96,7 +96,7 @@ export const MainRouts = () => {
                 <Route path="hierarchy" element={<Hierarchy />}>
                     <Route path="list" element={<HierarchyList />} />
                     <Route path="create" element={<CreateHierarchy />} />
-                    <Route path="update" element={<UpdateHierarchy />} />
+                    <Route path="update/:id" element={<UpdateHierarchy />} />
                     <Route path="delete" element={<DeleteHierarchy />} />
                     <Route path="add-user" element={<AttachUser />} />
                     <Route path="remove-user" element={<DettachUser />} />
@@ -105,8 +105,8 @@ export const MainRouts = () => {
                 <Route path="users" element={<Users />}>
                     <Route path="create" element={<UsersRegister />} />
                     <Route path="list" element={<UsersList />} />
-                    <Route path="update" element={<UsersUpdate />} />
-                    <Route path="delete" element={<UsersDelete />} />
+                    <Route path="update/:id" element={<UsersUpdate />} />
+                    <Route path="delete/:id" element={<UsersDelete />} />
                 </Route>
                 <Route
                     path="school"
@@ -117,6 +117,7 @@ export const MainRouts = () => {
                     <Route path="update" element={<SchoolUpdate />} />
                     <Route path="delete" element={<SchoolDelete />} />
                 </Route>
+                
             </Routes>
         </>
     )
