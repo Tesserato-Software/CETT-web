@@ -37,6 +37,16 @@ export const ListContainer = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
+    .loading {
+        width: 90%;
+        padding: .3rem;
+        margin-bottom: .4rem;
+        margin-top: .2rem;
+        background-color: #D9D9D9;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+    }
 ` 
 
 export const ListItems = styled.ul`

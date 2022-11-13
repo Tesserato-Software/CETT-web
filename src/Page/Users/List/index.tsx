@@ -11,6 +11,7 @@ import {
 } from './style'
 import { Link } from 'react-router-dom'
 import { api } from '../../../services/api'
+import { toast } from 'react-toastify';
 
 type hierarchy = {
     id: number
@@ -41,13 +42,18 @@ const columns = [
 ]
 
 export const UsersList = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     const [users, setUsers] = useState<user[]>([])
     const [name, setName] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [role, setRole] = useState({})
 
     useEffect(() => {
-        api.get('user/list').then(response => setUsers(response.data))
+        setIsLoading(true)
+        api.get('user/list')
+        .then(response => setUsers(response.data))
+        .catch(() => toast.error('Erro ao buscar os usuários!'))
+        .finally(() => setIsLoading(false))
     }, [])
 
     const filteredNames =
@@ -100,7 +106,7 @@ export const UsersList = () => {
                         </ListHeaderItem>
                     ))}
                 </ListHeader>
-                <ListItems>
+               { isLoading ? <div className="loading">Carregando...</div> : <ListItems>
                     {filteredNames.map(user => (
                         <ListItem key={user.id}>
                             <ListSpan>{user.id}</ListSpan>
@@ -113,7 +119,7 @@ export const UsersList = () => {
                             </ListSpanLink>
                         </ListItem>
                     ))}
-                </ListItems>
+                </ListItems>}
             </ListContainer>
         </>
     )

@@ -21,6 +21,7 @@ const roles = [
 ]
 
 export const UsersRegister = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     const [user, setUser] = useState<{
         full_name: string;
         email: string;
@@ -66,13 +67,14 @@ export const UsersRegister = () => {
     }
 
     const handleSubmit = () => {
+        setIsLoading(true)
         api.post('user/create', { 
             hierarchy_id: getValueData(formData, 'hierarchy_id'), 
             full_name: getValueData(formData, 'full_name'),
             email: getValueData(formData, 'email') ,
             password: getValueData(formData, 'password')
         })
-        .then((response) => {
+        .then(() => {
             setUser({
                 full_name: '',
                 email: '',
@@ -82,7 +84,8 @@ export const UsersRegister = () => {
         
             return toast.success('Usuário criado com sucesso!');
         })
-        .catch((error) => toast.error(error))
+        .catch(() => toast.error('Erro ao criar usuário!'))
+        .finally(() => setIsLoading(false))
     }
 
     return (
@@ -104,6 +107,7 @@ export const UsersRegister = () => {
                     max={formData.full_name.max}
                     name="full_name"
                     placeholder="Nome"
+                    disabled={isLoading}
                 />
                 <input
                     className="input"
@@ -121,6 +125,7 @@ export const UsersRegister = () => {
                     max={formData.email.max}
                     name="email"
                     placeholder="E-mail"
+                    disabled={isLoading}
                 />
                 <input
                     className="input"
@@ -138,6 +143,7 @@ export const UsersRegister = () => {
                     max={formData.password.max}
                     name="password"
                     placeholder="Senha"
+                    disabled={isLoading}
                 />
                 <input
                     className="input"
@@ -155,11 +161,13 @@ export const UsersRegister = () => {
                     max={formData.confirmPassword.max}
                     name="confirmPassword"
                     placeholder="Confirme a Senha"
+                    disabled={isLoading}
                 />
                 <select
                     className="select"
                     placeholder="Permissão"
                     name="hierarchy_id"
+                    disabled={isLoading}
                     onChange={event => setFormData({
                         ...formData,
                         hierarchy_id: {
@@ -203,7 +211,8 @@ export const UsersRegister = () => {
                                 formData.confirmPassword.max
                             ) ||
                             formData.password.value !==
-                                formData.confirmPassword.value
+                                formData.confirmPassword.value ||
+                            isLoading
                         }
                         onClick={handleSubmit}
                     >
