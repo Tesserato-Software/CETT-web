@@ -72,7 +72,7 @@ export const MainRouts = ({ shouldResetPassword, user_id, isDisabled, isDontLogg
         <>
             <NavBar
                 title={'Navbar'}
-                have_menu={!window.location.href.includes('login')}
+                have_menu={!window.location.pathname.includes('login')}
             />
 
             {ValidateUser()}
@@ -96,11 +96,11 @@ export const MainRouts = ({ shouldResetPassword, user_id, isDisabled, isDontLogg
 
                     {/* VINC BY ARCHIVE */}
                     <Route
-                        path="dettach"
+                        path="dettach/:id"
                         element={<DetachArchive />}
                     />
                     <Route
-                        path="attach"
+                        path="attach/:id"
                         element={<AttachArchive />}
                     />
                 </Route>
@@ -114,10 +114,10 @@ export const MainRouts = ({ shouldResetPassword, user_id, isDisabled, isDontLogg
                 <Route path="archive" element={<Archives />}>
                     <Route path="create" element={<CreateArchive />} />
                     <Route path="list" element={<ListArchive />} />
-                    <Route path="delete" element={<DeleteArchive />} />
+                    <Route path="delete/:id" element={<DeleteArchive />} />
 
                     {/* VINC BY EGRESS */}
-                    <Route path="attach-egress" element={<AttachEgress />} />
+                    <Route path="attach-egress/:id" element={<AttachEgress />} />
                     <Route path="detach-egress" element={<DetachEgress />} />
                 </Route>
 
@@ -125,7 +125,7 @@ export const MainRouts = ({ shouldResetPassword, user_id, isDisabled, isDontLogg
                     <Route path="list" element={<HierarchyList />} />
                     <Route path="create" element={<CreateHierarchy />} />
                     <Route path="update/:id" element={<UpdateHierarchy />} />
-                    <Route path="delete" element={<DeleteHierarchy />} />
+                    <Route path="delete/:id" element={<DeleteHierarchy />} />
                     <Route path="add-user" element={<AttachUser />} />
                     <Route path="remove-user" element={<DettachUser />} />
                 </Route>

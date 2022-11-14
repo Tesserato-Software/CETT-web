@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { api } from '../../../services/api'
 import { ListArchiveContainer } from './style'
 
 export const ListArchive = () => {
+  const [archiveData, setArchiveData] = useState()
+  useEffect(() => {
+  api.get('archive/list')
+  .then((response)=> {
+    setArchiveData(response.data) 
+      console.log(response.data)
+  })
+  },[])
   return (
     <ListArchiveContainer>
         <div className="conteudo">
