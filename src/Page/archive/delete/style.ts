@@ -23,10 +23,15 @@ export const DeleteArchiveContainer = styled.div`
             display: flex;
             align-items: center;
             justify-content: space-between;
-            button{
+            aside.Link{
+                
+            }
+            button, a{
+                text-align: center;
+                text-decoration: none;
                 margin: 0 1rem;
                 background-color: #b3b3b3;
-                color: #000;
+                color: #000; 
                 border: none;
                 outline: none;
                 padding: .8rem 1rem;
@@ -40,6 +45,6 @@ export const DeleteArchiveContainer = styled.div`
                     color: #fff;
                 }
             }
-        }
+        }   
     }
 `;
