@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { api } from '../../../services/api'
 import { validateLength } from '../../../utils/formValidator'
 import { Container, ContainerButton } from './style'
@@ -12,6 +12,8 @@ export const UsersRegister = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [formData, setFormData] = useState<formData>({...initialStateFormData})
     const [roles, setRoles] = useState<any>([])
+    const navigate = useNavigate()
+
     const isInvalidLength =                             
     !validateLength(
         formData.full_name.value,
@@ -53,7 +55,8 @@ export const UsersRegister = () => {
         .then(() => {
             setFormData({...initialStateFormData})
         
-            return toast.success('Usuário criado com sucesso!');
+            toast.success('Usuário criado com sucesso!');
+            return navigate('users/list')
         })
         .catch(() => toast.error('Erro ao criar usuário!'))
         .finally(() => setIsLoading(false))

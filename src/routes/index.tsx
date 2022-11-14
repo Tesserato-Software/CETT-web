@@ -1,6 +1,5 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useParams } from 'react-router-dom'
 import { NavBar } from '../Components/Navbar/NavBar'
-
 import { Egress } from '../page/egress'
 import { CreateEgress } from '../page/egress/create'
 import { DeleteEgress } from '../page/egress/delete'
@@ -18,6 +17,7 @@ import { UsersList } from '../page/Users/List'
 import { UsersRegister } from '../page/Users/Register'
 import { UsersUpdate } from '../page/Users/Update'
 import { UsersDelete } from '../page/Users/Delete'
+import { UsersListDisableds } from '../page/Users/DisabledUsers'
 import { InputExcel } from '../page/Excel/attach/index'
 import { ExportExcel } from '../page/Excel/export'
 import { Archives } from '../page/archive'
@@ -37,21 +37,46 @@ import { SchoolList } from "../page/School/List";
 import { SchoolCreate } from "../page/School/Create";
 import { SchoolUpdate } from "../page/School/Update";
 import { SchoolDelete } from "../page/School/Delete";
-import { ShouldResetPassword } from '../Components/ShouldResetPassword/index'
+import { ShouldResetPassword } from '../Components/ShouldResetPassword'
+import { UserDisabled } from '../Components/UserDisabled'
+import { DontLogged } from '../Components/DontLogged'
 
+export const MainRouts = ({ shouldResetPassword, user_id, isDisabled, isDontLogged }: any) => {
+    const arr = window.location.pathname.split('/')
+    console.log(arr[arr.length - 1].toUpperCase())
 
-export const MainRouts = ({ shouldResetPassword }: any) => {
+    const ValidateUser = () => { 
+        if (isDontLogged) {
+            return (
+                <Routes>
+                    <Route path="dont-logged" element={<DontLogged />} /> 
+                </Routes>
+            )  
+        } 
+        if (shouldResetPassword) {
+            return (
+                <Routes>
+                    <Route path="should-reset-password" element={<ShouldResetPassword user_id={user_id}/>} /> 
+                </Routes>
+            )
+        } else if (isDisabled) {
+            return (
+                <Routes>
+                    <Route path="user-disabled" element={<UserDisabled />} /> 
+                </Routes>
+            )
+        }
+    }
+
     return (
         <>
             <NavBar
                 title={'Navbar'}
                 have_menu={!window.location.href.includes('login')}
             />
-            {shouldResetPassword ? 
-            <Routes>
-                <Route path="should-reset-password" element={<ShouldResetPassword />} /> 
-            </Routes>
-                : 
+
+            {ValidateUser()}
+
             <Routes>
                 <Route
                     index
@@ -108,6 +133,7 @@ export const MainRouts = ({ shouldResetPassword }: any) => {
                 <Route path="users" element={<Users />}>
                     <Route path="create" element={<UsersRegister />} />
                     <Route path="list" element={<UsersList />} />
+                    <Route path="list-disableds" element={<UsersListDisableds />} />
                     <Route path="update/:id" element={<UsersUpdate />} />
                     <Route path="delete/:id" element={<UsersDelete />} />
                 </Route>
@@ -121,7 +147,7 @@ export const MainRouts = ({ shouldResetPassword }: any) => {
                     <Route path="delete" element={<SchoolDelete />} />
                 </Route>
                 
-            </Routes>}
+            </Routes>
         </>
     )
 }

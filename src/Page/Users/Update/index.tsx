@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { validateLength } from '../../../utils/formValidator'
 import { Container, ContainerButton } from './style'
 import { api } from '../../../services/api';
@@ -23,6 +23,7 @@ const roles = [
 export const UsersUpdate = () => {
     const { id } = useParams()
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         name: {
             value: '',
@@ -119,7 +120,8 @@ export const UsersUpdate = () => {
                 }
             })
         
-            return toast.success('Usuário atualizado com sucesso!');
+            toast.success('Usuário atualizado com sucesso!');
+            return navigate('users/list')
         })
         .catch(() => toast.error('Erro ao atualizar usuário!'))
         .finally(() => setIsLoading(false))
