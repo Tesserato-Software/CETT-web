@@ -45,7 +45,7 @@ export const MainRouts = ({ shouldResetPassword }: any) => {
         <>
             <NavBar
                 title={'Navbar'}
-                have_menu={!window.location.href.includes('login')}
+                have_menu={!window.location.pathname.includes('login')}
             />
             {shouldResetPassword ? 
             <Routes>
