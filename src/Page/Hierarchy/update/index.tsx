@@ -1,22 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { api } from '../../../services/api';
 import {CreateHierarchyContainer} from "./style"
 
 export const UpdateHierarchy = () => {
     const { id } = useParams();
-    const handleSubmit = () => {
-        console.log(id)
-        api
-        .get('user/list')
-        .then((response) => {
-            update(response.data);
-            console.log(response.data);
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-    }
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [dadosHI, setDadosHI] = useState({
+        name: '',
+        can_update: false,
+        can_create: false,
+        can_enable_users: false
+
+    })
+
+    
+
+
+
+
+
 
     return ( 
         <CreateHierarchyContainer>
@@ -27,7 +30,9 @@ export const UpdateHierarchy = () => {
                 </div>
                 <div id="checkBox">
                     <div id="checks"> <input type="checkbox" id="inPut"/> <span>Pode editar</span> </div>
-                    <div id="checks"> <input type="checkbox" checked id="inPut"/> <span>Pode Criar</span> </div>
+                    <div id="checks"> <input type="checkbox" id="inPut"/> <span>Pode criar</span> </div>
+                    <div id="checks"> <input type="checkbox" id="inPut"/> <span>Pode habilitar usuário</span> </div>
+
                 </div>  
             </section>
             <button onClick={handleSubmit}>Salvar</button>

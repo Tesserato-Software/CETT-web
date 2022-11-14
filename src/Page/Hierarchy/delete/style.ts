@@ -25,6 +25,7 @@ export const DeleteHierarchyContainer = styled.div`
             justify-content: space-between;
             button{
                 margin: 0 1rem;
+                cursor: pointer;
                 background-color: #b3b3b3;
                 color: #000;
                 border: none;
@@ -37,6 +38,7 @@ export const DeleteHierarchyContainer = styled.div`
                 &.confirm {
                     background-color: #e13763;
                     color: #fff;
+                  
                 }
             }
         }

@@ -41,13 +41,6 @@ export const CreateHierarchy = () => {
                     .finally(() => setIsLoading(false))
             }
 
-
-
-
-
-
-
-
     return ( 
         <CreateHierarchyContainer>
             <h1>Criar cargo</h1>
