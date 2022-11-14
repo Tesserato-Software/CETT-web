@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { api } from "../../services/api";
 import { LoginDiv } from "./style";
 
@@ -9,16 +11,27 @@ export const Login = () => {
 	}>({
 		email: "",
 		password: "",
-	});
+	}),
+		[isLoading, setIsLoading] = useState(false),
+		navigate = useNavigate()
 
     const onSubmit = () => {
+		setIsLoading(true);
         api.post("/auth/login", data)
             .then((response) => {
                 console.log(response);
+				localStorage.setItem("@Auth:token", JSON.stringify(response.data.token));
+				toast.success("Login realizado com sucesso!", {theme: 'colored'});
+
+				setTimeout(() => {
+					navigate("/");
+				}, 2000);
             })
             .catch((error) => {
-                console.log(error);
-            });
+				console.log(error);
+				toast.error("Erro, verifique as credenciais", {theme: 'colored'});
+            })
+			.finally(() => setIsLoading(false));
     }
 
 	return (
@@ -46,8 +59,8 @@ export const Login = () => {
 							}
 						/>
 					</div>
-					<button onClick={onSubmit}className="button-login" type="submit">
-						Entrar
+					<button onClick={onSubmit} className="button-login" type="submit">
+						{isLoading ? 'Carregando...' : 'Entrar'}
 					</button>
 				</section>
 			</div>

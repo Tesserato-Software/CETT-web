@@ -45,7 +45,7 @@ export const MainRouts = ({ shouldResetPassword }: any) => {
         <>
             <NavBar
                 title={'Navbar'}
-                have_menu={!window.location.href.includes('login')}
+                have_menu={!window.location.pathname.includes('login')}
             />
             {shouldResetPassword ? 
             <Routes>
@@ -71,11 +71,11 @@ export const MainRouts = ({ shouldResetPassword }: any) => {
 
                     {/* VINC BY ARCHIVE */}
                     <Route
-                        path="dettach"
+                        path="dettach/:id"
                         element={<DetachArchive />}
                     />
                     <Route
-                        path="attach"
+                        path="attach/:id"
                         element={<AttachArchive />}
                     />
                 </Route>
