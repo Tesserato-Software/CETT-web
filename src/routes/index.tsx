@@ -86,7 +86,7 @@ export const MainRouts = () => {
                 <Route path="archive" element={<Archives />}>
                     <Route path="create" element={<CreateArchive />} />
                     <Route path="list" element={<ListArchive />} />
-                    <Route path="delete" element={<DeleteArchive />} />
+                    <Route path="delete/:id" element={<DeleteArchive />} />
 
                     {/* VINC BY EGRESS */}
                     <Route path="attach-egress" element={<AttachEgress />} />

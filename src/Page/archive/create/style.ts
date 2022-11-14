@@ -5,6 +5,10 @@ export const CreateArchiveContainer = styled.div`
       margin: 0;
       padding: 0;
     }
+    height: calc(100vh - 90px);
+    display: grid; 
+    place-items: center;
+
     .conteudo {
         width: 585px;
         height: 619px;
@@ -32,7 +36,7 @@ export const CreateArchiveContainer = styled.div`
         }
      }
 
-     input {
+     button {
           width: 372px;
           height: 57px;
           background-color: #E13763;
@@ -46,5 +50,6 @@ export const CreateArchiveContainer = styled.div`
      div.but {
           display: flex;
           align-items: center;
+          
      }
 `;
