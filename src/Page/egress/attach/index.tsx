@@ -101,8 +101,11 @@ export const AttachArchive = () => {
 
 			<div className="container-button">
 				<button onClick={onsubmit}>ANEXAR</button>
-				<button className="voltar" onClick={() =>
-					navigate(`/egress/list`)}>CANCELAR</button>
+				<button
+					className="voltar"
+					onClick={() => navigate(`/egress/list`)}
+				>CANCELAR
+				</button>
 			</div>
 		</Container>
 	);
