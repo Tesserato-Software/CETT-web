@@ -6,7 +6,7 @@ export const CreateEgress = () => {
     const [egressData, setEgressData] = useState<{
         name: string;
         CGM_id: string;
-        arq_id?: number;
+        arq_id?: number;    
         birth_date?: Date;
         responsible_name: string;
         archive_id?: number;
