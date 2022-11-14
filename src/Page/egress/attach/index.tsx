@@ -4,6 +4,7 @@ import { Container } from "./styles";
 import { api } from "./../../../services/api";
 import { useParams, useNavigate } from "react-router-dom";
 import { DashboarEgress } from "../../../Components/DashBoardEgress";
+import { toast } from 'react-toastify';
 
 interface Egresses {
 	id: number;
@@ -43,7 +44,7 @@ export const AttachArchive = () => {
 
 	const onsubmit = () => {
 		if (archiveId === 0) {
-			return alert("Selecione um arquivo");
+			return toast.error("Selecione um arquivo");
 		}
 
 		api.post(`/egress/attach-archives/${archiveId}`, {
@@ -57,7 +58,7 @@ export const AttachArchive = () => {
 				console.log(error);
 			});
 
-		alert(`Egresso anexado ao arquivo ${archiveId} com sucesso!`);
+		toast.success(`Egresso anexado ao arquivo ${archiveId} com sucesso!`);
 
 		return navigate(`/egress/list`);
 	};

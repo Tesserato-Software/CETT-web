@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../../../services/api";
 import { DetachArchiveDiv } from "./style";
 import { DashboarEgress } from "./../../../Components/DashBoardEgress/index";
+import { toast } from 'react-toastify';
 
 interface EgressesAndArchive {
     id: number;
@@ -34,7 +35,7 @@ export const DetachArchive = () => {
                 console.log(error);
             });
 
-        alert(`Egresso desanexado do arquiv com sucesso!`);
+        toast.success(`Egresso desanexado do arquiv com sucesso!`);
         return navigate(`/egress/list`);
     };
 
