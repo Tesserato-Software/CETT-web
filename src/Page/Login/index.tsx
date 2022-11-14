@@ -16,7 +16,7 @@ export const Login = () => {
         api.post("/auth/login", data)
             .then((response) => {
                 console.log(response);
-				localStorage.setItem("@Auth:token", response.data.token);
+				localStorage.setItem("@Auth:token", JSON.stringify(response.data.token));
 				toast.success("Login realizado com sucesso!", {theme: 'colored'});
             })
             .catch((error) => {
