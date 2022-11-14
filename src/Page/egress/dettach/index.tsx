@@ -35,7 +35,7 @@ export const DetachArchive = () => {
                 console.log(error);
             });
 
-        toast.success(`Egresso desanexado do arquiv com sucesso!`);
+        toast.success(`Egresso desanexado do arquivo com sucesso!`);
         return navigate(`/egress/list`);
     };
 
