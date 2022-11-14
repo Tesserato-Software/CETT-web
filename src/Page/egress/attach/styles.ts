@@ -1,28 +1,21 @@
 import styled from "styled-components";
 
-export const AttachDiv = styled.div`
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    
+export const Container = styled.div`
     .container-all {
         display: flex;
-        flex-direction: center;
-        gap: 20%;
-        justify-content: space-between;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
         margin: 0 auto;
-        padding-top:10%;
+        max-width: 960px;
+        padding: 0 15px;
     }
+    
 
     .div-container-egress {
-        .container {
-            display: flex;
-            flex-direction: column;
-            margin: 0 auto;
-            padding-top: 5%;
-            width: 100%;
-        }
+
+        margin-top: 5rem;
 
         display: flex;
         flex-direction: column;
@@ -43,78 +36,101 @@ export const AttachDiv = styled.div`
         width: 110vh;
         margin-left: 3%;
         height: 30vh;
+        
+
+              
+
 
         .div-head {
+            
             flex-direction: row;
             display: flex;
             alignitems: center;
             gap: 10rem;
-            margin-bottom: 1rem;
+        
             margin-left: 1rem;
+            font-size: 1.5rem;
+            color : #fff;
+            width: 100%;
+            height: 10vh;
 
-            span {
-                display: flex;
-                flex-direction: row;
-                font-size: 25px;
-                color: #fff;
-                justify-content: space-around;
-            }
+
             .CGM {
-                margin-left: 42vh;
+                magin : 0;
+                margin-top: 3rem;
+                margin-left: 30vh;
+                max-width: 20rem;
             }
+            .NOME{
+                margin-top: 3rem;
+                max-width: 20rem;
+
+            }
+            .ID{
+                margin-top: 3rem;
+                max-width: 20rem;
+            }
+            
         }
 
         .view-egress {
             display: flex;
             background-color: #e7e7e7;
             border-radius: 8px;
-            padding: 1rem;
+            padding: 2rem;
             width: 100%;
             height: 40px;
-            margin: 0 auto;
             align-items: center;
-          
+            max-width: 960px;
+            margin-top: 3%;
 
-            span {
-                font-size: 20px;
-            }
-            .CGM {
-                position : absolute;
-                margin-left: 54rem;
-            }
-            .id{
+            .cgm-egress {
+                margin : 0 auto;
+                position: absolute;
+                margin-left: 72vh;
+                max-width: 20rem;
                 
-                position : absolute;
+                
             }
-            .name{
+            .id-egress {
+                position: absolute;
+                max-width: 20rem;
+            }
+            .name-egress {
                 margin-left: 8rem;
-                position : absolute;
+                position: absolute;
+                max-width: 20rem;
             }
         }
     }
     .archive {
+        margin-top: 3rem;
         box-sizing: border-box;
         border-radius: 15px;
         background-color: #00476f;
-        margin-right: 3%;
-        width: 55vh;
+        width: 70vh;
+        max-width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         overflow-y: scroll;
+        height: 45vh;
         //scrol bar style
         ::-webkit-scrollbar {
             width: 10px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #00476f;
+            border-radius: 10px;
+            margin-top: 5px;
+            margin-bottom: 5px;
         }
         ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 10px;
+            background:#fff;
+            border-radius: 30px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #555;
+            background: #fff;
         }
 
         strong {
@@ -126,50 +142,48 @@ export const AttachDiv = styled.div`
         .archive-option {
             display: flex;
             magrgin: 0 auto;
-            gap: 15rem;
+            gap: 20rem;
             border-bottom: solid 1px #fff;
         }
         span {
             font-size: 23px;
+            
+
+        }
+        
+        .span-archive {
             color: #fff;
+            margin-bottom: 1rem;
         }
-        .data-archive {
-            margin-top: 1rem;
-            display: flex;
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 0.3rem;
-            gap: 24rem;
-            justify-content: space-around;
-            span {
-                color: #000;
-                margin-left: 1rem;
-            }
-            input {
-                margin-right: 1rem;
-            }
-        }
-
-
     }
 
-    .container-button{
-            display: flex;
-            justify-content: center;
-            margin-top: 10rem;
-            
-            
-           button{
-                width: 10%;
-                height:60px;
-                background-color:#E13763;
-                font-weight: normal;
-                color:#fff; 
-                font-size: 20px;
-                border: solid 1px #E13763;
-                border-radius: 8px;
-           }
-        }
+    .container-button {
+        display: flex;
+        justify-content: center;
+        margin-top: 10rem;
+        margin-bottom: 5rem;
+        
 
-       
+        button {
+            width: 10%;
+            height: 60px;
+            background-color: #e13763;
+            font-weight: normal;
+            color: #fff;
+            font-size: 20px;
+            border: solid 1px #e13763;
+            border-radius: 8px;
+            cursor: pointer;
+            max-width: 100%;
+
+            &:hover {
+                color: #fff;
+                background-color: #e137;
+                border: solid 1px #e13763;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+        }
+    }
 `;

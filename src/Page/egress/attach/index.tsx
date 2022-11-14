@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { AttachArchiveDiv } from "../../../Components/AttachEgress";
-import { AttachDiv } from "./styles";
+import { Container } from "./styles";
 import { api } from "./../../../services/api";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 interface Egresses {
 	id: number;
@@ -14,58 +14,80 @@ interface Archives {
 }
 
 export const AttachArchive = () => {
-	let archiveId;
+	const navigate = useNavigate();
 	const { id } = useParams();
 	const [egress, setEgress] = useState<Egresses[]>([]);
 	const [archives, setArchives] = useState<Archives[]>([]);
+	const [archiveId, setarchiveId] = useState<Number>(0);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	useEffect(() => {
-		api.get(`/egress/dashboard-attach-archive/${id}`).then((response) => {
-			setArchives(response.data.archives);
-			setEgress(response.data.egresses);
-		}).catch(err => console.log(err));
+		setIsLoading(true);
+		api.get(`/egress/dashboard-attach-archive/${id}`)
+			.then((response) => {
+				setArchives(response.data.archives);
+				setEgress(response.data.egresses);
+			})
+			.catch((err) => console.log(err))
+			.finally(() => {
+				setIsLoading(false);
+			});
 	}, []);
 
-	const onChangeArchive = (event: any) => {		
-		archiveId = event.target.value;
-	}
+	console.log(egress)
 
-	// const onSubmit = () => {
-	// 	api.post(`/egress/attach-archive/${id}`, { archives }).then(
-	// 		(res) => { }
-	// 	);
+	const onChangeArchive = (event: any) => {
+		setarchiveId(event.target.value);
+	};
 
-	// 	return alert(`Egresso anexao em arquivo ${id} com sucesso!`);
-	// };
+	const onsubmit = () => {
+		if (archiveId === 0) {
+			return alert("Selecione um arquivo");
+		}
 
-	// console.log(egress);
+		api.post(`/egress/attach-archives/${archiveId}`, {
+			egress: [+(id || 0)],
+		})
+
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+
+		alert(`Egresso anexado ao arquivo ${archiveId} com sucesso!`);
+
+		return navigate(`/egress/list`);
+	};
 
 	return (
-		<AttachDiv>
+		<Container>
 			<div className="container-all">
 				<div className="div-container-egress">
 					<div className="container">
 						<div className="div-head">
-							<span>ID</span>
-							<span>NOME</span>
-							<span className="CGM">CGM</span>
+							<div className="ID">ID</div>
+							<div className="NOME">NOME</div>
+							<div className="CGM">CGM</div>
 						</div>
 						<div className="view-egress">
-							<span className="id">
+							<div className="id-egress">
 								{egress.map((egress) => {
 									return egress.id;
 								})}
-							</span>
-							<span className="name">
+							</div>
+
+							<div className="name-egress">
 								{egress.map((egress) => {
 									return egress.name;
 								})}
-							</span>
-							<span className="CGM">
+							</div>
+							<div className="cgm-egress">
 								{egress.map((egress) => {
 									return egress.CGM_id;
 								})}
-							</span>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -73,12 +95,11 @@ export const AttachArchive = () => {
 				<div className="archive">
 					<strong>Arquivos</strong>
 					<div className="archive-option">
-						<span>ID</span>
-						<span>Selcionar</span>
+						<span className="span-archive">ID</span>
+						<span className="span-archive">Selcionar</span>
 					</div>
 
 					{archives.map((archive) => {
-						console.log(archive);
 						return (
 							<AttachArchiveDiv
 								onChangeArchive={onChangeArchive}
@@ -91,8 +112,8 @@ export const AttachArchive = () => {
 			</div>
 
 			<div className="container-button">
-				<button>Anexar</button>
+				<button onClick={onsubmit}>Anexar</button>
 			</div>
-		</AttachDiv>
+		</Container>
 	);
 };

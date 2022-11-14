@@ -1,4 +1,4 @@
-import { AttachDiv } from "./style"
+import { AttachDiv, RadioButton } from "./style"
 
 interface Archives {
     id: number;
@@ -13,7 +13,9 @@ export const AttachArchiveDiv = (propsArchives: Archives) => {
         <AttachDiv>
             <div className="data-archive">
                 <span>{id}</span>
-                <input type="RADIO" value={id} onChange={onChangeArchive}/>
+                <label className="container" >
+                    <RadioButton name="numeor arquivo"  value={id} onChange={onChangeArchive} />
+                </label>
             </div>
 
         </AttachDiv>
