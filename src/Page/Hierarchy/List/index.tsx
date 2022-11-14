@@ -1,3 +1,4 @@
+import { display, fontSize, margin, textAlign } from '@mui/system';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { DateTime } from 'ts-luxon';
@@ -50,13 +51,32 @@ export const HierarchyList = () => {
                         alignItems: 'center',
                         justifyContent: 'center',
                         width: '100%',
+
                     }}
                 >
                     {list?.map((item) => {
                         return (
                             <>
-                                <span>{item.name}</span>
-                                <span>{item.users?.length}</span>
+                                <div style={{
+                                    backgroundColor: '#D9D9D9',
+                                    border: '1px solid white',
+                                    width: '40%',
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    margin: '1rem auto 1rem auto',
+                                    padding: '10px',
+                                    borderRadius: '8px'
+                                }}>                                    
+                                    <span style={{color: 'black'}}>
+                                        {item.name}
+                                    </span>
+
+                                    <span style={{color: 'green'}}>
+                                        {item.users?.length}
+                                    </span>
+                                </div>
+                             
+                                
                             </>
                         )
                     })}

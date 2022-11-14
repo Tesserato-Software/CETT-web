@@ -72,7 +72,7 @@ export const CreateHierarchyContainer = styled.div`
      
     }
     
-    #inPut {
+    .inPut {
         width: 20px;
     }
 
