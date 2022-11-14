@@ -92,7 +92,7 @@ export const MainRouts = ({ shouldResetPassword }: any) => {
                     <Route path="delete" element={<DeleteArchive />} />
 
                     {/* VINC BY EGRESS */}
-                    <Route path="attach-egress" element={<AttachEgress />} />
+                    <Route path="attach-egress/:id" element={<AttachEgress />} />
                     <Route path="detach-egress" element={<DetachEgress />} />
                 </Route>
 
