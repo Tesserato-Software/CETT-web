@@ -10,13 +10,15 @@ export const RadioButton = styled.input.attrs({ type: "radio" })`
 
 export const AttachDiv = styled.div`
     .data-archive {
+        max-width: 400px;
+        min-width: 220px;
         margin-botton: 0.5rem;
         margin-top: 1rem;
         display: flex;
         background-color: #fff;
         border-radius: 8px;
-        padding: 0.3rem;
-        gap: 24rem;
+        padding: 0.2rem;
+        gap: 20rem;
         justify-content: space-around;
         span {
             color: #000;

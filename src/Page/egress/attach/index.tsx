@@ -3,6 +3,7 @@ import { AttachArchiveDiv } from "../../../Components/AttachEgress";
 import { Container } from "./styles";
 import { api } from "./../../../services/api";
 import { useParams, useNavigate } from "react-router-dom";
+import { DashboarEgress } from "../../../Components/DashBoardEgress";
 
 interface Egresses {
 	id: number;
@@ -34,11 +35,11 @@ export const AttachArchive = () => {
 			});
 	}, []);
 
-	console.log(egress)
-
 	const onChangeArchive = (event: any) => {
 		setarchiveId(event.target.value);
 	};
+
+	console.log(archiveId);
 
 	const onsubmit = () => {
 		if (archiveId === 0) {
@@ -63,56 +64,45 @@ export const AttachArchive = () => {
 
 	return (
 		<Container>
-			<div className="container-all">
-				<div className="div-container-egress">
-					<div className="container">
-						<div className="div-head">
-							<div className="ID">ID</div>
-							<div className="NOME">NOME</div>
-							<div className="CGM">CGM</div>
-						</div>
-						<div className="view-egress">
-							<div className="id-egress">
-								{egress.map((egress) => {
-									return egress.id;
-								})}
-							</div>
-
-							<div className="name-egress">
-								{egress.map((egress) => {
-									return egress.name;
-								})}
-							</div>
-							<div className="cgm-egress">
-								{egress.map((egress) => {
-									return egress.CGM_id;
-								})}
-							</div>
-						</div>
-					</div>
+			<div className="div-container-egress">
+				<div className="div-head">
+					<div className="ID">ID</div>
+					<div className="NOME">NOME</div>
+					<div className="CGM">CGM</div>
 				</div>
 
-				<div className="archive">
-					<strong>Arquivos</strong>
-					<div className="archive-option">
-						<span className="span-archive">ID</span>
-						<span className="span-archive">Selcionar</span>
-					</div>
+				{egress.map((egress) => (
+					<DashboarEgress
+						key={egress.id}
+						id={egress.id}
+						name={egress.name}
+						CGM_id={egress.CGM_id}
+					/>
+				))}
+			</div>
 
-					{archives.map((archive) => {
-						return (
-							<AttachArchiveDiv
-								onChangeArchive={onChangeArchive}
-								id={archive.id}
-								key={archive.id}
-							/>
-						);
-					})}
+			<div className="archive">
+				<strong>Arquivos</strong>
+				<div className="archive-option">
+					<span className="span-archive">ID</span>
+					<span className="span-archive">Selcionar</span>
 				</div>
+
+				{archives.map((archive) => {
+					return (
+						<AttachArchiveDiv
+							onChangeArchive={onChangeArchive}
+							id={archive.id}
+							key={archive.id}
+						/>
+					);
+				})}
 			</div>
 
 			<div className="container-button">
-				<button onClick={onsubmit}>Anexar</button>
+				<button onClick={onsubmit}>ANEXAR</button>
+				<button className="voltar" onClick={() =>
+					navigate(`/egress/list`)}>CANCELAR</button>
 			</div>
 		</Container>
 	);

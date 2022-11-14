@@ -1,95 +1,84 @@
 import styled from "styled-components";
 
-
 export const DetachArchiveDiv = styled.div`
-    .container {
-        jusify-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    flex-direction: column;
+
+    .div-container-egress {
+        margin-top: 0 auto;
+        display: flex;
+        flex-direction: column;
+        padding: 5rem;
+        width: 110vh;
         align-items: center;
-        margin-top: 15%;
+        possition: absolute;
+
+        .div-head {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+            gap: 15rem;
+            border-bottom: 3px solid #d9d9d9;
+            color: #fff;
+            max-width: 100%;
+        }
+
+        .archive-id {
+            margin-top: 1.5rem;
+            border: 3px solid #fff;
+            padding: 1rem;
+            border-radius: 15px;
+            color: #ff0000;
+            maxwidth: 340px%;
+        }
     }
-    .cotainer-egress {
+
+    .div-button {
         display: flex;
         justify-content: center;
-        display: flex;
-        margin: 0 auto;
-        background: radial-gradient(
-                97.66% 97.66% at 50% -42.18%,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.2) 100%
-            ),
-            radial-gradient(
-                    97.57% 210.75% at 0.9% -41.54%,
-                    rgba(255, 255, 255, 0.4) 0%,
-                    rgba(255, 255, 255, 0) 100%
-                )
-                /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-        box-shadow: 0px 11px 14px rgba(0, 0, 0, 0.25);
-        backdrop-filter: blur(21px);
-        border-radius: 25px;
-        width: 180vh;
-        height: 20vh;
+        margin : 0 auto;
 
-        .head-grid {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            margin-bottom: 5%;
-            gap: 180%;
-            position: absolute;
-            margin-top: 3%;
-
-			span{
-				font-size: 1.5rem;
-				color:#fff
-				
-			}
-			.CGM{
-				margin-left: 18%;
-			}
-
-        }
-        .data-grid {
-            margin-top: 6%;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            gap: 21%;
-            position: absolute;
-			background: #e7e7e7;
+        .voltar {
+            color: #fff;
+            background-color: #344458;
+            border: solid 1px black;
             border-radius: 8px;
-			height: 25%;
-			width: 95%;
-			padding: 1%;
-			
-			span{
-				
-				font-size: 1.1rem;
-				font-weight: 500;
-				
-			}
-			.CGM2{
-				margin-right: 130px;
-			}
+            cursor: pointer;
+            transition: all 0.3s;
+            &:hover {
+                background-color: black;
+                border: solid 1px #344458;
+            }
+            &:active {
+                background-color: black;
+                border: solid 1px #344458;
+            }
         }
+        button {
+            margin-left: 2rem;
+            width: 180px;
+            height: 60px;
+            background-color: #e13763;
+            font-weight: normal;
+            color: #fff;
+            font-size: 20px;
+            border: solid 1px #e13763;
+            border-radius: 8px;
 
-		
-    }
-	.div-button{
-            display: flex;
-            justify-content: center;
-            margin-top: 10rem;
-
-            
-            
-           button{
-                width: 13%;
-                height:60px;
-                background-color:#E13763;
-                font-weight: normal;
-                color:#fff; 
-                font-size: 20px;
-                border: solid 1px #E13763;
+            &:hover {
+                color: #fff;
+                background-color: #e137;
+                border: solid 1px #e13763;
                 border-radius: 8px;
-           }
+                cursor: pointer;
+                transition: all 0.3s;
+            }
         }
+    }
 `;

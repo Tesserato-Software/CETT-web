@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../../../services/api";
 import { DetachArchiveDiv } from "./style";
+import { DashboarEgress } from "./../../../Components/DashBoardEgress/index";
 
 interface EgressesAndArchive {
     id: number;
@@ -12,57 +13,65 @@ interface EgressesAndArchive {
 
 export const DetachArchive = () => {
     const { id } = useParams();
-
+    const navigate = useNavigate();
     const [egress, setEgress] = useState<EgressesAndArchive[]>([]);
+
     useEffect(() => {
         api.get(`/egress/dashboard-dettach-archive/${id}`).then((response) => {
             setEgress(response.data.egressesAndArchive);
-
             console.log(response.data.egressesAndArchive);
         });
     }, []);
 
+    const onsubmit = () => {
+        api.post(`/egress/dettach-archives`, {
+            egress: [+(id || 0)],
+        })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+        alert(`Egresso desanexado do arquiv com sucesso!`);
+        return navigate(`/egress/list`);
+    };
+
     return (
         <DetachArchiveDiv>
-            <div className="container">
-                <div className="cotainer-egress">
-                    <div className="head-grid">
-                        <span>ID</span>
-                        <span>NOME</span>
-                        <span className="CGM">CGM</span>
-                        <span>ARQUIVO</span>
-                    </div>
+            <div className="div-container-egress">
+                <div className="div-head">
+                    <div className="ID">ID</div>
+                    <div className="NOME">NOME</div>
+                    <div className="CGM">CGM</div>
+                </div>
 
-                    <div className="data-grid">
-                        <span>
-                            {egress.map((egress) => {
-                                return egress.id;
-                            })}
-                            {/* {egress.id} */}
-                        </span>
-                        <span>
-                            {egress.map((egress) => {
-                                return egress.name;
-                            })}
-                            {/* {egress.name} */}
-                        </span>
-                        <span className="CGM2">
-                            {egress.map((egress) => {
-                                return egress.CGM_id;
-                            })}
-                            {/* {egress.CGM_id} */}
-                        </span>
-                        <span>
-                            {egress.map((egress) => {
-                                return egress.archive_id;
-                            })}
-                            {/* {egress.archive_id} */}
-                        </span>
-                    </div>
+                {egress.map((egress) => (
+                    <DashboarEgress
+                        key={egress.id}
+                        id={egress.id}
+                        name={egress.name}
+                        CGM_id={egress.CGM_id}
+                    />
+                ))}
+                <div className="archive-id">
+                    <p>
+                        {" "}
+                        Desanexar Egresso do Arquivo: {egress[0]?.archive_id} ?
+                    </p>
                 </div>
             </div>
+
             <div className="div-button">
-                <button>DESANEXAR</button>
+                <button
+                    className="voltar"
+                    onClick={() => navigate(`/egress/list`)}
+                >
+                    CANCELAR
+                </button>
+
+                <button onClick={onsubmit}>DESANEXAR</button>
             </div>
         </DetachArchiveDiv>
     );

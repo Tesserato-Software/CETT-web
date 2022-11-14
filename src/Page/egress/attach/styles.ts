@@ -1,120 +1,51 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    .container-all {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        margin: 0 auto;
-        max-width: 960px;
-        padding: 0 15px;
-    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin : 0 auto;
+    flex-direction: column;
     
 
+
     .div-container-egress {
-
-        margin-top: 5rem;
-
+        margin-top: 0 auto;
         display: flex;
         flex-direction: column;
-        background: radial-gradient(
-                97.66% 97.66% at 50% -42.18%,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.2) 100%
-            ),
-            radial-gradient(
-                97.57% 210.75% at 0.9% -41.54%,
-                rgba(255, 255, 255, 0.4) 0%,
-                rgba(255, 255, 255, 0) 100%
-            );
-
-        box-sizing: border-box;
-        border-radius: 25px;
-        padding: 2rem;
+        padding: 5rem;
         width: 110vh;
-        margin-left: 3%;
-        height: 30vh;
-        
-
-              
-
+        align-items: center;
+        possition: absolute;
 
         .div-head {
-            
+            margin-bottom: 1rem;
+            display: flex;
             flex-direction: row;
-            display: flex;
-            alignitems: center;
-            gap: 10rem;
-        
-            margin-left: 1rem;
-            font-size: 1.5rem;
-            color : #fff;
-            width: 100%;
-            height: 10vh;
-
-
-            .CGM {
-                magin : 0;
-                margin-top: 3rem;
-                margin-left: 30vh;
-                max-width: 20rem;
-            }
-            .NOME{
-                margin-top: 3rem;
-                max-width: 20rem;
-
-            }
-            .ID{
-                margin-top: 3rem;
-                max-width: 20rem;
-            }
-            
-        }
-
-        .view-egress {
-            display: flex;
-            background-color: #e7e7e7;
-            border-radius: 8px;
-            padding: 2rem;
-            width: 100%;
-            height: 40px;
+            justify-content: space-around;
             align-items: center;
-            max-width: 960px;
-            margin-top: 3%;
-
-            .cgm-egress {
-                margin : 0 auto;
-                position: absolute;
-                margin-left: 72vh;
-                max-width: 20rem;
-                
-                
-            }
-            .id-egress {
-                position: absolute;
-                max-width: 20rem;
-            }
-            .name-egress {
-                margin-left: 8rem;
-                position: absolute;
-                max-width: 20rem;
-            }
+            padding: 10px;
+            gap: 15rem;
+            border-bottom: 3px  solid #d9d9d9 ;
+            Color: #fff;
+            max-width: 100%;
         }
     }
     .archive {
-        margin-top: 3rem;
+       
         box-sizing: border-box;
         border-radius: 15px;
         background-color: #00476f;
-        width: 70vh;
+        width: 33rem;
         max-width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         overflow-y: scroll;
-        height: 45vh;
+        height: 25rem;
+        max-height: 100%;
+        
         //scrol bar style
         ::-webkit-scrollbar {
             width: 10px;
@@ -126,7 +57,7 @@ export const Container = styled.div`
             margin-bottom: 5px;
         }
         ::-webkit-scrollbar-thumb {
-            background:#fff;
+            background: #fff;
             border-radius: 30px;
         }
         ::-webkit-scrollbar-thumb:hover {
@@ -147,10 +78,8 @@ export const Container = styled.div`
         }
         span {
             font-size: 23px;
-            
-
         }
-        
+
         .span-archive {
             color: #fff;
             margin-bottom: 1rem;
@@ -160,30 +89,57 @@ export const Container = styled.div`
     .container-button {
         display: flex;
         justify-content: center;
-        margin-top: 10rem;
+        margin-top: 5rem;
         margin-bottom: 5rem;
-        
+        gap: 2rem;
 
-        button {
-            width: 10%;
-            height: 60px;
-            background-color: #e13763;
-            font-weight: normal;
-            color: #fff;
-            font-size: 20px;
-            border: solid 1px #e13763;
-            border-radius: 8px;
-            cursor: pointer;
-            max-width: 100%;
-
-            &:hover {
+            .voltar{
                 color: #fff;
-                background-color: #e137;
-                border: solid 1px #e13763;
+                background-color: #344458;
+                border: solid 1px black;
                 border-radius: 8px;
                 cursor: pointer;
                 transition: all 0.3s;
+                &:hover{
+                    background-color: black;
+                    border: solid 1px #344458;
+                }
+                &:active{
+                    background-color: black;
+                    border: solid 1px #344458;
+                }
+
+
             }
+          
+
+            button {
+                width: 250px;
+                height: 60px;
+                background-color: #e13763;
+                font-weight: normal;
+                color: #fff;
+                font-size: 20px;
+                border: solid 1px #e13763;
+                border-radius: 8px;
+                cursor: pointer;
+                max-width: 100%;
+
+                &:hover {
+                    color: #fff;
+                    background-color: #e137;
+                    border: solid 1px #e13763;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                }
+
+
+            }
+
+            
         }
-    }
+
+
+    
 `;
