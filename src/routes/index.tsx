@@ -71,11 +71,11 @@ export const MainRouts = ({ shouldResetPassword }: any) => {
 
                     {/* VINC BY ARCHIVE */}
                     <Route
-                        path="dettach"
+                        path="dettach/:id"
                         element={<DetachArchive />}
                     />
                     <Route
-                        path="attach"
+                        path="attach/:id"
                         element={<AttachArchive />}
                     />
                 </Route>
