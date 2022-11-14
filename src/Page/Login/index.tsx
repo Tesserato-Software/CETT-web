@@ -15,6 +15,7 @@ export const Login = () => {
         api.post("/auth/login", data)
             .then((response) => {
                 console.log(response);
+				localStorage.setItem("@Auth:token", response.data.token);
             })
             .catch((error) => {
                 console.log(error);
