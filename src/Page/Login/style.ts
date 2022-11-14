@@ -9,7 +9,7 @@ export const LoginDiv = styled.div`
 	div.container {
 		display: grid;
         place-items: center;
-        grid-template-rows: 50px 1fr;
+        grid-template-rows: 90px 1fr;
 		background-color: #fff;
 		width: 70%;
 		height: 80%;
@@ -32,20 +32,26 @@ export const LoginDiv = styled.div`
             font-size: 2rem;
             font-weight: 500;
         }
-    
-        form {
+        section {
             display: grid;
             place-items: center;
-            padding-top: 20px;
             grid-template-rows: 1fr 1fr .5fr;
             height: 100%;
+            width: 100%;
             .form-group {
                 display: flex;
                 flex-direction: column;
                 color: #fff;
+                width: 70%;
                 /* padding: 4rem 0; */
+                &.first{
+                    margin-top: 10%;
+                }
+                &.last{
+                    margin-bottom: 10%;
+                }
                 input {
-                    width: 20rem;
+                    width: 100%;
                     height: 2.5rem;
                     border-radius: 5px;
                     border: none;
