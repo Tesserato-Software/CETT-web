@@ -44,12 +44,6 @@ export const UpdateHierarchy = () => {
 			});
 	}, []);
 
-    useEffect(() => console.log("aaa ->", hierarchy_id), [hierarchy_id]);
-    useEffect(() => console.log("bbb ->", name), [name]);
-    useEffect(() => console.log("aaa ->", can_update), [can_update]);
-    useEffect(() => console.log("aaa ->", can_enable_users), [can_enable_users]);
-    useEffect(() => console.log("aaa ->", can_delete), [can_delete]);
-
     const onSubmit = () => {
 		api.put(`/hierarchy/update/${id}`, {
             name: name,

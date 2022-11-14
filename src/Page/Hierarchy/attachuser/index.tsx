@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { api } from '../../../services/api';
 import { AttachContainer, UserSection } from './style';
 
@@ -27,6 +28,10 @@ export const AttachUser = () => {
         console.log(response.data);
       })
       .catch((error) => {
+        toast.error(
+					"Ops, algo de errado não deu certo ao atualizar a hierarquia.",
+					{ theme: "colored" }
+				);
         console.error(error);
       });
   }, []);
