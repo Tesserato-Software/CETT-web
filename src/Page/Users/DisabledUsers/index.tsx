@@ -22,7 +22,7 @@ const columns = [
     { value: 5, label: ''}
 ]
 
-export const UsersList = () => {
+export const UsersListDisableds = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [users, setUsers] = useState<user[]>([])
     const [name, setName] = useState<string>('')
@@ -32,7 +32,7 @@ export const UsersList = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        api.get('user/list')
+        api.get('user/list-disableds')
         .then(response => setUsers(response.data))
         .catch(() => toast.error('Erro ao buscar os usuários inativos!'))
         .finally(() => setIsLoading(false))
@@ -80,9 +80,6 @@ export const UsersList = () => {
                         })}
                     </select>
                 </div>
-                <Link className="Link" to="/users/create">
-                    Cadastrar Usuário
-                </Link>
             </Container>
             <ListContainer className="users-list-list-container">
                 <ListHeader>

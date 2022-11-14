@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { api } from '../../../services/api'
 import { Container, ContainerButton } from './style'
 import { toast } from 'react-toastify'
@@ -7,12 +7,15 @@ import { toast } from 'react-toastify'
 export const UsersDelete = () => {
     const { id } = useParams()
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const navigate = useNavigate()
+
 
     const handleSubmit = () => {        
         setIsLoading(true)
         api.delete(`user/delete/${id}`)
         .then(() => {
             toast.success('Usuário deletado com sucesso!')
+            navigate('/users/list')
         })
         .catch(() => toast.error('Erro ao deletar usuário!'))
         .finally(() => setIsLoading(false))
