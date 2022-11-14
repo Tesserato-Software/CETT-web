@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { api } from "../../services/api";
 import { LoginDiv } from "./style";
 
@@ -16,9 +17,11 @@ export const Login = () => {
             .then((response) => {
                 console.log(response);
 				localStorage.setItem("@Auth:token", response.data.token);
+				toast.success("Login realizado com sucesso!", {theme: 'colored'});
             })
             .catch((error) => {
-                console.log(error);
+				console.log(error);
+				toast.error("Erro, verifique as credenciais", {theme: 'colored'});
             });
     }
 
