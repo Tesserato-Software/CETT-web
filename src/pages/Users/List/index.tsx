@@ -101,7 +101,7 @@ export const UsersList = ({ user_id }: any) => {
                             <ListSpan>{user.id}</ListSpan>
                             <ListSpan>{user.full_name}</ListSpan>
                             <ListSpan>{user.email}</ListSpan>
-                            <ListSpan>{user.hierarchy.map(value => value.name)}</ListSpan>
+                            <ListSpan>{user.hierarchy.name}</ListSpan>
                             <ListSpanLink>
                                 <Link className="LinkUpdate" to={`/users/update/${user.id}`}>Editar</Link>
                                 <button disabled={user_id === user.id} className="buttonUpdate" 
