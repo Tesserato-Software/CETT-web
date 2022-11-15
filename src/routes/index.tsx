@@ -43,6 +43,7 @@ import { UserDisabled } from "../Components/UserDisabled";
 import { DontLogged } from "../Components/DontLogged";
 import { Footer } from "../Components/Footer";
 import { Unauthorized } from "../Components/Unauthorized";
+import { hierarchy } from "../models/User";
 
 export const MainRouts = ({
 	shouldResetPassword,
@@ -50,11 +51,22 @@ export const MainRouts = ({
 	isDisabled,
 	isDontLogged,
     user_hierarchy
-}: any) => {
+}: {
+    shouldResetPassword: boolean,
+	user_id: number,
+	isDisabled: boolean,
+	isDontLogged: boolean,
+    user_hierarchy: hierarchy | undefined
+}) => {
 	const arr = window.location.pathname.split("/"),
         token = localStorage.getItem("@Auth:token")
 
-    const hasPermission = (permission: string) => !!user_hierarchy[permission]
+    const hasPermission = (permission: 'can_update' | 'can_delete' | 'can_enable_users') => {
+        if (user_hierarchy) {
+            return user_hierarchy[permission]
+        }
+        return false
+    } 
 
 	const ValidateUser = () => {
 		if (isDontLogged) {
