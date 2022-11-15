@@ -21,7 +21,6 @@ function App() {
     useEffect(() => {
         api.get('/auth/get-user-data')
         .then((response) => {
-            console.log(response.data)
             setUser_id(response.data.id)
             setUser_hierarchy(response.data.hierarchy)
             setUserData(response.data)
