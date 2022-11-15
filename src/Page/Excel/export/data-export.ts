@@ -8,12 +8,18 @@ export const data_export = async (users: Egress[]) =>
     const sheet = new ExcelService(),
         now = DateTime.now()
 
-    sheet.setColumnSizes([30, 30, 50]); // tamanho das colunas
+    sheet.setColumnSizes([15, 50, 20, 15, 25, 50]); // tamanho das colunas
     sheet.addTitleRow([`Usuários egressos - ${now.toLocaleString(DateTime.DATETIME_MED)}`]);
-    sheet.addSubtitleRow([]); // colunas
+    sheet.addSubtitleRow(["Id", "Nome", "CGM", "Arquivo Id", "Data de Aniversário", "Nome Responsável"]); // colunas
 
-    const userRows = users.map(({  }) => [ // importa do user
-    ]); // formata
+    const userRows = users.map(({id, name, CGM_id, arq_id, birth_date, responsible_name}) => [ // importa do user
+        id,    
+        name,
+        CGM_id,
+        arq_id,
+        birth_date ? DateTime.fromISO(birth_date).toLocaleString(DateTime.DATE_MED) : "DD/MM/AAAA",  
+        responsible_name
+    ]);
     sheet.addRows(userRows);
     const buffer = await sheet.finishSheet();
     const fileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";

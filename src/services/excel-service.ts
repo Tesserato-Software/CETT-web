@@ -5,7 +5,7 @@ export class ExcelService {
 
     private currentWorksheet;
 
-    constructor(title = 'Dados') {
+    constructor(title = 'Dados') { 
         this.workbook = new ExcelJS.Workbook();
         this.workbook.creator = 'Tesserato';
         this.currentWorksheet = this.workbook.addWorksheet(title);
