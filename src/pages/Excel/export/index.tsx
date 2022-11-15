@@ -52,7 +52,7 @@ export const ExportExcel = () => {
                     , now = DateTime.now()
         
                 a.href = url;
-                a.download = `Usuários egressos - ${now.toLocaleString(DateTime.DATETIME_MED)}`;
+                a.download = `Usuários egressos - ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}.xlsx`;
                 a.click();
 
                 setLoading({ ...loading, export: false })
