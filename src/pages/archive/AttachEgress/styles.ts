@@ -35,7 +35,7 @@ export const EgressDiv = styled.div`
 	}
 	.list-student{	
 		margin 10px 10px;
-		width: 30rem;
+		width: 50rem;
 		height: 100%;
 		display: flex;
 		justify-content:space-around; 
