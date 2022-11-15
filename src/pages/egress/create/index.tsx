@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
 import { api } from '../../../services/api';
 import { EgressCreateContainer } from './style'
 
@@ -15,9 +16,19 @@ export const CreateEgress = () => {
         CGM_id: '',
         responsible_name: ''
     }),
-        [isLoading, setIsLoading] = useState(false),
+        [isLoading, setIsLoading] = useState<{
+            list: boolean;
+            create: boolean;
+        }>({
+            list: true,
+            create: false
+        }),
+        [archives, setArchives] = useState([]),
         onSubmit = () => {
-            setIsLoading(true);
+            setIsLoading({
+                ...isLoading,
+                create: true
+            });
             api.post('/egress/create', {...egressData, CGM_id: Number(egressData.CGM_id)})
                 .then(res => {
                     console.log(res.data)
@@ -33,8 +44,32 @@ export const CreateEgress = () => {
                 .catch(err => {
                     console.error(err)
                 })
-                .finally(() => setIsLoading(false))
+                .finally(() => setIsLoading({
+                    ...isLoading,
+                    create: false
+                }))
         }
+
+    useEffect(() => {
+        setIsLoading({
+            ...isLoading,
+            list: true
+        })
+        api.get('archive/list')
+            .then(res => {
+                setArchives(res.data)
+            })
+            .catch(err => {
+                toast.error('Erro ao listar arquivos', {
+                    theme: 'colored'
+                })
+                console.error(err)
+            })
+            .finally(() => setIsLoading({
+                ...isLoading,
+                list: false
+            }))
+    }, [])
 
     return (
         <EgressCreateContainer>
@@ -98,9 +133,7 @@ export const CreateEgress = () => {
                         }))
                     }}
                 />
-                <input
-                    type="number"
-                    placeholder='Nº caixa'
+                <select
                     value={egressData.archive_id}
                     onChange={(e) => {
                         setEgressData(prevState => ({
@@ -108,12 +141,16 @@ export const CreateEgress = () => {
                             archive_id: Number(e.target.value)
                         }))
                     }}
-                />
-
+                >
+                    <option value={undefined}>Selecione um arquivo</option>
+                    {!isLoading.list && archives?.map((archive: any) => (
+                        <option key={archive.id} value={archive.id}>{archive.id}</option>
+                    ))}
+                </select>
             </section>
             <button
                 onClick={onSubmit}
-            >{isLoading ? 'Loading...' : 'Cadastrar'}</button>
+            >{isLoading.create ? 'Loading...' : 'Cadastrar'}</button>
         </EgressCreateContainer>
     )
 }
