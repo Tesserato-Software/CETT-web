@@ -31,6 +31,7 @@ export const CreateHierarchyContainer = styled.div`
     }
     
     span {
+        margin-left: .5rem;
         color: white;
     }
 
