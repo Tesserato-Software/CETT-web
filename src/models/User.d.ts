@@ -1,3 +1,11 @@
+declare export type hierarchy = {
+    id: number
+    school_id: number
+    name: string
+    can_update: boolean
+    can_delete: boolean
+    can_enable_users: boolean
+}
 declare interface Password {
 	id: number;
 	password: string;
@@ -26,7 +34,7 @@ declare interface user {
 	password: string;
 	is_super_user: boolean;
 	passwords: Password[];
-	hirarchy: Hirarchy;
+	hirarchy: hierarchy;
 }
 
 declare type formData = {

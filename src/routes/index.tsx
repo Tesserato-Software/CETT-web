@@ -42,15 +42,19 @@ import { ShouldResetPassword } from "../Components/ShouldResetPassword";
 import { UserDisabled } from "../Components/UserDisabled";
 import { DontLogged } from "../Components/DontLogged";
 import { Footer } from "../Components/Footer";
+import { Unauthorized } from "../Components/Unauthorized";
 
 export const MainRouts = ({
 	shouldResetPassword,
 	user_id,
 	isDisabled,
 	isDontLogged,
+    user_hierarchy
 }: any) => {
 	const arr = window.location.pathname.split("/"),
         token = localStorage.getItem("@Auth:token")
+
+    const hasPermission = (permission: string) => !!user_hierarchy[permission]
 
 	const ValidateUser = () => {
 		if (isDontLogged) {
@@ -78,6 +82,7 @@ export const MainRouts = ({
 		}
 	};
 
+    console.log(user_hierarchy)
 	return (
 		<div style={{position: 'relative', minHeight: '100vh'}}>
 			<NavBar
@@ -100,12 +105,22 @@ export const MainRouts = ({
                         <Route path="egress" element={<Egress />}>
                             <Route path="list" element={<EgressList />} />
                             <Route path="create" element={<CreateEgress />} />
-                            <Route path="edit" element={<UpdateEgress />} />
-                            <Route path="delete/:id" element={<DeleteEgress />} />
+                            <Route path="edit" element={hasPermission("can_update") 
+                            ? <UpdateEgress /> 
+                            : <Unauthorized />} 
+                            />
+                            <Route path="delete/:id" element={hasPermission("can_delete") 
+                            ? <DeleteEgress /> 
+                            : <Unauthorized />} 
+                            />
 
                             {/* VINC BY ARCHIVE */}
-                            <Route path="dettach/:id" element={<DetachArchive />} />
-                            <Route path="attach/:id" element={<AttachArchive />} />
+                            <Route path="dettach/:id" element={hasPermission("can_update") 
+                            ? <DetachArchive /> 
+                            : <Unauthorized />} />
+                            <Route path="attach/:id" element={hasPermission("can_update") 
+                            ? <AttachArchive /> 
+                            : <Unauthorized />} />
                         </Route>
 
                         <Route path="excel" element={<Excel />}>
@@ -117,7 +132,9 @@ export const MainRouts = ({
                         <Route path="archive" element={<Archives />}>
                             <Route path="create" element={<CreateArchive />} />
                             <Route path="list" element={<ListArchive />} />
-                            <Route path="delete/:id" element={<DeleteArchive />} />
+                            <Route path="delete/:id" element={hasPermission("can_delete") 
+                            ? <DeleteArchive /> 
+                            : <Unauthorized />} />
 
                             {/* VINC BY EGRESS */}
                             <Route
