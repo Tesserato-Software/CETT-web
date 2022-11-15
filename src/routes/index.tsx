@@ -44,6 +44,8 @@ import { DontLogged } from "../Components/DontLogged";
 import { Footer } from "../Components/Footer";
 import { Unauthorized } from "../Components/Unauthorized";
 import { hierarchy } from "../models/User";
+import { userDataContext } from "../App";
+import { useContext } from "react";
 
 export const MainRouts = ({
 	shouldResetPassword,
@@ -59,6 +61,7 @@ export const MainRouts = ({
     user_hierarchy: hierarchy | undefined
 }) => {
 	const arr = window.location.pathname.split("/"),
+        { user } = useContext(userDataContext),
         token = localStorage.getItem("@Auth:token")
 
     const hasPermission = (permission: 'can_update' | 'can_delete' | 'can_enable_users') => {
@@ -81,7 +84,7 @@ export const MainRouts = ({
 				<Routes>
 					<Route
 						path="should-reset-password"
-						element={<ShouldResetPassword user_id={user_id} />}
+						element={<ShouldResetPassword user_id={user?.id} />}
 					/>
 				</Routes>
 			);
