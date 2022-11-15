@@ -5,8 +5,8 @@ export const TableContainer = styled.section<{
     columnsQtd: number
 }>`
     width: 100%;
-    max-width: 100vw;
-    height: calc(100vh - 90px);
+    height: 100%;
+    color: #fff;
     header.root-header {
         display: flex;
         justify-content: space-between;

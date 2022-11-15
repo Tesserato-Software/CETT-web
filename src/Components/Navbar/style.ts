@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const CustomDiv = styled.div`
-    width: 100vw;
     height: 80px;
     padding: .3rem .2rem;
     background-color: #00408E;

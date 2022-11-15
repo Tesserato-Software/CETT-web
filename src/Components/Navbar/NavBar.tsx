@@ -23,7 +23,7 @@ export const NavBar = ({
 					<img src={LogoBranco} />
 				</Link>
 
-				<h1>{titles[title_json!] ?? title_json}</h1>
+				<h1>{titles[title_json.split('-').filter(p => isNaN(+p)).join('-')] ?? title_json}</h1>
 
 				{have_menu && (
 					<VscIcons.VscMenu onClick={() => setIsOpen(true)} />
