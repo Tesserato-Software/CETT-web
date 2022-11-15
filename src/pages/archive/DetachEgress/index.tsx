@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import { api } from "./../../../services/api";
 import { toast } from "react-toastify";
 import { DetachEgressDiv } from "./style";
@@ -16,6 +16,7 @@ interface Egresses {
 }
 
 export const DetachEgress = () => {
+	const navigate = useNavigate();
 	const { id } = useParams();
 	const [egresses, setEgresses] = useState<Egresses[]>([]);
 	const [egressId, setEgressId] = useState<Number[]>([]);
@@ -38,6 +39,8 @@ export const DetachEgress = () => {
 		api.post(`/archive/dettach-egress`, {
 			egress: egressId,
     });
+		toast.success(`Egresso desanexado com sucesso`);
+		return  navigate(`/archive/list`);
 	};
 	return (
 		<DetachEgressDiv>

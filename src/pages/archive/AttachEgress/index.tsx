@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { EgressDiv } from "./styles";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import { api } from "./../../../services/api";
 import { toast } from "react-toastify";
 
@@ -21,6 +21,7 @@ interface Egresses {
 }
 export const AttachEgress = () => {
 	const { id } = useParams();
+	const navigate = useNavigate();
 	const [archives, setArchives] = useState<Archives>();
 	const [egresses, setEgresses] = useState<Egresses[]>([]);
 	const [egressId, setEgressId] = useState<Number[]>([]);
@@ -45,6 +46,8 @@ export const AttachEgress = () => {
 		api.post(`/archive/attach-egress/${archives?.id}`, {
 			egress: egressId,
 		});
+		toast.success(`Egresso anexado com sucesso`);
+		return  navigate (`/archive/list`);
 	};
 
 	return (
