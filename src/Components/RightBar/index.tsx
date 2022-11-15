@@ -65,7 +65,8 @@ export const RightBar = ({
 				],
 			},
 		],
-		navigate = useNavigate();
+		navigate = useNavigate(),
+		token = localStorage.getItem("@Auth:token");
 
 	return (
 		<RightContainer isOpen={isOpen}>
@@ -99,7 +100,7 @@ export const RightBar = ({
 							localStorage.removeItem("@Auth:token");
 						}}
 					>
-						<IoIcons.IoIosLogOut /> Logout
+						{token ? <><IoIcons.IoIosLogOut /> Logout</> : <><IoIcons.IoIosLogIn /> Login</>}
 					</button>
 				</div>
 			</div>

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
 export const ListContainer = styled.section`
-    padding: 4rem;
+    width: 90%;
+    margin: 0 auto;
+    padding: 4rem 0;
 `;
