@@ -68,6 +68,16 @@ export const RightBar = ({
 		navigate = useNavigate(),
 		token = localStorage.getItem("@Auth:token");
 
+		const loginLogout = () => {
+			if (token) {
+				navigate("/login")
+				localStorage.removeItem("@Auth:token") 
+
+			} else {
+				navigate("/login"); 
+			}
+		}
+
 	return (
 		<RightContainer isOpen={isOpen}>
 			<div className="right-bar">
@@ -80,7 +90,7 @@ export const RightBar = ({
 					/>
 				</div>
 				<div className="right-bar-body">
-					{items.map((item, index) => (
+					{token && items.map((item, index) => (
 						<div className="right-bar-item" key={index}>
 							<h2>{item.name}</h2>
 							<div className="right-bar-sub-items">
@@ -95,10 +105,7 @@ export const RightBar = ({
 				</div>
 				<div className="right-bar-footer">
 					<button
-						onClick={() => {
-							navigate("/login");
-							localStorage.removeItem("@Auth:token");
-						}}
+						onClick={() => loginLogout()}
 					>
 						{token ? <><IoIcons.IoIosLogOut /> Logout</> : <><IoIcons.IoIosLogIn /> Login</>}
 					</button>

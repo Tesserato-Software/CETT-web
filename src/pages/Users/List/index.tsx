@@ -9,7 +9,7 @@ import {
     ListHeaderItem,
     ListSpanLink
 } from './style'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { api } from '../../../services/api'
 import { toast } from 'react-toastify';
 import { user } from '../../../models/User'
@@ -22,13 +22,14 @@ const columns = [
     { value: 5, label: ''}
 ]
 
-export const UsersList = () => {
+export const UsersList = ({ user_id }: any) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [users, setUsers] = useState<user[]>([])
     const [name, setName] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [role, setRole] = useState<any>({})
     const [roles, setRoles] = useState<any>([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         api.get('hierarchy/list')
@@ -103,7 +104,10 @@ export const UsersList = () => {
                             <ListSpan>{user.hierarchy.map(value => value.name)}</ListSpan>
                             <ListSpanLink>
                                 <Link className="LinkUpdate" to={`/users/update/${user.id}`}>Editar</Link>
-                                <Link className="LinkUpdate" to={`/users/delete/${user.id}`}>Deletar</Link>
+                                <button disabled={user_id === user.id} className="buttonUpdate" 
+                                onClick={() => navigate(`/users/delete/${user.id}`)}>
+                                    Deletar
+                                </button>
                             </ListSpanLink>
                         </ListItem>
                     ))}
