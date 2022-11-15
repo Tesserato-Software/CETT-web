@@ -79,7 +79,7 @@ export const MainRouts = ({
 	};
 
 	return (
-		<div style={{position: 'relative'}}>
+		<div style={{position: 'relative', minHeight: '100vh'}}>
 			<NavBar
 				title_json={window.location.pathname.split('/').slice(1).join('-')}
 				have_menu={!window.location.pathname.includes("login")}
