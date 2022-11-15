@@ -5,17 +5,23 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useEffect, useState } from 'react';
 import { api } from './services/api'
+import { hierarchy } from './models/User'
 
 function App() {
     const [shouldResetPassword, setShouldResetPassword] = useState<boolean>(false)
     const [isDontLogged, setIsDontLogged] = useState<boolean>(false)
     const [isDisabled, setIsDisabled] = useState<boolean>(false)
     const [user_id, setUser_id] = useState<number>(0)
+    const [user_hierarchy, setUser_hierarchy] = useState<hierarchy>()
     const navigate = useNavigate()
 
     useEffect(() => {
         api.get('/auth/get-user-data')
-        .then((response) => setUser_id(response.data.id))
+        .then((response) => {
+            console.log(response.data)
+            setUser_id(response.data.id)
+            setUser_hierarchy(response.data.hirarchy)
+        })
         .catch((error) => {
             if(error.response?.data?.message === 'Unauthorized' && !["/login", "/"].includes(window.location.pathname)) {
                 setIsDontLogged(true)
@@ -40,7 +46,13 @@ function App() {
         <>
             <ToastContainer />
             <GlobalTheme />        
-            <MainRouts shouldResetPassword={shouldResetPassword} user_id={user_id} isDisabled={isDisabled} isDontLogged={isDontLogged} />
+            <MainRouts 
+                shouldResetPassword={shouldResetPassword} 
+                user_id={user_id} 
+                isDisabled={isDisabled} 
+                isDontLogged={isDontLogged}
+                user_hierarchy={user_hierarchy} 
+            />
         </>
             
     )
