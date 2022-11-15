@@ -15,7 +15,7 @@ export const ShouldResetPassword = ({ user_id }: any) => {
   const onSubmit = () => {
     setIsLoading(true)
     api.post(`/user/psw-storage/${user_id}`, {
-      password: formData.password,
+      password: formData.password.value,
     })
     .then(() => {
       toast.success('Senha atualizada com sucesso!')
