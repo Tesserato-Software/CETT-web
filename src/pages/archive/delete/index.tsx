@@ -34,7 +34,7 @@ export const DeleteArchive = () => {
             <section>
                 <h1>Deletar caixa: {id} </h1>
                 <aside>
-                    <Link to={'/archive/home'}>Não</Link>
+                    <Link to={'/archive/list'}>Não</Link>
                     <button onClick={onSubmit} className='confirm'>Sim</button>
                 </aside>
             </section>
