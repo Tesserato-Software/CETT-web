@@ -18,7 +18,7 @@ export const titles: {
     "hierarchy-delete": "Deletar Hierarquia",
     "hierarchy-add-user": "Adicionar Usuário",
     "remove-user": "Remover Usuário",
-    "users-list-disabled": "Lista de Usuários Desativados",
+    "users-list-disableds": "Lista de Usuários Desativados",
     "users-update": "Atualizar Usuário",
     "hierachy-users-delete": "Remover Usuário",
     "egress-edit": "Atualizar Egresso",
