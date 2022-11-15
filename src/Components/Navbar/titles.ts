@@ -8,7 +8,7 @@ export const titles: {
     "users-list": "Lista de Usuários",
     "users-create": "Cadastrar Usuário",
     "hierarchy-create": "Cadastrar Hierarquia",
-    "hierarchy-list": "Lista de Hierarquía",
+    "hierarchy-list": "Lista de Hierarquia",
     "egress-dettach": "Desvincular Egresso",
     "egress-attach": "Vincular Egresso",
     "first-access": "Primeiro Acesso",
@@ -32,17 +32,5 @@ export const titles: {
     "should-reset-password": "Redefinir Senha",
     "archive-attach-egress": "Vincular Arquivo ao Egresso",
     "archive-detach-egress": "Desvincular Arquivo do Egresso",
-
-
-    
-
-    
-
-
-
-    
-
-    
-
-
+    "excel-import": "Anexar arquivo de egresso"
 }

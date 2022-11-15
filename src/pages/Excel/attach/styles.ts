@@ -1,48 +1,119 @@
 import styled from 'styled-components';
 
-export const InputDiv = styled.div `
-    display: flex;
-    flex-direction: column;
-    margin: 3rem auto;
-    width: 60%;
-    background: radial-gradient(97.66% 97.66% at 50% 2.34%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 100%), radial-gradient(97.57% 210.75% at 0.9% 2.98%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
-    filter: drop-shadow(0px 11px 14px rgba(0, 0, 0, 0.25));
-    backdrop-filter: blur(21px);
-    border-radius: 25px;
-    border: 5px solid rgba(255, 255, 255, 0.09);
-    color: #fff;
-
-    .input-archive {
-        text-align: center;
-        padding: 5rem;
-        border-radius: 25px;
+export const InputDiv = styled.div`
+    height: 100%;
+    display: grid;
+    grid-template-rows: .5fr 1fr auto;
+    header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        place-items: center;
+        margin-bottom: 2rem;
+        p {
+            color: #fff;
+            text-align: center;
+            margin-top: 2rem;
+            strong {
+                margin-right: 0.5rem;
+                font-size: 1.2rem;
+            }
+        }
+        button {
+            width: fit-content;
+            height: fit-content;
+            outline: none;
+            border: none;
+            background-color: #E13763;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease-in-out;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bolder;
+            gap: 1rem;
+            cursor: pointer;
+            svg{
+                font-size: 1.4rem;
+            }
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
     }
-
-    .div-input {
+    div.upload-input{
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 3rem;
-        background: radial-gradient(97.66% 97.66% at 50% 2.34%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 100%), radial-gradient(97.57% 210.75% at 0.9% 2.98%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
-        filter: drop-shadow(0px 11px 14px rgba(0, 0, 0, 0.25));
-        backdrop-filter: blur(21px);
-        border-radius: 25px;
+        width: 55%;
+        margin: 0 auto;
+        footer{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 2rem;
+            gap: 2rem;
+            aside{
+                text-align: center;
+                color: #fff;
+                width: 100%;
+                button {
+                    padding: 1rem 0;
+                    border: none;
+                    cursor: pointer;
+                    transition: all 0.3s ease-in-out;
+                    border-radius: 8px;
+                    width: 100%;
+                    background-color: #E13763;
+                    font-weight: bolder;
+                    color: #fff;
+                    font-size: 1.2rem;
+                    &:hover{
+                        transform: scale(1.05);
+                    }
+                    &.sec{
+                        background-color: #5E5E5E;
+                        &:hover {
+                            filter: brightness(0.9);
+                        }
+                    }
+                    &:disabled {
+                        opacity: 0.5;
+                        cursor: not-allowed;
+                    }
+                }
+            }
+        }
     }
-
-    .input {
-        width: 19rem;
-        height: 2rem;
+    div.errors {
+        width: 90%;
+        margin: 0 auto;
         margin-top: 2rem;
-    }
-
-    button {
-        background: #E13763;
-        border-radius: 8px;
-        border: none;
-        padding: .4rem 1rem;
-        font-size: 1.3rem;
-        margin: 2rem 0;
-        cursor: pointer;
         color: #fff;
+        div.titles {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: baseline;
+            column-gap: 1rem;
+            padding: .4rem 1rem 0 .4rem;
+            border-bottom: 1px solid #fff;
+            span{
+                font-size: 1.1rem;
+                opacity: .8;
+            }
+        }
+        ul.ul-errors{
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            ul.line{
+                margin-left: 2rem;
+            }
+        }
     }
 `;
