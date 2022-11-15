@@ -40,7 +40,6 @@ export const AttachEgress = () => {
 			});
 	}, []);
 
-	useEffect(() => console.log("aaa ->", egressId), [egressId]);
 
 	const onSubmit = () => {
 		api.post(`/archive/attach-egress/${archives?.id}`, {
@@ -50,23 +49,25 @@ export const AttachEgress = () => {
 
 	return (
 		<EgressDiv>
+			
 			<div className="container">
-				<table className="table-archive">
+				<table className="list-student">
 					<thead>
 						<tr>
 							<th>ID ARQUIVO</th>
 						</tr>
 					</thead>
 					<tbody>
+						
 						{archives?.id && (
-							<span>
-								<strong>Id: </strong>
+							<td>
 								{archives?.id}
-							</span>
+							</td>
 						)}
+					
 					</tbody>
 				</table>
-
+				<div className="list-student">	
 				<table>
 					<thead>
 						<tr>
@@ -101,8 +102,11 @@ export const AttachEgress = () => {
 						})}
 					</tbody>
 				</table>
+				</div>
+				</div>		
+				<div className="btn">
 				<button onClick={onSubmit}>Anexar</button>
-			</div>
+				</div>		
 		</EgressDiv>
 	);
 };

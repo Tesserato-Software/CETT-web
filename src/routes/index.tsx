@@ -121,7 +121,7 @@ export const MainRouts = ({
                             path="attach-egress/:id"
                             element={<AttachEgress />}
                         />
-                        <Route path="detach-egress" element={<DetachEgress />} />
+                        <Route path="detach-egress/:id" element={<DetachEgress />} />
                     </Route>
 
                     <Route path="hierarchy" element={<Hierarchy />}>
