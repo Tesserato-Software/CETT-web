@@ -43,7 +43,7 @@ export const UsersListDisableds = () => {
     }, [])
 
     const filteredNames =
-        name.length > 0 ? users.filter(aluno => aluno.full_name.includes(name)) : users
+        name.length > 0 ? users.filter(user => user.full_name.includes(name)) : users
 
     return (
         <>
