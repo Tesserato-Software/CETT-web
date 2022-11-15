@@ -22,7 +22,7 @@ export const data_export = async (users: Egress[]) =>
     ]);
     sheet.addRows(userRows);
     const buffer = await sheet.finishSheet();
-    const fileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+    const fileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
 
     return new Blob([buffer], { type: fileType });
 }
