@@ -70,6 +70,23 @@ export const ListItem = styled.li`
         background-color: rgba(52, 68, 88, .5);
         border-radius: 8px;
         padding: .3rem;
+        outline: none;
+        border: 1px solid rgba(52, 68, 88, .5);
+    }
+    .buttonUpdate {
+        font-size: .99em;
+        text-decoration: none;
+        color: #000;
+        background-color: rgba(52, 68, 88, .5);
+        border-radius: 8px;
+        padding: .3rem;
+        outline: none;
+        border: 1px solid rgba(52, 68, 88, .5);
+        cursor: pointer;
+    }
+    .buttonUpdate:disabled {
+        cursor: not-allowed;
+        background-color: rgba(52, 68, 88, .9)
     }
 `
 

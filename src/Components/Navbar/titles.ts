@@ -30,6 +30,8 @@ export const titles: {
     "school-update": "Atualizar Escola",
     "school-delete": "Deletar Escola",
     "should-reset-password": "Redefinir Senha",
+    "archive-attach-egress": "Vincular Arquivo ao Egresso",
+    "archive-detach-egress": "Desvincular Arquivo do Egresso",
 
 
     

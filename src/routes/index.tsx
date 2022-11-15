@@ -41,6 +41,7 @@ import { SchoolDelete } from "../pages/School/Delete";
 import { ShouldResetPassword } from "../Components/ShouldResetPassword";
 import { UserDisabled } from "../Components/UserDisabled";
 import { DontLogged } from "../Components/DontLogged";
+import { Footer } from "../Components/Footer";
 
 export const MainRouts = ({
 	shouldResetPassword,
@@ -121,7 +122,7 @@ export const MainRouts = ({
                             path="attach-egress/:id"
                             element={<AttachEgress />}
                         />
-                        <Route path="detach-egress" element={<DetachEgress />} />
+                        <Route path="detach-egress/:id" element={<DetachEgress />} />
                     </Route>
 
                     <Route path="hierarchy" element={<Hierarchy />}>
@@ -135,7 +136,7 @@ export const MainRouts = ({
 
                     <Route path="users" element={<Users />}>
                         <Route path="create" element={<UsersRegister />} />
-                        <Route path="list" element={<UsersList />} />
+                        <Route path="list" element={<UsersList user_id={user_id}/>} />
                         <Route
                             path="list-disableds"
                             element={<UsersListDisableds />}
@@ -159,6 +160,8 @@ export const MainRouts = ({
                     ))
                 }
 			</Routes>
+
+            <Footer />
 		</>
 	);
 };

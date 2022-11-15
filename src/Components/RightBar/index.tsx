@@ -3,6 +3,8 @@ import { RightContainer } from "./style";
 import LogoBranco from "../../assets/logo_branco_transparent.png";
 import { Link, useNavigate } from "react-router-dom";
 import * as IoIcons from "react-icons/io";
+import iconX from "../../assets/red-x-icon.svg";
+import xIcon from "../../assets/marca-x.png";
 
 export const RightBar = ({
 	isOpen,
@@ -12,61 +14,71 @@ export const RightBar = ({
 	onClose: () => void;
 }) => {
 	const items = [
-			{
-				name: "Egressos",
-				subItems: [
-					{
-						name: "Cadastrar",
-						link: "/egress/create",
-					},
-					{
-						name: "Listar",
-						link: "/egress/list",
-					},
-				],
-			},
-			{
-				name: "Caixas de Arquivos",
-				subItems: [
-					{
-						name: "Cadastrar",
-						link: "/archive/create",
-					},
-					{
-						name: "Listar",
-						link: "/archive/list",
-					},
-				],
-			},
-			{
-				name: "Usuários",
-				subItems: [
-					{
-						name: "Cadastrar",
-						link: "/users/create",
-					},
-					{
-						name: "Listar",
-						link: "/users/list",
-					},
-				],
-			},
-			{
-				name: "Hierarquias",
-				subItems: [
-					{
-						name: "Cadastrar",
-						link: "/hierarchy/create",
-					},
-					{
-						name: "Listar",
-						link: "/hierarchy/list",
-					},
-				],
-			},
-		],
+		{
+			name: "Egressos",
+			subItems: [
+				{
+					name: "Cadastrar",
+					link: "/egress/create",
+				},
+				{
+					name: "Listar",
+					link: "/egress/list",
+				},
+			],
+		},
+		{
+			name: "Caixas de Arquivos",
+			subItems: [
+				{
+					name: "Cadastrar",
+					link: "/archive/create",
+				},
+				{
+					name: "Listar",
+					link: "/archive/list",
+				},
+			],
+		},
+		{
+			name: "Usuários",
+			subItems: [
+				{
+					name: "Cadastrar",
+					link: "/users/create",
+				},
+				{
+					name: "Listar",
+					link: "/users/list",
+				},
+			],
+		},
+		{
+			name: "Hierarquias",
+			subItems: [
+				{
+					name: "Cadastrar",
+					link: "/hierarchy/create",
+				},
+				{
+					name: "Listar",
+					link: "/hierarchy/list",
+				},
+			],
+		},
+	],
 		navigate = useNavigate(),
 		token = localStorage.getItem("@Auth:token");
+
+	const loginLogout = () => {
+		if (token) {
+			navigate("/login")
+			localStorage.removeItem("@Auth:token")
+
+		} else {
+			navigate("/login");
+		}
+	}
 
 	return (
 		<RightContainer isOpen={isOpen}>
@@ -76,11 +88,11 @@ export const RightBar = ({
 					<img
 						title="Fechar menu"
 						onClick={onClose}
-						src={LogoBranco}
+						src={xIcon}
 					/>
 				</div>
 				<div className="right-bar-body">
-					{items.map((item, index) => (
+					{token && items.map((item, index) => (
 						<div className="right-bar-item" key={index}>
 							<h2>{item.name}</h2>
 							<div className="right-bar-sub-items">
@@ -95,10 +107,7 @@ export const RightBar = ({
 				</div>
 				<div className="right-bar-footer">
 					<button
-						onClick={() => {
-							navigate("/login");
-							localStorage.removeItem("@Auth:token");
-						}}
+						onClick={() => loginLogout()}
 					>
 						{token ? <><IoIcons.IoIosLogOut /> Logout</> : <><IoIcons.IoIosLogIn /> Login</>}
 					</button>

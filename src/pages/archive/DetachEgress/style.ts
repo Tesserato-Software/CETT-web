@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const DetachEgressDiv = styled.div`
-	display: flex;
-	flex-direction: column;
 	h1{
 		font-size: 1.5rem;
 		font-weight: 500;
@@ -11,50 +9,30 @@ export const DetachEgressDiv = styled.div`
 		justify-content: center;
 		display: flex;
 	}
-
 	.container{
 		display: flex;
 		justify-content: space-around;
 		margin-top: 6rem;
 	}
+	
+	
 	.list-student{	
 		width: 30rem;
-		height: 30rem;
+		height: 100%;
 		display: flex;
-		justify-content: space-around;
+		justify-content:space-around; 
 		background: radial-gradient(97.66% 97.66% at 50% 2.34%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 100%), radial-gradient(97.57% 210.75% at 0.9% 2.98%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 		filter: drop-shadow(0px 11px 14px rgba(0, 0, 0, 0.25));
 		backdrop-filter: blur(21px);
 		border-radius: 20px;
 	}
-	table{
-		width: 100%;
+	td{
+		text-align:center;
 	}
 
-	.header-list{	
-		display: flex;
+	th,td{
+		padding: 5px 10px;
 	}
-
-	tr{
-		display: flex;
-		justify-content: space-around;
-		align-items: center;
-		height: 3rem;
-	}
-
-	.aluno {
-		margin-right: 3rem;
-	}
-
-	.list-archive{
-		width: 30rem;
-		height: 30rem;
-		background-color: #00476F;
-		display: flex;
-		justify-content: space-around;
-		border-radius: 20px;
-	}
-
 	button{
 		width: 10.5rem;
 		height: 2.6rem;
