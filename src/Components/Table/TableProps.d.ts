@@ -11,6 +11,7 @@ declare type Column = {
 	formatter?: (value: any) => string;
 	sortable?: Sortable[];
 	filterable?: boolean;
+	type: "string" | "number" | "date" | "boolean" | "custom";
 };
 
 declare type TableHeader = {
@@ -35,7 +36,7 @@ declare type TableProps = {
 	paginator?: Paginator;
 	setPaginator?: (paginator: Paginator) => void;
 	filter?: Filter;
-	onFilter?: (filter: Filter) => void;
+	onFilter?: (filter: Filter | undefined) => void;
 	onSort?: (sortable: Sortable) => void;
 	isLoading?: boolean;
 	customGrid?: number[];

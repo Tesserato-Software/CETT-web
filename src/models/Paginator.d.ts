@@ -8,5 +8,6 @@ declare export type Paginator = {
 export type Filter = {
     columnIdentifier?: string;
     order?: string;
+    type?: string;
     filter?: string;
 }

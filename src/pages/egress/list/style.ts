@@ -3,5 +3,5 @@ import styled from 'styled-components';
 export const ListContainer = styled.section`
     width: 90%;
     margin: 0 auto;
-    padding: 4rem 0;
+    padding: 2rem 0;
 `;
