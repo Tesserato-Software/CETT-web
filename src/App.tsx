@@ -23,7 +23,7 @@ function App() {
         .then((response) => {
             console.log(response.data)
             setUser_id(response.data.id)
-            setUser_hierarchy(response.data.hirarchy)
+            setUser_hierarchy(response.data.hierarchy)
             setUserData(response.data)
         })
         .catch((error) => {

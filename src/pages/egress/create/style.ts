@@ -22,7 +22,7 @@ export const EgressCreateContainer = styled.div`
         gap: 20px;
         background-color: rgba(255, 255, 255, 0.5);
         border-radius: 10px;
-        input{
+        input, select{
             padding: .2rem .4rem;
             border-radius: 5px;
             border: none;
