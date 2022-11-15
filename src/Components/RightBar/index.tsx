@@ -1,10 +1,9 @@
-import React from "react";
 import { RightContainer } from "./style";
-import LogoBranco from "../../assets/logo_branco_transparent.png";
 import { Link, useNavigate } from "react-router-dom";
 import * as IoIcons from "react-icons/io";
-import iconX from "../../assets/red-x-icon.svg";
 import xIcon from "../../assets/marca-x.png";
+import { userDataContext } from "../../App";
+import { useContext } from "react";
 
 export const RightBar = ({
 	isOpen,
@@ -13,78 +12,92 @@ export const RightBar = ({
 	isOpen: boolean;
 	onClose: () => void;
 }) => {
-	const items = [
-		{
-			name: "Egressos",
-			subItems: [
-				{
-					name: "Cadastrar",
-					link: "/egress/create",
-				},
-				{
-					name: "Listar",
-					link: "/egress/list",
-				},
-			],
-		},
-		{
-			name: "Caixas de Arquivos",
-			subItems: [
-				{
-					name: "Cadastrar",
-					link: "/archive/create",
-				},
-				{
-					name: "Listar",
-					link: "/archive/list",
-				},
-			],
-		},
-		{
-			name: "Usuários",
-			subItems: [
-				{
-					name: "Cadastrar",
-					link: "/users/create",
-				},
-				{
-					name: "Listar",
-					link: "/users/list",
-				},
-			],
-		},
-		{
-			name: "Hierarquias",
-			subItems: [
-				{
-					name: "Cadastrar",
-					link: "/hierarchy/create",
-				},
-				{
-					name: "Listar",
-					link: "/hierarchy/list",
-				},
-			],
-		},
-		{
-			name: "Relatórios",
-			subItems: [
-				{
-					name: "Exportar para excel",
-					link: "/excel/export",
-				},
-			],
-		},
-		{
-			name: "Excel",
-			subItems: [
-				{
-					name: "Importar de excel",
-					link: "/excel/import",
-				},
-			],
-		}
-	],
+	const { user } = useContext(userDataContext),
+		items = [
+			user?.is_super_user ? {
+				name: "Escolas",
+				subItems: [
+					{
+						name: "Cadastrar",
+						link: "/school/create",
+					},
+					{
+						name: "Listar",
+						link: "/school/list",
+					},
+				]
+			} : null,
+			{
+				name: "Egressos",
+				subItems: [
+					{
+						name: "Cadastrar",
+						link: "/egress/create",
+					},
+					{
+						name: "Listar",
+						link: "/egress/list",
+					},
+				],
+			},
+			{
+				name: "Caixas de Arquivos",
+				subItems: [
+					{
+						name: "Cadastrar",
+						link: "/archive/create",
+					},
+					{
+						name: "Listar",
+						link: "/archive/list",
+					},
+				],
+			},
+			{
+				name: "Usuários",
+				subItems: [
+					{
+						name: "Cadastrar",
+						link: "/users/create",
+					},
+					{
+						name: "Listar",
+						link: "/users/list",
+					},
+				],
+			},
+			{
+				name: "Hierarquias",
+				subItems: [
+					{
+						name: "Cadastrar",
+						link: "/hierarchy/create",
+					},
+					{
+						name: "Listar",
+						link: "/hierarchy/list",
+					},
+				],
+			},
+			{
+				name: "Relatórios",
+				subItems: [
+					{
+						name: "Exportar para excel",
+						link: "/excel/export",
+					},
+				],
+			},
+			{
+				name: "Excel",
+				subItems: [
+					{
+						name: "Importar de excel",
+						link: "/excel/import",
+					},
+				],
+			}
+		],
 		navigate = useNavigate(),
 		token = localStorage.getItem("@Auth:token");
 
@@ -110,18 +123,18 @@ export const RightBar = ({
 					/>
 				</div>
 				<div className="right-bar-body">
-					{token && items.map((item, index) => (
+					{token && items.map((item, index) => { return item ?(
 						<div className="right-bar-item" key={index}>
 							<h2>{item.name}</h2>
 							<div className="right-bar-sub-items">
-								{item.subItems.map((subItem, index) => (
+								{item.subItems?.map((subItem, index) => (
 									<Link to={subItem.link} key={index} replace>
 										{subItem.name}
 									</Link>
 								))}
 							</div>
 						</div>
-					))}
+					) : null})}
 				</div>
 				<div className="right-bar-footer">
 					<button
