@@ -39,6 +39,7 @@ function App() {
             if (error.response?.data?.message === 'should_reset_password') {
                 setShouldResetPassword(true);
                 setUserData(error.response.data)
+                setUser_id(error.response?.data?.id)
                 navigate('/should-reset-password');
             }
         })

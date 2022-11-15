@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Hierarchy } from "..";
 import { api } from "../../../services/api";
@@ -20,6 +20,7 @@ type User = {
 };
 
 export const UpdateHierarchy = () => {
+	const navigate = useNavigate()
 	const { id } = useParams();
 	const [name, setName] = useState("");
 	const [can_enable_users, setCanEnableUsers] = useState<boolean>();
@@ -73,10 +74,11 @@ export const UpdateHierarchy = () => {
 			can_delete: can_delete,
 			can_enable_users: can_enable_users,
 		})
-			.then((response) => {
+			.then(() => {
 				toast.success("Hierarquia atualizada com sucesso!", {
 					theme: "colored",
 				});
+				navigate('/hierarchy/list')
 			})
 			.catch((err) => {
 				toast.error(
