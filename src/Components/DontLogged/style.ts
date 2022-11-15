@@ -11,9 +11,6 @@ export const Container = styled.div`
     border-radius: 12px;
     background-color: rgba(231, 231, 231, 0.3);
     padding: 2rem;
-    h3 {
-        color: #fff;
-    }
     .row {
         width: 90%;
         text-align: center;
@@ -23,17 +20,6 @@ export const Container = styled.div`
         p {
             color: #000;
         }
-    }
-    .button {
-        width: 30%;
-        text-align: center;
-        background-color: #E13763;
-        padding: .3rem;
-        border: 1px solid #E13763;
-        border-radius: 8px;
-        color: #fff;
-        text-decoration: none;
-        cursor: pointer;
     }
     .Link {
         width: 30%;
@@ -45,13 +31,6 @@ export const Container = styled.div`
         text-decoration: none;
         text-align: center;
         cursor: pointer;
-    }
-    .input {
-        background-color: #D9D9D9;
-        padding: 4px;
-        border: 1px solid #D9D9D9;
-        border-radius: 8px;
-        width: 80%;
     }
 `
 

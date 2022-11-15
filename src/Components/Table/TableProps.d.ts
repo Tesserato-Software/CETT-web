@@ -1,37 +1,44 @@
-import { Filter } from '../../models/Paginator';
+import { Filter } from "../../models/Paginator";
 
-declare export type Sortable = {
+declare type Sortable = {
+	name: string;
+	type: "ASC" | "DESC" | "asc" | "desc";
+};
+
+declare type Column = {
+	name: string;
+	identifier: string;
+	formatter?: (value: any) => string;
+	sortable?: Sortable[];
+	filterable?: boolean;
+	type: "string" | "number" | "date" | "boolean" | "custom";
+};
+
+declare type TableHeader = {
+	name: string;
+	onClick: () => void;
+	backgroundColor?: string;
+	color?: string;
+	icon?: string;
+};
+
+declare type Actions = {
     name: string;
-    type: 'ASC' | 'DESC' | 'asc' | 'desc';
-}
+    onClick: (row: any) => void;
+};
 
-declare export type Column = {
-    name: string;
-    identifier: string;
-    formatter?: (value: any) => string;
-    sortable?: Sortable[];
-    filterable?: boolean;
-}
-
-declare export type TableHeader = {
-    name: string;
-    onClick: () => void;
-    backgroundColor?: string;
-    color?: string;
-    icon?: string;
-}
-
-declare export type TableProps = {
-    columns: Column[];
-    data: any[] | undefined;
-    onCheckRow?: (row: TableData) => void;
-    onUncheckRow?: (row: TableData) => void;
-    header?: TableHeader[];
-    paginator?: Paginator;
-    setPaginator?: (paginator: Paginator) => void;
-    filter?: Filter;
-    onFilter?: (filter: Filter) => void;
-    onSort?: (sortable: Sortable) => void;
-    isLoading?: boolean;
-    customGrid?: number[];
+declare type TableProps = {
+	columns: Column[];
+	data: any[] | undefined;
+	onCheckRow?: (row: TableData) => void;
+	onUncheckRow?: (row: TableData) => void;
+	header?: TableHeader[];
+	paginator?: Paginator;
+	setPaginator?: (paginator: Paginator) => void;
+	filter?: Filter;
+	onFilter?: (filter: Filter | undefined) => void;
+	onSort?: (sortable: Sortable) => void;
+	isLoading?: boolean;
+	customGrid?: number[];
+	actions?: Actions[];
 };
