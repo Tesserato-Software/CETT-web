@@ -101,7 +101,6 @@ export const MainRouts = ({
         }
 	};
 
-    console.log(user_hierarchy)
 	return (
 		<div style={{position: 'relative', minHeight: '100vh'}}>
 			<NavBar
