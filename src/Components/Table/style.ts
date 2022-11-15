@@ -5,8 +5,20 @@ export const TableContainer = styled.section<{
     columnsQtd: number
 }>`
     width: 100%;
-    height: 100%;
-    header{}
+    max-width: 100vw;
+    height: calc(100vh - 90px);
+    header.root-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e8e8e8;
+        padding-bottom: 20px;
+        aside{
+            display: flex;
+            gap: 10px;
+        }
+    }
     section.table-grid{
         header.grid-header {
             display: grid;

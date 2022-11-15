@@ -80,7 +80,7 @@ export const MainRouts = ({
 	return (
 		<>
 			<NavBar
-				title={"Navbar"}
+				title_json={window.location.pathname.split('/').slice(1).join('-')}
 				have_menu={!window.location.pathname.includes("login")}
 			/>
 
