@@ -13,7 +13,7 @@ declare interface Password {
 	created_at: Date;
 }
 
-declare interface Hirarchy {
+declare interface Hierarchy {
 	id: number;
 	name: string;
 	can_delete: boolean;
@@ -34,7 +34,7 @@ declare interface user {
 	password: string;
 	is_super_user: boolean;
 	passwords: Password[];
-	hirarchy: hierarchy;
+	hierarchy: hierarchy;
 }
 
 declare type formData = {
