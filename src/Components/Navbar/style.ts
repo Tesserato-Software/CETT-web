@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CustomDiv = styled.div`
     height: 80px;
     padding: .3rem .2rem;
-    background-color: #00408E;
+    background-color: #0062D9;
     display: grid;
     grid-template-columns: 80px 1fr 80px;
     place-items: center;

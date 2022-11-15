@@ -79,7 +79,7 @@ export const MainRouts = ({
 	};
 
 	return (
-		<>
+		<div style={{position: 'relative'}}>
 			<NavBar
 				title_json={window.location.pathname.split('/').slice(1).join('-')}
 				have_menu={!window.location.pathname.includes("login")}
@@ -87,81 +87,84 @@ export const MainRouts = ({
 
 			{ValidateUser()}
 
-			<Routes>
-                {!!token ? <>
-                    <Route index path="/" element={<EgressList />} />
+            <div style={{paddingBottom: 'calc(120px * 2)'}}>
 
-                    <Route path="login" element={<Login />} />
-                    <Route path="first-access" element={<FirstAccess />} />
-                    <Route path="forget-password" element={<ForgetPassword />} />
+                <Routes>
+                    {!!token ? <>
+                        <Route index path="/" element={<EgressList />} />
 
-                    <Route path="egress" element={<Egress />}>
-                        <Route path="list" element={<EgressList />} />
-                        <Route path="create" element={<CreateEgress />} />
-                        <Route path="edit" element={<UpdateEgress />} />
-                        <Route path="delete/:id" element={<DeleteEgress />} />
+                        <Route path="login" element={<Login />} />
+                        <Route path="first-access" element={<FirstAccess />} />
+                        <Route path="forget-password" element={<ForgetPassword />} />
 
-                        {/* VINC BY ARCHIVE */}
-                        <Route path="dettach/:id" element={<DetachArchive />} />
-                        <Route path="attach/:id" element={<AttachArchive />} />
-                    </Route>
+                        <Route path="egress" element={<Egress />}>
+                            <Route path="list" element={<EgressList />} />
+                            <Route path="create" element={<CreateEgress />} />
+                            <Route path="edit" element={<UpdateEgress />} />
+                            <Route path="delete/:id" element={<DeleteEgress />} />
 
-                    <Route path="excel" element={<Excel />}>
-                        <Route path="import" element={<InputExcel />} />
+                            {/* VINC BY ARCHIVE */}
+                            <Route path="dettach/:id" element={<DetachArchive />} />
+                            <Route path="attach/:id" element={<AttachArchive />} />
+                        </Route>
 
-                        <Route path="export" element={<ExportExcel />} />
-                    </Route>
+                        <Route path="excel" element={<Excel />}>
+                            <Route path="import" element={<InputExcel />} />
 
-                    <Route path="archive" element={<Archives />}>
-                        <Route path="create" element={<CreateArchive />} />
-                        <Route path="list" element={<ListArchive />} />
-                        <Route path="delete/:id" element={<DeleteArchive />} />
+                            <Route path="export" element={<ExportExcel />} />
+                        </Route>
 
-                        {/* VINC BY EGRESS */}
-                        <Route
-                            path="attach-egress/:id"
-                            element={<AttachEgress />}
-                        />
-                        <Route path="detach-egress/:id" element={<DetachEgress />} />
-                    </Route>
+                        <Route path="archive" element={<Archives />}>
+                            <Route path="create" element={<CreateArchive />} />
+                            <Route path="list" element={<ListArchive />} />
+                            <Route path="delete/:id" element={<DeleteArchive />} />
 
-                    <Route path="hierarchy" element={<Hierarchy />}>
-                        <Route path="list" element={<HierarchyList />} />
-                        <Route path="create" element={<CreateHierarchy />} />
-                        <Route path="update/:id" element={<UpdateHierarchy />} />
-                        <Route path="delete/:id" element={<DeleteHierarchy />} />
-                        <Route path="add-user" element={<AttachUser />} />
-                        <Route path="remove-user" element={<DettachUser />} />
-                    </Route>
+                            {/* VINC BY EGRESS */}
+                            <Route
+                                path="attach-egress/:id"
+                                element={<AttachEgress />}
+                            />
+                            <Route path="detach-egress/:id" element={<DetachEgress />} />
+                        </Route>
 
-                    <Route path="users" element={<Users />}>
-                        <Route path="create" element={<UsersRegister />} />
-                        <Route path="list" element={<UsersList user_id={user_id}/>} />
-                        <Route
-                            path="list-disableds"
-                            element={<UsersListDisableds />}
-                        />
-                        <Route path="update/:id" element={<UsersUpdate />} />
-                        <Route path="delete/:id" element={<UsersDelete />} />
-                    </Route>
-                    <Route path="school" element={<School />}>
-                        <Route path="list" element={<SchoolList />} />
-                        <Route path="create" element={<SchoolCreate />} />
-                        <Route path="update" element={<SchoolUpdate />} />
-                        <Route path="delete" element={<SchoolDelete />} />
-                    </Route>
-                </> : ["login", "/"].map((path, index) => (
-                        <Route
-                            path={path}
-                            index
-                            key={index}
-                            element={<Login />}
-                        />
-                    ))
-                }
-			</Routes>
+                        <Route path="hierarchy" element={<Hierarchy />}>
+                            <Route path="list" element={<HierarchyList />} />
+                            <Route path="create" element={<CreateHierarchy />} />
+                            <Route path="update/:id" element={<UpdateHierarchy />} />
+                            <Route path="delete/:id" element={<DeleteHierarchy />} />
+                            <Route path="add-user" element={<AttachUser />} />
+                            <Route path="remove-user" element={<DettachUser />} />
+                        </Route>
+
+                        <Route path="users" element={<Users />}>
+                            <Route path="create" element={<UsersRegister />} />
+                            <Route path="list" element={<UsersList user_id={user_id}/>} />
+                            <Route
+                                path="list-disableds"
+                                element={<UsersListDisableds />}
+                            />
+                            <Route path="update/:id" element={<UsersUpdate />} />
+                            <Route path="delete/:id" element={<UsersDelete />} />
+                        </Route>
+                        <Route path="school" element={<School />}>
+                            <Route path="list" element={<SchoolList />} />
+                            <Route path="create" element={<SchoolCreate />} />
+                            <Route path="update" element={<SchoolUpdate />} />
+                            <Route path="delete" element={<SchoolDelete />} />
+                        </Route>
+                    </> : ["login", "/"].map((path, index) => (
+                            <Route
+                                path={path}
+                                index
+                                key={index}
+                                element={<Login />}
+                            />
+                        ))
+                    }
+                </Routes>
+            </div>
 
             <Footer />
-		</>
+		</div>
 	);
 };

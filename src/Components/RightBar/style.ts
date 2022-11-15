@@ -6,6 +6,7 @@ export const RightContainer = styled.div<{
     position: fixed;
     top: 0;
     right: 0;
+    z-index: 999;
     transform: translateX(${({ isOpen }) => (isOpen ? '0' : '100%')});
     transition: all 0.5s cubic-bezier(0.75,-0.21, 0.35, 1.22);
     div.right-bar{
