@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { api } from "../../services/api";
 import { LoginDiv } from "./style";
+import logoImage from "../../assets/loginImage.png";
 
 export const Login = () => {
 	const [data, setData] = useState<{
@@ -15,24 +16,24 @@ export const Login = () => {
 		[isLoading, setIsLoading] = useState(false),
 		navigate = useNavigate()
 
-    const onSubmit = () => {
+	const onSubmit = () => {
 		setIsLoading(true);
-        api.post("/auth/login", data)
-            .then((response) => {
-                console.log(response);
+		api.post("/auth/login", data)
+			.then((response) => {
+				console.log(response);
 				localStorage.setItem("@Auth:token", JSON.stringify(response.data.token));
-				toast.success("Login realizado com sucesso!", {theme: 'colored'});
+				toast.success("Login realizado com sucesso!", { theme: 'colored' });
 
 				setTimeout(() => {
 					navigate("/");
 				}, 500);
-            })
-            .catch((error) => {
+			})
+			.catch((error) => {
 				console.log(error);
-				toast.error("Erro, verifique as credenciais", {theme: 'colored'});
-            })
+				toast.error("Erro, verifique as credenciais", { theme: 'colored' });
+			})
 			.finally(() => setIsLoading(false));
-    }
+	}
 
 	return (
 		<LoginDiv>
@@ -63,6 +64,9 @@ export const Login = () => {
 						{isLoading ? 'Carregando...' : 'Entrar'}
 					</button>
 				</section>
+			</div>
+			<div className="div-image">
+				<img className="logo" src={logoImage} alt="Logo" />
 			</div>
 		</LoginDiv>
 	);
