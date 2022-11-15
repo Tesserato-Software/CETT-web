@@ -29,6 +29,7 @@ export const titles: {
     "school-create": "Cadastrar Escola",
     "school-update": "Atualizar Escola",
     "school-delete": "Deletar Escola",
+    "should-reset-password": "Redefinir Senha",
 
 
     
