@@ -27,7 +27,7 @@ export const RightContainer = styled.div<{
             margin-bottom: 2rem;
             border-bottom: 2px solid rgba(225, 225, 225, .7);
             img{ 
-                width: 40px;
+                width: 25px;
                 object-fit: contain;
                 cursor: pointer;
                 transition: all 0.3s ease-in-out;

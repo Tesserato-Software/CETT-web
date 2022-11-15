@@ -41,6 +41,7 @@ import { SchoolDelete } from "../pages/School/Delete";
 import { ShouldResetPassword } from "../Components/ShouldResetPassword";
 import { UserDisabled } from "../Components/UserDisabled";
 import { DontLogged } from "../Components/DontLogged";
+import { Footer } from "../Components/Footer";
 
 export const MainRouts = ({
 	shouldResetPassword,
@@ -159,6 +160,8 @@ export const MainRouts = ({
                     ))
                 }
 			</Routes>
+
+            <Footer />
 		</>
 	);
 };
