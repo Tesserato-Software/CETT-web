@@ -66,6 +66,24 @@ export const RightBar = ({
 				},
 			],
 		},
+		{
+			name: "Relatórios",
+			subItems: [
+				{
+					name: "Exportar para excel",
+					link: "/excel/export",
+				},
+			],
+		},
+		{
+			name: "Excel",
+			subItems: [
+				{
+					name: "Importar de excel",
+					link: "/excel/import",
+				},
+			],
+		}
 	],
 		navigate = useNavigate(),
 		token = localStorage.getItem("@Auth:token");

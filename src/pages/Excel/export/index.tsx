@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import { DateTime } from 'ts-luxon';
 import { Egress } from '../../../models/Egress';
+import { api } from '../../../services/api';
 import { data_export } from './data-export';
 
 const ExportContainer = styled.div`
@@ -34,9 +36,16 @@ const ExportContainer = styled.div`
 export const ExportExcel = () => {
     
     const [egresses, setEgresses] = useState<Egress[]>(),
-        [loading, setLoading] = useState(false)
+        [loading, setLoading] = useState<{
+            list: boolean,
+            export: boolean
+        }>({
+            list: true,
+            export: false
+        })
         const export_handler = async () => {
             if (egresses && egresses.length) {
+                setLoading({ ...loading, export: true })
                 let dataEx = await data_export(egresses)
                     , url = window.URL.createObjectURL(dataEx)
                     , a = document.createElement("a")
@@ -45,15 +54,36 @@ export const ExportExcel = () => {
                 a.href = url;
                 a.download = `Usuários egressos - ${now.toLocaleString(DateTime.DATETIME_MED)}`;
                 a.click();
+
+                setLoading({ ...loading, export: false })
             }
         }
 
+    useEffect(() => {
+        setLoading({
+            ...loading,
+            list: true
+        })
+        api.get('/egress/list')
+            .then(res => {
+                setEgresses(res.data)
+            })
+            .catch(err => {
+                toast.error('Erro ao carregar dados', {theme: 'colored'})
+                console.error(err)
+            })
+            .finally(() => setLoading({
+                ...loading,
+                list: false
+            }))
+    }, [])
+
     return (
         <ExportContainer>
-            <section>
-                <button onClick={export_handler}>{loading ? 'Carregando...' : 'Exportar egressos em Excel'}</button>
+            {!loading.export ? <section>
+                <button onClick={export_handler}>{loading.export ? 'Carregando...' : 'Exportar egressos em Excel'}</button>
                 <span>.xls e .xlsx</span>
-            </section>
+            </section> : 'Carregando...'}
         </ExportContainer>
     )
 }

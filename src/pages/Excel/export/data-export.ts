@@ -8,9 +8,9 @@ export const data_export = async (users: Egress[]) =>
     const sheet = new ExcelService(),
         now = DateTime.now()
 
-    sheet.setColumnSizes([15, 50, 20, 15, 25, 50]); // tamanho das colunas
+    sheet.setColumnSizes([25, 50, 20, 25, 35, 50]); // tamanho das colunas
     sheet.addTitleRow([`Usuários egressos - ${now.toLocaleString(DateTime.DATETIME_MED)}`]);
-    sheet.addSubtitleRow(["Id", "Nome", "CGM", "Arquivo Id", "Data de Aniversário", "Nome Responsável"]); // colunas
+    sheet.addSubtitleRow(["ID do sistema", "Nome", "CGM", "ID no arquivo", "Data de Aniversário", "Nome Responsável"]); // colunas
 
     const userRows = users.map(({id, name, CGM_id, arq_id, birth_date, responsible_name}) => [ // importa do user
         id,    
