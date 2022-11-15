@@ -14,7 +14,7 @@ export const ShouldResetPassword = ({ user_id }: any) => {
   
   const onSubmit = () => {
     setIsLoading(true)
-    api.post(`psw-fa/${user_id}`)
+    api.post(`/auth/psw-storage/${user_id}`)
     .then(() => {
       toast.success('Senha atualizada com sucesso!')
       navigate('/egress/list')
