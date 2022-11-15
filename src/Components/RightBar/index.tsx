@@ -105,7 +105,6 @@ export const RightBar = ({
 		if (token) {
 			navigate("/login")
 			localStorage.removeItem("@Auth:token")
-
 		} else {
 			navigate("/login");
 		}

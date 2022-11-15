@@ -13,7 +13,7 @@ export const DeleteArchive = () => {
             api.delete(`/archive/delete/${id}`)
                 .then(response => {
                     console.log(response.data)
-                    toast.success('Arquivo Deletado', { theme: 'colored' })
+                    toast.success(`Arquivo ${id} Deletado com Sucesso`, { theme: 'colored' })
                     setTimeout(() => {
                         navigate("/archive/list");
                     }, 500);
