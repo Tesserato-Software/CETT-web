@@ -32,25 +32,26 @@ const ExportContainer = styled.div`
 `;
 
 export const ExportExcel = () => {
-    const [egresses, setEgresses] = useState<Egress[]>()
-
-    const export_handler = async () => {
-        if (egresses && egresses.length) {
-            let dataEx = await data_export(egresses)
-                , url = window.URL.createObjectURL(dataEx)
-                , a = document.createElement("a")
-                , now = DateTime.now()
     
-            a.href = url;
-            a.download = `Usuários egressos - ${now.toLocaleString(DateTime.DATETIME_MED)}`;
-            a.click();
+    const [egresses, setEgresses] = useState<Egress[]>(),
+        [loading, setLoading] = useState(false)
+        const export_handler = async () => {
+            if (egresses && egresses.length) {
+                let dataEx = await data_export(egresses)
+                    , url = window.URL.createObjectURL(dataEx)
+                    , a = document.createElement("a")
+                    , now = DateTime.now()
+        
+                a.href = url;
+                a.download = `Usuários egressos - ${now.toLocaleString(DateTime.DATETIME_MED)}`;
+                a.click();
+            }
         }
-    }
 
     return (
         <ExportContainer>
             <section>
-                <button onClick={export_handler}>Exportar egressos em Excel</button>
+                <button onClick={export_handler}>{loading ? 'Carregando...' : 'Exportar egressos em Excel'}</button>
                 <span>.xls e .xlsx</span>
             </section>
         </ExportContainer>
