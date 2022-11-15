@@ -31,15 +31,17 @@ export const UsersList = () => {
     const [roles, setRoles] = useState<any>([])
 
     useEffect(() => {
+        api.get('hierarchy/list')
+        .then(response => setRoles(response.data))
+        .catch(() => toast.error('Erro ao buscar as hierarquias!'))
+    }, [])
+
+    useEffect(() => {
         setIsLoading(true)
         api.get('user/list')
         .then(response => setUsers(response.data))
         .catch(() => toast.error('Erro ao buscar os usuários!'))
         .finally(() => setIsLoading(false))
-
-        api.get('hierarchy/list')
-        .then(response => setRoles(response.data))
-        .catch(() => toast.error('Erro ao buscar as hierarquias!'))
     }, [])
 
     const filteredNames =

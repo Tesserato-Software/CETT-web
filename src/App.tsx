@@ -15,17 +15,17 @@ function App() {
 
     useEffect(() => {
         api.get('/auth/get-user-data')
-        .then(() => {navigate('/')})
         .catch((error) => {
-            if(error.response.data.message === 'Unauthorized' && window.location.pathname !== '/login') {
+            if(error.response.data.message === 'Unauthorized' && !["/login", "/"].includes(window.location.pathname)) {
                 setIsDontLogged(true)
                 navigate('/dont-logged')
             }
 
-            if (error.response.data.message === 'user_disabled') {
+            if (error.response.data.message === 'user_disabled' && !["/login"].includes(window.location.pathname)) {
                 setIsDisabled(true);
                 navigate('/user-disabled');
             }
+
             if (error.response.data.message === 'should_reset_password') {
                 const user_id = error.response.data.id !== undefined ? error.response.data.id : null 
                 setShouldResetPassword(true);

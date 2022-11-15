@@ -42,9 +42,6 @@ import { UserDisabled } from '../Components/UserDisabled'
 import { DontLogged } from '../Components/DontLogged'
 
 export const MainRouts = ({ shouldResetPassword, user_id, isDisabled, isDontLogged }: any) => {
-    const arr = window.location.pathname.split('/')
-    console.log(arr[arr.length - 1].toUpperCase())
-
     const ValidateUser = () => { 
         if (isDontLogged) {
             return (
