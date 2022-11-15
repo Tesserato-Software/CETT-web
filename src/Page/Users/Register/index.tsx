@@ -56,7 +56,7 @@ export const UsersRegister = () => {
             setFormData({...initialStateFormData})
         
             toast.success('Usuário criado com sucesso!');
-            return navigate('users/list')
+            return navigate('/users/list')
         })
         .catch(() => toast.error('Erro ao criar usuário!'))
         .finally(() => setIsLoading(false))
