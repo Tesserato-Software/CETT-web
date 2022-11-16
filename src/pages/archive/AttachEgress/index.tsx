@@ -75,6 +75,7 @@ export const AttachEgress = () => {
 								<div className="btn">
 									<button onClick={onSubmit}>Anexar</button>
 									<button onClick={() => navigate(`/archive/list`)}>CANCELAR</button>
+									<button onClick={() => navigate(`/archive/list`)}>VOLTAR</button>
 								</div>	
 						</div>
 						<section className="second-container">

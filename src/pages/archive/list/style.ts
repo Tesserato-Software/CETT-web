@@ -20,7 +20,7 @@ export const ListArchiveContainer = styled.div`
               color: #fff;
               text-decoration: none;
                display: flex;
-               border-bottom: 1px solid #000;
+               
                justify-content: space-between;
                align-items: center;
                margin: .2rem 1.5rem .2rem 1.5rem;
@@ -30,5 +30,36 @@ export const ListArchiveContainer = styled.div`
                }
         }
      }
-       
+
+     
+     .btn{
+          display:flex;
+          flex-direction: column;
+          gap: 5px;
+          border-bottom: 1px solid #fff;
+          button{
+               margin: 0 auto;
+               margin-top: 5px;
+               width: 20%;
+          }
+     }
+    button{
+
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            border-radius: 8px;
+            width: 100%;
+            background-color: #e13763;
+            font-weight: bolder;
+            color: #fff;
+            font-size: 1.0rem;
+            margin: 0 auto;
+            &:hover {
+                
+                transform: scale(1.05);
+     
+        }
+    }
 `;
