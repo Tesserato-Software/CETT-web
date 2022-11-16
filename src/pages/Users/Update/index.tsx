@@ -4,26 +4,13 @@ import { validateLength } from '../../../utils/formValidator'
 import { Container, ContainerButton } from './style'
 import { api } from '../../../services/api';
 import { toast } from 'react-toastify';
-
-const roles = [
-    {
-        value: 1,
-        label: 'Coordenador'
-    },
-    {
-        value: 2,
-        label: 'Secretário'
-    },
-    {
-        value: 3,
-        label: 'Estagiário'
-    }
-]
+import { hierarchy } from '../../../models/User'
 
 export const UsersUpdate = () => {
+    const navigate = useNavigate()
     const { id } = useParams()
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const navigate = useNavigate()
+    const [roles, setRoles] = useState<hierarchy[]>([])
     const [formData, setFormData] = useState({
         name: {
             value: '',
@@ -49,6 +36,12 @@ export const UsersUpdate = () => {
             value: 0,
         }
     })
+
+    useEffect(() => {
+        api.get('hierarchy/list')
+        .then(response => setRoles(response.data))
+        .catch(() => toast.error('Erro ao buscar as hierarquias!'))
+    }, [])
 
     useEffect(() => {
         api.get(`user/get-user/${id}`)
@@ -121,7 +114,7 @@ export const UsersUpdate = () => {
             })
         
             toast.success('Usuário atualizado com sucesso!');
-            return navigate('users/list')
+            return navigate('/users/list')
         })
         .catch(() => toast.error('Erro ao atualizar usuário!'))
         .finally(() => setIsLoading(false))
@@ -222,8 +215,8 @@ export const UsersUpdate = () => {
             >
                 {roles.map(role => {
                     return (
-                        <option key={role.value} value={role.value}>
-                            {role.label}
+                        <option key={role.id} value={role.id}>
+                            {role.name}
                         </option>
                     )
                 })}
