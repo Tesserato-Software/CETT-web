@@ -1,14 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-
     display: flex;
     justify-content: center;
     align-items: center;
-    margin : 0 auto;
+    margin: 0 auto;
     flex-direction: column;
-    
-
 
     .div-container-egress {
         margin-top: 0 auto;
@@ -27,13 +24,12 @@ export const Container = styled.div`
             align-items: center;
             padding: 10px;
             gap: 15rem;
-            border-bottom: 3px  solid #d9d9d9 ;
-            Color: #fff;
+            border-bottom: 3px solid #d9d9d9;
+            color: #fff;
             max-width: 100%;
         }
     }
     .archive {
-       
         box-sizing: border-box;
         border-radius: 15px;
         background-color: #00476f;
@@ -45,7 +41,7 @@ export const Container = styled.div`
         overflow-y: scroll;
         height: 25rem;
         max-height: 100%;
-        
+
         //scrol bar style
         ::-webkit-scrollbar {
             width: 10px;
@@ -93,53 +89,40 @@ export const Container = styled.div`
         margin-bottom: 5rem;
         gap: 2rem;
 
-            .voltar{
-                color: #fff;
-                background-color: #344458;
-                border: solid 1px black;
-                border-radius: 8px;
-                cursor: pointer;
-                transition: all 0.3s;
-                &:hover{
-                    background-color: black;
-                    border: solid 1px #344458;
-                }
-                &:active{
-                    background-color: black;
-                    border: solid 1px #344458;
-                }
-
-
+        .voltar {
+            color: #fff;
+            padding: 1rem ;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            border-radius: 8px;
+            width: 100%;
+            background-color: #5E5E5E;
+            font-weight: bolder;
+            color: #fff;
+            font-size: 1.2rem;
+            &:hover {
+                transform: scale(1.05);
             }
-          
-
-            button {
-                width: 250px;
-                height: 60px;
-                background-color: #e13763;
-                font-weight: normal;
-                color: #fff;
-                font-size: 20px;
-                border: solid 1px #e13763;
-                border-radius: 8px;
-                cursor: pointer;
-                max-width: 100%;
-
-                &:hover {
-                    color: #fff;
-                    background-color: #e137;
-                    border: solid 1px #e13763;
-                    border-radius: 8px;
-                    cursor: pointer;
-                    transition: all 0.3s;
-                }
-
-
-            }
-
-            
         }
 
+        .anexar {
+            color: #fff;
+            padding: 1rem ;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            border-radius: 8px;
+            width: 100%;
+            background-color: #e13763;
+            font-weight: bolder;
+            color: #fff;
+            font-size: 1.2rem;
 
-    
+            &:hover {
+                
+                transform: scale(1.05);
+     
+        }
+    }
 `;

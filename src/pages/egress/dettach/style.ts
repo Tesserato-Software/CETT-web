@@ -27,11 +27,12 @@ export const DetachArchiveDiv = styled.div`
             border-bottom: 3px solid #d9d9d9;
             color: #fff;
             max-width: 100%;
+            background-color: ;
         }
 
         .archive-id {
             margin-top: 1.5rem;
-            border: 3px solid #fff;
+            border: 2px solid #fff;
             padding: 1rem;
             border-radius: 15px;
             color: #ff0000;
@@ -42,43 +43,41 @@ export const DetachArchiveDiv = styled.div`
     .div-button {
         display: flex;
         justify-content: center;
-        margin : 0 auto;
+        margin: 0 auto;
+        gap: 2rem;
+    }
 
-        .voltar {
-            color: #fff;
-            background-color: #344458;
-            border: solid 1px black;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            &:hover {
-                background-color: black;
-                border: solid 1px #344458;
-            }
-            &:active {
-                background-color: black;
-                border: solid 1px #344458;
-            }
+    .voltar {
+        color: #fff;
+        padding: 1rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        border-radius: 8px;
+        width: 100%;
+        background-color: #5e5e5e;
+        font-weight: bolder;
+        color: #fff;
+        font-size: 1.2rem;
+        &:hover {
+            transform: scale(1.05);
         }
-        button {
-            margin-left: 2rem;
-            width: 180px;
-            height: 60px;
-            background-color: #e13763;
-            font-weight: normal;
-            color: #fff;
-            font-size: 20px;
-            border: solid 1px #e13763;
-            border-radius: 8px;
+    }
+    .desanexar {
+        color: #fff;
+        padding: 1rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        border-radius: 8px;
+        width: 100%;
+        background-color: #e13763;
+        font-weight: bolder;
+        color: #fff;
+        font-size: 1.2rem;
 
-            &:hover {
-                color: #fff;
-                background-color: #e137;
-                border: solid 1px #e13763;
-                border-radius: 8px;
-                cursor: pointer;
-                transition: all 0.3s;
-            }
+        &:hover {
+            transform: scale(1.05);
         }
     }
 `;
