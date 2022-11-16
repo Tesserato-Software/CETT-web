@@ -30,6 +30,7 @@ declare type Actions = {
 
 declare type TableProps = {
 	columns: Column[];
+	primaryKeyIdentifier?: string;
 	data: any[] | undefined;
 	onCheckRow?: (row: TableData) => void;
 	onUncheckRow?: (row: TableData) => void;

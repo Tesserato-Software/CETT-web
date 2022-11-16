@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Egress } from '../../../models/Egress'
 import { api } from '../../../services/api'
@@ -7,14 +7,37 @@ import { DeleteContainer } from './style'
 
 export const DeleteEgress = () => {
     const { id } = useParams(),
-        [isLoading, setIsLoading] = useState(false),
-        [egress, setEgress] = useState<Egress>()
+        [isLoading, setIsLoading] = useState<{
+            loading: boolean
+            delete: boolean
+        }>({
+            loading: true,
+            delete: false,
+        }),
+        [egress, setEgress] = useState<Egress>(),
+        navigate = useNavigate(),
+        onDelete = () => {
+            setIsLoading({ ...isLoading, delete: true })
+            api.delete(`/egress/delete/${id}`)
+                .then(() => {
+                    toast.success('Egresso excluído com sucesso!', { theme: 'colored' })
+                    setIsLoading({ ...isLoading, delete: false })
+                    navigate('/egress/list')
+                })
+                .catch(() => {
+                    toast.error('Erro ao excluir egresso!', { theme: 'colored' })
+                    setIsLoading({ ...isLoading, delete: false })
+                })
+        }
 
     useEffect(() => {
-        setIsLoading(true)
+        setIsLoading({
+            ...isLoading,
+            loading: true,
+        })
         api.get(`/egress/show/${id}`)
             .then(res => {
-                setEgress(res.data[0])
+                setEgress(res.data)
             })
             .catch(err => {
                 toast.error('Erro ao carregar dados do egresso', 
@@ -22,12 +45,15 @@ export const DeleteEgress = () => {
                 );
                 console.error(err)
             })
-            .finally(() => setIsLoading(false))
+            .finally(() => setIsLoading({
+                ...isLoading,
+                loading: false,
+            }))
     }, [id])
 
     return (
         <DeleteContainer>
-            {!isLoading
+            {!isLoading.loading
                 ? <>
                     <h1>Tem certeza que deseja excluir este usuário?</h1>
 
@@ -77,7 +103,11 @@ export const DeleteEgress = () => {
                             replace={true}
                         >Voltar para home</Link>
 
-                        <button>Sim</button>
+                        <button onClick={onDelete}>{
+                            isLoading.delete
+                                ? 'Excluindo...'
+                                : 'Excluir'
+                        }</button>
 
                     </section>
                 </>
