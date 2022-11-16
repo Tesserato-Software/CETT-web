@@ -117,8 +117,8 @@ export const MainRouts = ({ shouldResetPassword }: any) => {
                 >
                     <Route path="list" element={<SchoolList />} />
                     <Route path="create" element={<SchoolCreate />} />
-                    <Route path="update" element={<SchoolUpdate />} />
-                    <Route path="delete" element={<SchoolDelete />} />
+                    <Route path="update/:id" element={<SchoolUpdate />} />
+                    <Route path="delete/:id" element={<SchoolDelete />} />
                 </Route>
                 
             </Routes>}

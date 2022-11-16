@@ -1,14 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { School } from '../../../models/School'
+import { api } from '../../../services/api'
 import { DeleteSchoolContainer } from './style'
 
 export const SchoolDelete = () => {
+    const { id } = useParams(),
+        [isLoading, setIsLoading] = useState(false);
+
+    const handleSubmit = () => {
+        setIsLoading(true)
+        api.delete(`/school/delete/${id}`)
+            .then(() => {
+                toast.success('Escola deletada com sucesso!')
+            })
+            .catch(err => {
+                toast.error('Erro ao carregar os dados da escola!', { theme: 'colored' });
+                console.error(err)
+            })
+            .finally(() => setIsLoading(false))
+    }
+
     return (
         <DeleteSchoolContainer>
-            <h1 className="titulo">Tem certeza que deseja excluir a escola Thiago Terra?</h1>
-            <aside>
-                <button>Não</button>
-                <button className='confirm'>Sim</button>
-            </aside>
+            {!isLoading
+                ?<>
+                <h1 className="titulo">Tem certeza que deseja excluir essa escola?</h1>
+                <aside>
+                    <Link to="/school/list" className="button">
+                        Voltar
+                    </Link>
+                    <button className="Link" onClick={handleSubmit} disabled={isLoading}>
+                        {isLoading ? 'Carregando...' : 'Deletar'}
+                    </button>
+                </aside>
+                </>
+                : <h1>Carregando...</h1>
+            }  
         </DeleteSchoolContainer>
     )
 }

@@ -1,54 +1,113 @@
-import styled from "styled-components";
+import styled from 'styled-components'
+
+export const Container = styled.div`
+    display: flex;
+    width: 90%;
+    margin: 2rem auto 1rem auto;
+    justify-content: space-between;
+    div { 
+        display: grid;
+        grid-template-columns: 1fr 1fr .3fr;
+        gap:.5rem;
+        width: 70%;
+        .input {
+            background-color: #D9D9D9;
+            padding: 4px;
+            border-radius: 8px;
+            width: 100%;
+        }
+    }
+    .Link {
+        background-color: #E13763;
+        padding: .3rem;
+        border: 1px solid #E13763;
+        border-radius: 8px;
+        color: #fff;
+        text-decoration: none;
+    }
+    .select {
+        border-radius: 8px;
+    }
+`
 
 export const ListSchoolContainer = styled.div`
-.lista {
-    box-sizing: border-box;
-    position: absolute;
-    width: 1374px;
-    height: 550px;
-    left: 30px;
-    top: 30px;
-    background: radial-gradient(97.66% 97.66% at 50% 2.34%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 100%), radial-gradient(97.57% 210.75% at 0.9% 2.98%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-    box-shadow: 0px 11px 14px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(21px);
-    /* Note: backdrop-filter has minimal browser support */
-    border-radius: 25px;
-    margin-top: 150px;
-}
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    .loading {
+        width: 90%;
+        padding: .3rem;
+        margin-bottom: .4rem;
+        margin-top: .2rem;
+        background-color: #D9D9D9;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+    }
+` 
 
-.text {
-    margin-left: 40px;
-    margin-top: 35px;
-    border-radius: 10px;
-    padding: 5px;
-}
-
-.titulo {
-    display: inline;
-    margin-left: 20%;
-    color: white;
-    font-size: 20px;
-}
-
-.borda_titulo {
-    border-bottom: 1px solid #999999;
+export const ListItems = styled.ul`
+    list-style: none;
     width: 90%;
-    margin-left: 5%;
-    margin-top: 10px;
-    padding: 10px;
-}
+`
 
-.dados {
-    background: lightgray;
-    border-radius: 5px;
-    margin: 15px;
-    padding: 10px;
-}
+export const ListItem = styled.li`
+    padding: .3rem;
+    margin-bottom: .4rem;
+    margin-top: .2rem;
+    background-color: #D9D9D9;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 
-span {
-    color: black;
-    margin-left: 300px;
-    font-size: 15px;
-}
+    .LinkUpdate, .LinkDelete {
+        text-decoration: none;
+        color: #000;
+        background-color: rgba(52, 68, 88, .5);
+        border-radius: 8px;
+        padding: .3rem;
+    }
+`
+
+export const ListSpanLink = styled.div`
+    background-color: #D9D9D9;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+`
+
+export const ListHeader = styled.div`
+    padding: .3rem;
+    margin-bottom: .4rem;
+    background-color: #D9D9D9;
+    border-radius: 8px;
+    margin-top: 1rem;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
+
+export const ListSpan = styled.div`
+    background-color: #D9D9D9;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
+
+export const ListHeaderItem = styled.div`
+    padding-left: .3rem;
+    padding-bottom: .3rem;
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
 `
 
