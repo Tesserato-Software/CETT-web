@@ -66,10 +66,6 @@ export const EgressList = () => {
 				order: final_order,
 			})
 				.then((response) => {
-					console.log(
-						"🚀 ~ file: index.tsx ~ line 68 ~ .then ~ response",
-						response
-					);
 					setEgresses(response.data.data);
 					setPagination({
 						...pagination,
