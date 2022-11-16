@@ -49,6 +49,14 @@ export const Container = styled.div`
         text-decoration: none;
         text-align: center;
     }
+    .checkbox {
+        width: 79%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        color: #fff;
+        gap: 5px;
+    }
 `
 
 export const ContainerButton = styled.div`

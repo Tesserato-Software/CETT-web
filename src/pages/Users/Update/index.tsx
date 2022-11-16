@@ -22,18 +22,11 @@ export const UsersUpdate = () => {
             min: 6,
             max: 30
         },
-        password: {
-            value: '',
-            min: 8,
-            max: 30
-        },
-        confirmPassword: {
-            value: '',
-            min: 8,
-            max: 30
-        },
         hierarchy_id: {
             value: 0,
+        },
+        should_reset_password: {
+            value: false
         }
     })
 
@@ -46,7 +39,7 @@ export const UsersUpdate = () => {
     useEffect(() => {
         api.get(`user/get-user/${id}`)
         .then((response) => {
-            const { full_name, email, hierarchy_id, password } = response.data[0]
+            const { full_name, email, hierarchy_id, should_reset_password } = response.data[0]
 
             setFormData({
                 ...formData,
@@ -62,9 +55,9 @@ export const UsersUpdate = () => {
                     ...formData.hierarchy_id,
                     value: hierarchy_id
                 },
-                password: {
-                    ...formData.password,
-                    value: password
+                should_reset_password: {
+                    ...formData.should_reset_password,
+                    value: should_reset_password,
                 }
             })
         })
@@ -84,7 +77,7 @@ export const UsersUpdate = () => {
             hierarchy_id: getValueData(formData, 'hierarchy_id'), 
             full_name: getValueData(formData, 'name'),
             email: getValueData(formData, 'email') ,
-            password: getValueData(formData, 'password')
+            should_reset_password: getValueData(formData, 'should_reset_password'),
         })
         .then(() => {
             setFormData({
@@ -98,19 +91,12 @@ export const UsersUpdate = () => {
                     min: 6,
                     max: 30
                 },
-                password: {
-                    value: '',
-                    min: 8,
-                    max: 30
-                },
-                confirmPassword: {
-                    value: '',
-                    min: 8,
-                    max: 30
-                },
                 hierarchy_id: {
                     value: 0,
-                }
+                },
+                should_reset_password: {
+                    value: false,
+                },
             })
         
             toast.success('Usuário atualizado com sucesso!');
@@ -161,44 +147,6 @@ export const UsersUpdate = () => {
                 placeholder={isLoading ? "Carregando..." : "E-mail"}
                 disabled={isLoading}
             />
-            <input
-                className="input"
-                type="password"
-                onChange={event => {
-                    setFormData({
-                        ...formData,
-                        password: {
-                            ...formData.password,
-                            value: event.target.value
-                        }
-                    })
-                }}
-                min={formData.password.min}
-                max={formData.password.max}
-                name="password"
-                value={formData.password.value}
-                placeholder={isLoading ? "Carregando..." : "Senha"}
-                disabled={isLoading}
-            />
-            <input
-                className="input"
-                type="password"
-                onChange={event => {
-                    setFormData({
-                        ...formData,
-                        confirmPassword: {
-                            ...formData.confirmPassword,
-                            value: event.target.value
-                        }
-                    })
-                }}
-                min={formData.confirmPassword.min}
-                max={formData.confirmPassword.max}
-                name="confirmPassword"
-                value={formData.confirmPassword.value}
-                placeholder="Confirme a Senha"
-                disabled={isLoading}
-            />
             <select
                 className="select"
                 placeholder={isLoading ? "Carregando..." : "Permissão"}
@@ -221,6 +169,19 @@ export const UsersUpdate = () => {
                     )
                 })}
             </select>
+            <div className="checkbox">
+                <input 
+                    type="checkbox" 
+                    name="shouldResetPassword" 
+                    checked={formData.should_reset_password.value} 
+                    onChange={(event) => setFormData({ ...formData, 
+                        should_reset_password: { 
+                            ...formData, 
+                            value: event.target.checked 
+                        } })}
+                />
+                <p>Precisa Resetar Senha?</p>
+            </div>
             <ContainerButton>
                 {/* validateLength */}
                 <button className="button"
@@ -228,9 +189,6 @@ export const UsersUpdate = () => {
                     disabled={
                         !validateLength(formData.name.value, formData.name.min, formData.name.max) ||
                         !validateLength(formData.email.value, formData.email.min, formData.email.max) ||
-                        !validateLength(formData.password.value, formData.password.min, formData.password.max) ||
-                        !validateLength(formData.confirmPassword.value, formData.confirmPassword.min, formData.confirmPassword.max) ||
-                        formData.password.value !== formData.confirmPassword.value ||
                         isLoading
                     }
                 >
