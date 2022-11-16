@@ -14,7 +14,10 @@ export const EgressList = () => {
 	const [egresses, setEgresses] = useState<Egress[]>(),
 		[isLoading, setIsLoading] = useState(true),
 		[filters, setFilters] = useState<Filter | undefined>(),
-		[pagination, setPagination] = useState(),
+		[pagination, setPagination] = useState<{
+			currentPage: number;
+			
+		}>(),
 		navigate = useNavigate();
 
 	useEffect(() => {
