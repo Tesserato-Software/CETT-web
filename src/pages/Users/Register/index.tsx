@@ -41,7 +41,9 @@ export const UsersRegister = () => {
     useEffect(() => {
         api.get('hierarchy/list')
         .then(response => setRoles(response.data))
-        .catch(() => toast.error('Erro ao buscar as hierarquias!'))
+        .catch(() => toast.error('Erro ao buscar as hierarquias!',
+            { theme: 'colored' }
+        ))
     }, [])
 
     const handleSubmit = () => {
@@ -55,10 +57,14 @@ export const UsersRegister = () => {
         .then(() => {
             setFormData({...initialStateFormData})
         
-            toast.success('Usuário criado com sucesso!');
+            toast.success('Usuário criado com sucesso!',
+                { theme: 'colored' }
+            );
             return navigate('/users/list')
         })
-        .catch(() => toast.error('Erro ao criar usuário!'))
+        .catch(() => toast.error('Erro ao criar usuário!',
+            { theme: 'colored' }
+        ))
         .finally(() => setIsLoading(false))
     }
 

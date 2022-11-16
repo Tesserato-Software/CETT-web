@@ -34,12 +34,16 @@ export const UsersListDisableds = () => {
         setIsLoading(true)
         api.get('user/list-disableds')
         .then(response => setUsers(response.data))
-        .catch(() => toast.error('Erro ao buscar os usuários inativos!'))
+        .catch(() => toast.error('Erro ao buscar os usuários inativos!', 
+            { theme: 'colored' }
+        ))
         .finally(() => setIsLoading(false))
 
         api.get('hierarchy/list')
         .then(response => setRoles(response.data))
-        .catch(() => toast.error('Erro ao buscar as hierarquias inativos!'))
+        .catch(() => toast.error('Erro ao buscar as hierarquias inativos!',
+            { theme: 'colored' }
+        ))
     }, [])
 
     const filteredNames =

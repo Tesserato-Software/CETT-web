@@ -49,7 +49,7 @@ export const UpdateHierarchy = () => {
 			})
 			.catch((err) => {
 				toast.error(
-					"Ops, algo de errado não deu certo ao atualizar a hierarquia.",
+					"Ops, algo não deu certo ao atualizar a hierarquia.",
 					{ theme: "colored" }
 				);
 				console.error(err);
@@ -82,7 +82,7 @@ export const UpdateHierarchy = () => {
 			})
 			.catch((err) => {
 				toast.error(
-					"Ops, algo de errado não deu certo ao atualizar a hierarquia.",
+					"Ops, algo não deu certo ao atualizar a hierarquia.",
 					{ theme: "colored" }
 				);
 				console.error(err);
