@@ -91,6 +91,7 @@ export const DetachEgress = () => {
 			</div>
 			<div className="button">
 			<button onClick={onSubmit}>DESANEXAR</button>
+			<button onClick={() => navigate(`/archive/list`)}>CANCELAR</button>
 			</div>
 		</DetachEgressDiv>
 	);

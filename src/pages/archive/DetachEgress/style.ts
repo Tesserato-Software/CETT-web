@@ -17,7 +17,7 @@ export const DetachEgressDiv = styled.div`
 	
 	
 	.list-student{	
-		width: 80%;
+		width: 70%;
 		height: 100%;
 		display: flex;
 		justify-content:space-around; 
@@ -30,8 +30,8 @@ export const DetachEgressDiv = styled.div`
 		text-align:center;
 	}
 
-	th,td{
-		padding: 5px 10px;
+	th{
+		padding: 10px;
 	}
 	button{
 		width: 10.5rem;
@@ -42,6 +42,7 @@ export const DetachEgressDiv = styled.div`
 		font-size: 1rem;
 		font-weight: 500;
 		color: #FFFF;
+		cursor: pointer;
 	}
 
 	.button{
@@ -49,5 +50,6 @@ export const DetachEgressDiv = styled.div`
 		justify-content: center;
 		align-items: center;
 		margin-top: 2rem;
+		
 	}
 `;
