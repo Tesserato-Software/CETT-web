@@ -22,7 +22,9 @@ export const Login = () => {
 			.then((response) => {
 				console.log(response);
 				localStorage.setItem("@Auth:token", JSON.stringify(response.data.token));
-				toast.success("Login realizado com sucesso!", { theme: 'colored' });
+				toast.success("Login realizado com sucesso!", 
+					{ theme: 'colored' }
+				);
 
 				setTimeout(() => {
 					navigate("/");
@@ -30,7 +32,9 @@ export const Login = () => {
 			})
 			.catch((error) => {
 				console.log(error);
-				toast.error("Erro, verifique as credenciais", { theme: 'colored' });
+				toast.error("Erro, verifique as credenciais", 
+					{ theme: 'colored' }
+				);
 			})
 			.finally(() => setIsLoading(false));
 	}

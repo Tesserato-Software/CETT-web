@@ -17,6 +17,7 @@ export const Table = ({
 	onSort,
 	isLoading,
 	customGrid,
+	actions,
 }: TableProps) => {
 	const [prevFilter, setPrevFilter] = useState<Filter | undefined>(filter);
 
@@ -32,8 +33,11 @@ export const Table = ({
 						<label>Pesquisar</label>
 						<input
 							type={
-								columns.find((column) => prevFilter?.columnIdentifier === column.identifier)?.type ||
-								"text"
+								columns.find(
+									(column) =>
+										prevFilter?.columnIdentifier ===
+										column.identifier
+								)?.type || "text"
 							}
 							placeholder="Pesquisar"
 							onChange={(e) =>
@@ -129,39 +133,57 @@ export const Table = ({
 					))}
 				</header>
 				<div className="grid">
-					{!isLoading ? data?.map((row, row_index) => (
-						<React.Fragment key={row_index}>
-							{columns?.map((column, index) => {
-								let value = row[column.identifier];
+					{!isLoading ? (
+						data?.map((row, row_index) => (
+							<div className="pre-row">
+								<div className="row" key={row_index}>
+									{columns?.map((column, index) => {
+										let value = row[column.identifier];
 
-								if (column?.formatter) {
-									value = column?.formatter(value);
-								}
+										if (column?.formatter) {
+											value = column?.formatter(value);
+										}
 
-								return (
-									<span key={index} title={value}>
-										{value}
-									</span>
-								);
-							})}
-						</React.Fragment>
-					)) : <>
-						{Array.from(Array(15)).map((_, index) => (
-							<React.Fragment key={index}>
-								{columns?.map((column, index) => (
-									<Skeleton key={index}
-									variant='text'
-									animation='wave'
-									style={{
-										borderBottom: 'none',
-										width: "85%",
-										height: "70%",
-										transform: "scale(1, 1)",
-									}} />
-								))}
-							</React.Fragment>
-						))}
-					</>}
+										return (
+											<span key={index} title={value}>
+												{value}
+											</span>
+										);
+									})}
+								</div>
+								<div className="actions">
+									{actions?.map((action, index) => (
+										<button
+											key={index}
+											onClick={() => action.onClick(row)}
+										>
+											{action.icon}
+										</button>
+									))}
+								</div>
+							</div>
+						))
+					) : (
+						<div className="row">
+							{Array.from(Array(15)).map((_, index) => (
+								<React.Fragment key={index}>
+									{columns?.map((column, index) => (
+										<Skeleton
+											key={index}
+											variant="text"
+											animation="wave"
+											style={{
+												borderBottom: "none",
+												width: "85%",
+												height: "70%",
+												transform: "scale(1, 1)",
+											}}
+										/>
+									))}
+								</React.Fragment>
+							))}
+						</div>
+					)}
 				</div>
 			</section>
 		</TableContainer>

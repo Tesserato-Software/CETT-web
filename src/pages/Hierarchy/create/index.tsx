@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { api } from '../../../services/api';
 import {CreateHierarchyContainer} from "./style"
 
@@ -37,6 +38,9 @@ export const CreateHierarchy = () => {
                     })
                     .catch(err => {
                         console.error(err)
+                        toast.error('Erro ao criar hierarquia!',
+                            { theme: 'colored' }
+                        );
                     })
                     .finally(() => setIsLoading(false))
             }

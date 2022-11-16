@@ -29,7 +29,7 @@ type users = {
         })
         .catch((error) => {
           toast.error(
-            "Ops, algo de errado não deu certo ao atualizar a hierarquia.",
+            "Ops, algo não deu certo ao atualizar a hierarquia.",
             { theme: "colored" }
           );
           console.error(error);

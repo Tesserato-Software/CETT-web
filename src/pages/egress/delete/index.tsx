@@ -17,7 +17,9 @@ export const DeleteEgress = () => {
                 setEgress(res.data[0])
             })
             .catch(err => {
-                toast.error('Erro ao carregar dados do egresso', { theme: 'colored' });
+                toast.error('Erro ao carregar dados do egresso', 
+                    { theme: 'colored' }
+                );
                 console.error(err)
             })
             .finally(() => setIsLoading(false))

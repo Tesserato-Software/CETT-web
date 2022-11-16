@@ -39,7 +39,10 @@ export const DetachEgress = () => {
 		api.post(`/archive/dettach-egress`, {
 			egress: egressId,
     });
-		toast.success(`Egresso desanexado com sucesso`);
+		toast.success(
+			"Egresso desanexado com sucesso!",
+			{ theme: "colored" }
+		);
 		return  navigate(`/archive/list`);
 	};
 	return (

@@ -34,12 +34,16 @@ export const UsersListDisableds = () => {
         setIsLoading(true)
         api.get('user/list-disableds')
         .then(response => setUsers(response.data))
-        .catch(() => toast.error('Erro ao buscar os usuários inativos!'))
+        .catch(() => toast.error('Erro ao buscar os usuários inativos!', 
+            { theme: 'colored' }
+        ))
         .finally(() => setIsLoading(false))
 
         api.get('hierarchy/list')
         .then(response => setRoles(response.data))
-        .catch(() => toast.error('Erro ao buscar as hierarquias inativos!'))
+        .catch(() => toast.error('Erro ao buscar as hierarquias inativos!',
+            { theme: 'colored' }
+        ))
     }, [])
 
     const filteredNames =
@@ -95,7 +99,7 @@ export const UsersListDisableds = () => {
                             <ListSpan>{user.id}</ListSpan>
                             <ListSpan>{user.full_name}</ListSpan>
                             <ListSpan>{user.email}</ListSpan>
-                            <ListSpan>{user.hierarchy.name}</ListSpan>
+                            <ListSpan>{user.hierarchy?.name}</ListSpan>
                             <ListSpanLink>
                                 <Link className="LinkUpdate" to={`/users/update/${user.id}`}>Editar</Link>
                                 <Link className="LinkUpdate" to={`/users/delete/${user.id}`}>Deletar</Link>
