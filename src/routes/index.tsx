@@ -98,16 +98,6 @@ export const MainRouts = ({
 				</Routes>
 			);
 		}
-		if (["delete"].includes(window.location.pathname)) {
-			return !hasPermission("can_delete") && <Unauthorized />;
-		}
-		if (
-			["edit", "update", "dettach", "attach"].includes(
-				window.location.pathname
-			)
-		) {
-			return !hasPermission("can_update") && <Unauthorized />;
-		}
 	};
 
 	return (
