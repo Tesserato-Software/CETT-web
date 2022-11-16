@@ -24,7 +24,14 @@ export const ShouldResetPassword = ({ user_id }: { user_id?: number }) => {
 					toast.success("Senha atualizada com sucesso!");
 					navigate("/egress/list");
 				})
-				.catch(() => toast.error("Erro ao atualizar senha!"))
+				.catch(err => {
+					console.error(err);
+					if(err.response.data.exists){
+						toast.error("A senha deve ser diferente de pelo menos 3 anteriores!");
+					} else {
+						toast.error("Erro ao atualizar senha!")
+					}
+				})
 				.finally(() => setIsLoading(false));
 		}
 	};
