@@ -26,8 +26,6 @@ export class ExcelService {
     }
 
     addTitleRow(values: any[]) {
-        this.addEmptyRow();
-
         const upperCasedValues = values.map((value) => String(value).toUpperCase());
         const row = this.currentWorksheet.addRow(upperCasedValues);
 

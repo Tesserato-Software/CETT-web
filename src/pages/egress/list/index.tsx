@@ -14,7 +14,12 @@ export const EgressList = () => {
 	const [egresses, setEgresses] = useState<Egress[]>(),
 		[isLoading, setIsLoading] = useState(true),
 		[filters, setFilters] = useState<Filter | undefined>(),
-		[pagination, setPagination] = useState(),
+		[pagination, setPagination] = useState<{
+			currentPage: number;
+			totalPages?: number | undefined;
+			lastPage?: number | undefined;
+		}>({ currentPage: 1 }),
+		[trigger, setTrigger] = useState(0),
 		navigate = useNavigate();
 
 	useEffect(() => {
@@ -54,10 +59,23 @@ export const EgressList = () => {
 		const bouncer = setTimeout(() => {
 			api.post("/egress/list", {
 				filters: final_filter,
+				pagination: {
+					page: pagination?.currentPage || 1,
+					per_page_limit: 16,
+				},
 				order: final_order,
 			})
 				.then((response) => {
-					setEgresses(response.data);
+					console.log(
+						"🚀 ~ file: index.tsx ~ line 68 ~ .then ~ response",
+						response
+					);
+					setEgresses(response.data.data);
+					setPagination({
+						...pagination,
+						totalPages: response.data.meta.last_page,
+						lastPage: response.data.meta.last_page,
+					});
 				})
 				.catch((error) => {
 					toast.error("Erro ao listar egressos", {
@@ -69,12 +87,12 @@ export const EgressList = () => {
 		}, 1000);
 
 		return () => clearTimeout(bouncer);
-	}, [filters]);
+	}, [filters, trigger]);
 
 	return (
 		<ListContainer>
 			<Table
-                isLoading={isLoading}
+				isLoading={isLoading}
 				columns={[
 					{
 						name: "ID",
@@ -164,8 +182,25 @@ export const EgressList = () => {
 						onClick: (row: any) => {
 							navigate(`/egress/delete/${row.id}`);
 						},
-					}
+					},
 				]}
+				paginator={{
+					total: pagination?.totalPages || 1,
+					currentPage: pagination?.currentPage || 1,
+					perPage: 12,
+					lastPage: pagination?.lastPage || 1,
+					onChange: (page: number) => {
+						setPagination({
+							...pagination,
+							currentPage: page,
+						});
+					},
+				}}
+				setPaginator={(p) => {
+					console.log("🚀 ~ file: index.tsx ~ line 199 ~ EgressList ~ p", p)
+					setPagination(p);
+					setTrigger(trigger + 1);
+				}}
 				primaryKeyIdentifier="id"
 				data={egresses}
 				onFilter={setFilters}
