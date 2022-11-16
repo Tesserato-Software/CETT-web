@@ -46,7 +46,9 @@ export const AttachEgress = () => {
 		api.post(`/archive/attach-egress/${archives?.id}`, {
 			egress: egressId,
 		});
-		toast.success(`Egresso anexado com sucesso`);
+		toast.success(`Egresso anexado com sucesso`,
+			{ theme: "colored" }
+		);
 		return  navigate (`/archive/list`);
 	};
 

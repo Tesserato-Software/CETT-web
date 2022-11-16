@@ -75,7 +75,9 @@ export const UsersUpdate = () => {
                 }
             })
         })
-        .catch(() => toast.error('Erro ao carregar usuário!'))
+        .catch(() => toast.error('Erro ao carregar usuário!',
+            { theme: 'colored' }
+        ))
         .finally(() => setIsLoading(false))
     }, [])
 
@@ -120,10 +122,14 @@ export const UsersUpdate = () => {
                 }
             })
         
-            toast.success('Usuário atualizado com sucesso!');
+            toast.success('Usuário atualizado com sucesso!',
+                { theme: 'colored' }
+            );
             return navigate('users/list')
         })
-        .catch(() => toast.error('Erro ao atualizar usuário!'))
+        .catch(() => toast.error('Erro ao atualizar usuário!',
+            { theme: 'colored' }
+        ))
         .finally(() => setIsLoading(false))
     }
 

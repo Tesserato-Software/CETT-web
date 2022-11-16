@@ -12,12 +12,17 @@ export const CreateArchive = () => {
             api.post("/archive/create")
                 .then((response) => {
                     console.log(response.data);
+                    toast.success("Caixa de arquivos criada com sucesso!",
+                    { theme: "colored" }
+                    );
                 })
                 .catch((err: any) => {
                     console.error(err);
+                    toast.error("Erro ao criar caixa de arquivos!",
+                    { theme: "colored" }
+                    );
                 })
                 .finally(() => setIsLoading(false));
-            toast.success("Caixa de arquivos criada com sucesso!");
             navigate("/archive/list");
         };
 

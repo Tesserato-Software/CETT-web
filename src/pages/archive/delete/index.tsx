@@ -20,7 +20,8 @@ export const DeleteArchive = () => {
                 })
                 .catch((err: any) => {
                     console.error(err)
-                    toast.error('Erro ao Deletar', { theme: 'colored' }
+                    toast.error('Erro ao Deletar', 
+                    { theme: 'colored' }
                     )
                 })
                 .finally(() => setIsLoading(false))

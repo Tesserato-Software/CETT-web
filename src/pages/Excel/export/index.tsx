@@ -69,7 +69,9 @@ export const ExportExcel = () => {
                 setEgresses(res.data)
             })
             .catch(err => {
-                toast.error('Erro ao carregar dados', {theme: 'colored'})
+                toast.error('Erro ao carregar dados', 
+                    {theme: 'colored'
+                });
                 console.error(err)
             })
             .finally(() => setLoading({

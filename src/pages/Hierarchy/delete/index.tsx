@@ -16,14 +16,20 @@ export const DeleteHierarchy = () => {
         setIsLoading(true)
         api.delete(`hierarchy/delete/${id}`)
             .then(() => {
-                toast.success('Hierarquia deletada com sucesso')
+                toast.success('Hierarquia deletada com sucesso', 
+                    { theme: 'colored' }
+                );
                 navigate("/hierarchy/list")    
             })
             .catch(err => {
                 if (err.response.data.message === 'hierarchy_with_user') {
-                    toast.error('Não é possível deletar uma hierarquia que possui usuários')
+                    toast.error('Não é possível deletar uma hierarquia que possui usuários',
+                        { theme: 'colored' }
+                    );
                 } else {
-                    toast.error('Erro ao deletar hierarquia')
+                    toast.error('Erro ao deletar hierarquia',
+                        { theme: 'colored' }
+                    );
                 }
             })
             .finally(() => setIsLoading(false))
