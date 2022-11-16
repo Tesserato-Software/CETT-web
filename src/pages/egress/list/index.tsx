@@ -6,6 +6,8 @@ import { Egress } from "../../../models/Egress";
 import { Filter } from "../../../models/Paginator";
 import { api } from "../../../services/api";
 import { ListContainer } from "./style";
+import * as AiIcons from "react-icons/ai";
+import * as MdIcons from "react-icons/md";
 
 export const EgressList = () => {
 	const [egresses, setEgresses] = useState<Egress[]>(),
@@ -145,6 +147,22 @@ export const EgressList = () => {
 						filterable: true,
 						type: "string",
 					},
+				]}
+				actions={[
+					{
+						name: "Editar",
+						icon: <MdIcons.MdModeEdit />,
+						onClick: (id: number) => {
+							// history.push(`/egress/${id}/edit`);
+						},
+					},
+					{
+						name: "Excluir",
+						icon: <AiIcons.AiOutlineDelete />,
+						onClick: (id: number) => {
+							// history.push(`/egress/${id}/delete`);
+						},
+					}
 				]}
 				data={egresses}
 				onFilter={setFilters}

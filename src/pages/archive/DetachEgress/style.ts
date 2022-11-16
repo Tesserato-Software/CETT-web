@@ -17,7 +17,7 @@ export const DetachEgressDiv = styled.div`
 	
 	
 	.list-student{	
-		width: 50rem;
+		width: 60%;
 		height: 100%;
 		display: flex;
 		justify-content:space-around; 
