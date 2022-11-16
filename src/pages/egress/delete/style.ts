@@ -25,7 +25,11 @@ export const DeleteContainer = styled.div`
         display: flex;
         gap: 20px;
         margin-top: 20px;
-        button {
+        button, a {
+            cursor: pointer;
+            color: #000;
+            text-decoration: none;
+            background-color: #fff;
             padding: .2rem .8rem;
             border-radius: 5px;
             border: none;

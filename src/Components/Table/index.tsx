@@ -16,6 +16,7 @@ export const Table = ({
 	onFilter,
 	onSort,
 	isLoading,
+	primaryKeyIdentifier,
 	customGrid,
 	actions,
 }: TableProps) => {
@@ -126,11 +127,25 @@ export const Table = ({
 			</header>
 			<section className="table-grid">
 				<header className="grid-header">
-					{columns?.map((column, index) => (
-						<span key={index} title={column.name}>
-							{column.name}
-						</span>
-					))}
+					<aside className="columns">
+						{columns?.map((column, index) => (
+							<span key={index} title={column.name}>
+								{column.name}
+							</span>
+						))}
+					</aside>
+					{actions && (
+						<aside
+							className="actions"
+							style={{
+								width: `calc(${
+									(actions?.length || 0) * 30
+								}px + ${actions?.length || 0 * 1}rem)`,
+							}}
+						>
+							<span>Ações</span>
+						</aside>
+					)}
 				</header>
 				<div className="grid">
 					{!isLoading ? (
@@ -151,22 +166,27 @@ export const Table = ({
 										);
 									})}
 								</div>
-								<div className="actions">
-									{actions?.map((action, index) => (
-										<button
-											key={index}
-											onClick={() => action.onClick(row)}
-										>
-											{action.icon}
-										</button>
-									))}
-								</div>
+								{actions && (
+									<div className="actions">
+										{actions?.map((action, index) => (
+											<button
+												key={index}
+												title={action.name}
+												onClick={() =>
+													action.onClick(row)
+												}
+											>
+												{action.icon}
+											</button>
+										))}
+									</div>
+								)}
 							</div>
 						))
 					) : (
-						<div className="row">
+						<>
 							{Array.from(Array(15)).map((_, index) => (
-								<React.Fragment key={index}>
+								<div className="row" key={index}>
 									{columns?.map((column, index) => (
 										<Skeleton
 											key={index}
@@ -180,9 +200,9 @@ export const Table = ({
 											}}
 										/>
 									))}
-								</React.Fragment>
+								</div>
 							))}
-						</div>
+						</>
 					)}
 				</div>
 			</section>

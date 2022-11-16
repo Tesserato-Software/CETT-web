@@ -8,12 +8,14 @@ import { api } from "../../../services/api";
 import { ListContainer } from "./style";
 import * as AiIcons from "react-icons/ai";
 import * as MdIcons from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 export const EgressList = () => {
 	const [egresses, setEgresses] = useState<Egress[]>(),
 		[isLoading, setIsLoading] = useState(true),
 		[filters, setFilters] = useState<Filter | undefined>(),
-		[pagination, setPagination] = useState();
+		[pagination, setPagination] = useState(),
+		navigate = useNavigate();
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -152,18 +154,19 @@ export const EgressList = () => {
 					{
 						name: "Editar",
 						icon: <MdIcons.MdModeEdit />,
-						onClick: (id: number) => {
-							// history.push(`/egress/${id}/edit`);
+						onClick: (row: any) => {
+							navigate(`/egress/edit/${row.id}`);
 						},
 					},
 					{
 						name: "Excluir",
 						icon: <AiIcons.AiOutlineDelete />,
-						onClick: (id: number) => {
-							// history.push(`/egress/${id}/delete`);
+						onClick: (row: any) => {
+							navigate(`/egress/delete/${row.id}`);
 						},
 					}
 				]}
+				primaryKeyIdentifier="id"
 				data={egresses}
 				onFilter={setFilters}
 			/>
