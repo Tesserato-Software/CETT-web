@@ -54,36 +54,38 @@ export const AttachEgress = () => {
 
 	return (
 		<EgressDiv>
-			
-			<div className="container">
-				<table className="list-student">
-					<thead>
-						<tr>
-							<th>ID ARQUIVO</th>
-						</tr>
-					</thead>
-					<tbody>
-						
-						{archives?.id && (
-							<td>
-								{archives?.id}
-							</td>
-						)}
-					
-					</tbody>
-				</table>
-				<div className="list-student">	
-				<table>
-					<thead>
-						<tr>
-							<th>ID:</th>
-							<th>Nome:</th>
-							<th>ID ARQUIVO ESCOLA</th>
-							<th>SELECIONAR</th>
-						</tr>
-					</thead>
-					<tbody>
-						{egresses.map((egress) => {
+				<div className="one">
+						<div className="first-container">
+    						<div className="div-first-table">
+    								<table className="first-table">
+											<thead>
+      									<tr>
+      											<th>ID ARQUIVO</th>
+      									</tr>
+											</thead>	
+      										<tr>
+													{archives?.id && (
+														<td>
+																{archives?.id}
+														</td>
+													)}
+      										</tr>
+    									</table>
+  							</div>
+								<div className="btn">
+									<button onClick={onSubmit}>Anexar</button>
+									<button onClick={() => navigate(`/archive/list`)}>CANCELAR</button>
+								</div>	
+						</div>
+						<section className="second-container">
+							<table className="second-table">
+      						<tr>
+									<th>ID:</th>
+									<th>Nome:</th>
+									<th>ID ARQUIVO ESCOLA</th>
+									<th>SELECIONAR</th>
+      						</tr>
+      						{egresses.map((egress) => {
 							return (
 								<tr className="tr-egress">
 									<td>{egress.id}</td>
@@ -105,13 +107,10 @@ export const AttachEgress = () => {
 								</tr>
 							);
 						})}
-					</tbody>
-				</table>
-				</div>
-				</div>		
-				<div className="btn">
-				<button onClick={onSubmit}>Anexar</button>
-				</div>		
+    					</table>	
+							</section>													
+				</div>										
+			
 		</EgressDiv>
 	);
 };
