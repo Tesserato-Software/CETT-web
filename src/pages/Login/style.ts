@@ -77,14 +77,6 @@ export const LoginDiv = styled.div`
             height: 80%;
             
 
-            img {
-                margin-top: 10%;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                max-width: 400px;
-                max-height: 400px;
-            }
         }
     }
 `;

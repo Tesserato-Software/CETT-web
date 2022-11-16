@@ -77,7 +77,7 @@ export const DetachArchive = () => {
                     CANCELAR
                 </button>
 
-                <button onClick={onsubmit}>DESANEXAR</button>
+                <button className="desanexar" onClick={onsubmit}>DESANEXAR</button>
             </div>
         </DetachArchiveDiv>
     );

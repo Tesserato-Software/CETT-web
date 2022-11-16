@@ -108,7 +108,7 @@ export const AttachArchive = () => {
 			</div>
 
 			<div className="container-button">
-				<button onClick={onsubmit}>ANEXAR</button>
+				<button className="anexar" onClick={onsubmit}>ANEXAR</button>
 				<button
 					className="voltar"
 					onClick={() => navigate(`/egress/list`)}
