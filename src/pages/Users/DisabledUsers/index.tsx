@@ -95,7 +95,7 @@ export const UsersListDisableds = () => {
                             <ListSpan>{user.id}</ListSpan>
                             <ListSpan>{user.full_name}</ListSpan>
                             <ListSpan>{user.email}</ListSpan>
-                            <ListSpan>{user.hierarchy.name}</ListSpan>
+                            <ListSpan>{user.hierarchy?.name}</ListSpan>
                             <ListSpanLink>
                                 <Link className="LinkUpdate" to={`/users/update/${user.id}`}>Editar</Link>
                                 <Link className="LinkUpdate" to={`/users/delete/${user.id}`}>Deletar</Link>

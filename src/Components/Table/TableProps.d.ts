@@ -24,6 +24,7 @@ declare type TableHeader = {
 
 declare type Actions = {
     name: string;
+	icon?: JSX.Element;
     onClick: (row: any) => void;
 };
 
