@@ -16,7 +16,7 @@ export const EgressList = () => {
 		[filters, setFilters] = useState<Filter | undefined>(),
 		[pagination, setPagination] = useState<{
 			currentPage: number;
-			
+
 		}>(),
 		navigate = useNavigate();
 
@@ -24,10 +24,10 @@ export const EgressList = () => {
 		setIsLoading(true);
 
 		let final_filter: {
-				value: string | null;
-				operator: string;
-				column: string;
-			}[],
+			value: string | null;
+			operator: string;
+			column: string;
+		}[],
 			final_order: { column: string; direction: string };
 
 		if (filters && filters.columnIdentifier && filters.filter) {
@@ -39,7 +39,7 @@ export const EgressList = () => {
 							: filters.filter,
 					operator:
 						filters.columnIdentifier === "name" ||
-						filters.columnIdentifier === "responsible_name"
+							filters.columnIdentifier === "responsible_name"
 							? "ilike"
 							: "=",
 					column: filters.columnIdentifier,
@@ -77,7 +77,7 @@ export const EgressList = () => {
 	return (
 		<ListContainer>
 			<Table
-                isLoading={isLoading}
+				isLoading={isLoading}
 				columns={[
 					{
 						name: "ID",
@@ -154,11 +154,27 @@ export const EgressList = () => {
 					},
 				]}
 				actions={[
+
 					{
 						name: "Editar",
 						icon: <MdIcons.MdModeEdit />,
 						onClick: (row: any) => {
 							navigate(`/egress/edit/${row.id}`);
+						},
+					},
+
+					{
+						name: "Anexar ao arquivo",
+						icon: <MdIcons.MdSendAndArchive />,
+						onClick: (row: any) => {
+							navigate(`/egress/attach/${row.id}`);
+						}
+					},
+					{
+						name: "Desanexar do Arquivo",
+						icon: <AiIcons.AiFillFolderOpen />,
+						onClick: (row: any) => {
+							navigate(`/egress/dettach/${row.id}`);
 						},
 					},
 					{
