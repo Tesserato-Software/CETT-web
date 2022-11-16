@@ -9,7 +9,6 @@ import {
     ListHeaderItem,
     ListSpanLink
 } from './style'
-import { Link } from 'react-router-dom'
 import { api } from '../../../services/api'
 import { toast } from 'react-toastify';
 import { user } from '../../../models/User'
@@ -29,6 +28,23 @@ export const UsersListDisableds = () => {
     const [email, setEmail] = useState<string>('')
     const [role, setRole] = useState<any>({})
     const [roles, setRoles] = useState<any>([])
+    const [userEnabled, setUserEnabled] = useState<boolean>(false)
+
+    const enableUser = (userId: number) => {
+        console.log(userId)
+        setIsLoading(true)
+        api.post(`user/re-enable/${userId}`)
+        .then(() => {
+            setUserEnabled(true)
+            return toast.success('Usuário ativado com sucesso!', { theme: 'colored' })
+        })
+        .catch(() => {
+            return toast.error('Erro ao ativar o usuário!', { theme: 'colored' })
+        })
+        .finally(() => {
+            setIsLoading(false);
+        })
+    }
 
     useEffect(() => {
         setIsLoading(true)
@@ -44,7 +60,7 @@ export const UsersListDisableds = () => {
         .catch(() => toast.error('Erro ao buscar as hierarquias inativos!',
             { theme: 'colored' }
         ))
-    }, [])
+    }, [userEnabled])
 
     const filteredNames =
         name.length > 0 ? users.filter(user => user.full_name.includes(name)) : users
@@ -101,8 +117,7 @@ export const UsersListDisableds = () => {
                             <ListSpan>{user.email}</ListSpan>
                             <ListSpan>{user.hierarchy?.name}</ListSpan>
                             <ListSpanLink>
-                                <Link className="LinkUpdate" to={`/users/update/${user.id}`}>Editar</Link>
-                                <Link className="LinkUpdate" to={`/users/delete/${user.id}`}>Deletar</Link>
+                                <button className="LinkUpdate" onClick={() => enableUser(user.id)}>Ativar</button>
                             </ListSpanLink>
                         </ListItem>
                     ))}
