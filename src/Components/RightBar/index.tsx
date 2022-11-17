@@ -64,6 +64,10 @@ export const RightBar = ({
 						name: "Listar",
 						link: "/users/list",
 					},
+					user?.hierarchy?.can_enable_users ? {
+						name: "Listar Inativos",
+						link: "/users/list-disableds",
+					} : null,
 				],
 			},
 			{
@@ -127,8 +131,8 @@ export const RightBar = ({
 							<h2>{item.name}</h2>
 							<div className="right-bar-sub-items">
 								{item.subItems?.map((subItem, index) => (
-									<Link to={subItem.link} key={index} replace>
-										{subItem.name}
+									<Link to={subItem?.link || ''} key={index} replace>
+										{subItem?.name}
 									</Link>
 								))}
 							</div>

@@ -19,9 +19,30 @@ aside{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    button{
+    
+    .button{
+        text-decoration: none;
+        text-align: center;
         margin: 0 1rem;
         background-color: #b3b3b3;
+        color: #000;
+        border: none;
+        outline: none;
+        padding: .4rem 1rem;
+        font-size: 1.5rem;
+        width: 100%;
+        min-width: 300px;
+        border-radius: 8px;
+        cursor: pointer;
+        &.confirm {
+            background-color: #e13763;
+            color: #fff;
+        }
+    }
+    
+    button{
+        margin: 0 1rem;
+        background-color: #e13763;
         color: #000;
         border: none;
         outline: none;

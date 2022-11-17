@@ -53,12 +53,14 @@ export const MainRouts = ({
 	isDisabled,
 	isDontLogged,
 	user_hierarchy,
+	is_super_user,
 }: {
 	shouldResetPassword: boolean;
 	user_id: number;
 	isDisabled: boolean;
 	isDontLogged: boolean;
 	user_hierarchy: hierarchy | undefined;
+	is_super_user: boolean | undefined;
 }) => {
 	const arr = window.location.pathname.split("/"),
 		{ user } = useContext(userDataContext),
@@ -313,18 +315,18 @@ export const MainRouts = ({
 								/>
 							</Route>
 							<Route path="school" element={<School />}>
-								<Route path="list" element={<SchoolList />} />
+								<Route path="list" element={is_super_user ? <SchoolList /> : <Unauthorized />} />
 								<Route
 									path="create"
-									element={<SchoolCreate />}
+									element={is_super_user ? <SchoolCreate /> : <Unauthorized />}
 								/>
 								<Route
-									path="update"
-									element={<SchoolUpdate />}
+									path="update/:id"
+									element={is_super_user ? <SchoolUpdate /> : <Unauthorized />}
 								/>
 								<Route
-									path="delete"
-									element={<SchoolDelete />}
+									path="delete/:id"
+									element={is_super_user ? <SchoolDelete /> : <Unauthorized />}
 								/>
 							</Route>
 						</>

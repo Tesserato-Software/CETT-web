@@ -33,7 +33,7 @@ export const UsersUpdate = () => {
     useEffect(() => {
         api.get('hierarchy/list')
         .then(response => setRoles(response.data))
-        .catch(() => toast.error('Erro ao buscar as hierarquias!'))
+        .catch(() => toast.error('Erro ao buscar as hierarquias!', { theme: 'colored' }))
     }, [])
 
     useEffect(() => {

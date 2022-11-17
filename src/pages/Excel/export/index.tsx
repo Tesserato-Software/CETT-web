@@ -56,6 +56,8 @@ export const ExportExcel = () => {
                 a.click();
 
                 setLoading({ ...loading, export: false })
+            } else {
+                toast.error("Não há dados para exportar", {theme: "colored"})
             }
         }
 
