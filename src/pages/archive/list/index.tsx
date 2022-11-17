@@ -26,16 +26,15 @@ export const ListArchive = () => {
         
           {archiveData.map((archive) => (
             
-            <div className='btn'><div></div><button><Link className='link-delete' to= {`/archive/delete/${archive.id}`}>DELETAR</Link></button>
-              <button><Link to= {`/archive/attach-egress/${archive.id}`}>ANEXAR</Link> </button>
+            <div className='btn'><div></div>
               <Link to={`/archive/detach-egress/${archive.id}`} replace={true}>
                 <h2>Caixa {archive.id} </h2>
-
-            </Link></div>
-            
+              </Link>
+              <button className='delete'><Link className='link-delete' to= {`/archive/delete/${archive.id}`}>DELETAR</Link></button>
+              <button><Link to= {`/archive/attach-egress/${archive.id}`}>ANEXAR</Link> </button>
+            </div>
           ))}
-            
-
+          
           { }
         </div>
         
