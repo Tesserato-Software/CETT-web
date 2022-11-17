@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { Skeleton } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { Filter } from "../../models/Paginator";
 import { TableContainer } from "./style";
 import { TableProps } from "./TableProps";
@@ -15,78 +16,100 @@ export const Table = ({
 	onFilter,
 	onSort,
 	isLoading,
-    customGrid
+	customGrid,
 }: TableProps) => {
 	const [prevFilter, setPrevFilter] = useState<Filter | undefined>(filter);
+
+	useEffect(() => {
+		if (onFilter) onFilter(prevFilter);
+	}, [prevFilter]);
 
 	return (
 		<TableContainer customGrid={customGrid} columnsQtd={columns.length}>
 			<header className="root-header">
 				<aside>
-					<input
-						type="text"
-						placeholder="Search"
-						onChange={() =>
-							setPrevFilter({
-								...prevFilter,
-								filter: "teste",
-							})
-						}
-					/>
-					<select
-						value={
-							columns.find(
-								(c) =>
-									c.identifier ===
-									prevFilter?.columnIdentifier
-							)?.identifier
-						}
-						onChange={(e) => {
-							let column: string = String(e.target.value);
-							setPrevFilter((prevState) => ({
-								...prevState,
-								columnIdentifier: column,
-							}));
-						}}
-					>
-						{columns
-							?.filter((c) => c.filterable)
-							.map((column, index) => (
-								<option key={index} value={column.identifier}>
-									{column.name}
-								</option>
-							))}
-					</select>
+					<div>
+						<label>Pesquisar</label>
+						<input
+							type={
+								columns.find((column) => prevFilter?.columnIdentifier === column.identifier)?.type ||
+								"text"
+							}
+							placeholder="Pesquisar"
+							onChange={(e) =>
+								setPrevFilter({
+									...prevFilter,
+									filter: e.target.value,
+								})
+							}
+						/>
+					</div>
+					<div>
+						<label>Coluna</label>
+						<select
+							onChange={(e) => {
+								let column: string = String(e.target.value);
+								setPrevFilter((prevState) => ({
+									...prevState,
+									columnIdentifier: column,
+									filter: "",
+								}));
+							}}
+						>
+							<option disabled selected>
+								Selecione uma coluna
+							</option>
+							{columns
+								?.filter((c) => c.filterable)
+								.map((column, index) => (
+									<option
+										key={index}
+										value={column.identifier}
+										selected={
+											prevFilter?.columnIdentifier ===
+											column.identifier
+										}
+									>
+										{column.name}
+									</option>
+								))}
+						</select>
+					</div>
 					{prevFilter?.columnIdentifier &&
 						columns.find(
 							(c) => c.identifier === prevFilter.columnIdentifier
 						)?.sortable?.length && (
-							<select
-								onChange={(e) => {
-									let type: string = String(e.target.value);
-									setPrevFilter((prevState) => ({
-										...prevState,
-										type,
-									}));
-								}}
-							>
-								{columns
-									.find(
-										(c) =>
-											c.identifier ===
-											prevFilter.columnIdentifier
-									)
-									?.sortable?.map((sort, index) => {
-										return (
-											<option
-												key={index}
-												value={sort.type}
-											>
-												{sort.name}
-											</option>
+							<div>
+								<label>Ordem</label>
+								<select
+									onChange={(e) => {
+										let type: string = String(
+											e.target.value
 										);
-									})}
-							</select>
+										setPrevFilter((prevState) => ({
+											...prevState,
+											type,
+										}));
+									}}
+								>
+									{columns
+										.find(
+											(c) =>
+												c.identifier ===
+												prevFilter.columnIdentifier
+										)
+										?.sortable?.map((sort, index) => {
+											return (
+												<option
+													key={index}
+													value={sort.type}
+												>
+													{sort.name}
+												</option>
+											);
+										})}
+								</select>
+							</div>
 						)}
 				</aside>
 				<aside>
@@ -106,26 +129,39 @@ export const Table = ({
 					))}
 				</header>
 				<div className="grid">
-					{data?.map((row, row_index) => (
-                        <React.Fragment key={row_index}>
+					{!isLoading ? data?.map((row, row_index) => (
+						<React.Fragment key={row_index}>
 							{columns?.map((column, index) => {
-                                let value = row[column.identifier];
+								let value = row[column.identifier];
 
-                                if(column?.formatter){
-                                    value = column?.formatter(value);
-                                }
+								if (column?.formatter) {
+									value = column?.formatter(value);
+								}
 
-                                return (
-                                    <span
-                                        key={index}
-                                        title={value}
-                                    >
-                                        {value}
-                                    </span>
-                                )
+								return (
+									<span key={index} title={value}>
+										{value}
+									</span>
+								);
 							})}
-                        </React.Fragment>
-					))}
+						</React.Fragment>
+					)) : <>
+						{Array.from(Array(15)).map((_, index) => (
+							<React.Fragment key={index}>
+								{columns?.map((column, index) => (
+									<Skeleton key={index}
+									variant='text'
+									animation='wave'
+									style={{
+										borderBottom: 'none',
+										width: "85%",
+										height: "70%",
+										transform: "scale(1, 1)",
+									}} />
+								))}
+							</React.Fragment>
+						))}
+					</>}
 				</div>
 			</section>
 		</TableContainer>
