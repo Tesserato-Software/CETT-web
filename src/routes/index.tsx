@@ -321,11 +321,11 @@ export const MainRouts = ({
 									element={is_super_user ? <SchoolCreate /> : <Unauthorized />}
 								/>
 								<Route
-									path="update"
+									path="update/:id"
 									element={is_super_user ? <SchoolUpdate /> : <Unauthorized />}
 								/>
 								<Route
-									path="delete"
+									path="delete/:id"
 									element={is_super_user ? <SchoolDelete /> : <Unauthorized />}
 								/>
 							</Route>

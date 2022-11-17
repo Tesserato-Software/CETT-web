@@ -16,9 +16,11 @@ export const EgressList = () => {
 		[filters, setFilters] = useState<Filter | undefined>(),
 		[pagination, setPagination] = useState<{
 			currentPage: number;
-			totalPages?: number | undefined;
-			lastPage?: number | undefined;
-		}>({ currentPage: 1 }),
+			lastPages: number;
+		}>({
+			currentPage: 1,
+			lastPages: 1,
+		}),
 		[trigger, setTrigger] = useState(0),
 		navigate = useNavigate();
 
@@ -26,10 +28,10 @@ export const EgressList = () => {
 		setIsLoading(true);
 
 		let final_filter: {
-			value: string | null;
-			operator: string;
-			column: string;
-		}[],
+				value: string | null;
+				operator: string;
+				column: string;
+			}[],
 			final_order: { column: string; direction: string };
 
 		if (filters && filters.columnIdentifier && filters.filter) {
@@ -41,7 +43,7 @@ export const EgressList = () => {
 							: filters.filter,
 					operator:
 						filters.columnIdentifier === "name" ||
-							filters.columnIdentifier === "responsible_name"
+						filters.columnIdentifier === "responsible_name"
 							? "ilike"
 							: "=",
 					column: filters.columnIdentifier,
@@ -68,9 +70,8 @@ export const EgressList = () => {
 				.then((response) => {
 					setEgresses(response.data.data);
 					setPagination({
-						...pagination,
-						totalPages: response.data.meta.last_page,
-						lastPage: response.data.meta.last_page,
+						currentPage: response.data.meta.current_page,
+						lastPages: response.data.meta.last_page,
 					});
 				})
 				.catch((error) => {
@@ -170,7 +171,7 @@ export const EgressList = () => {
 						icon: <MdIcons.MdSendAndArchive />,
 						onClick: (row: any) => {
 							navigate(`/egress/attach/${row.id}`);
-						}
+						},
 					},
 					{
 						name: "Desanexar do Arquivo",
@@ -195,11 +196,9 @@ export const EgressList = () => {
 					},
 				]}
 				paginator={{
-					total: pagination?.totalPages || 1,
-					currentPage: pagination?.currentPage || 1,
-					perPage: 12,
-					lastPage: pagination?.lastPage || 1,
-					onChange: (page: number) => {
+					current_page: pagination.currentPage,
+					last_page: pagination.lastPages,
+					changePage: (page: number) => {
 						setPagination({
 							...pagination,
 							currentPage: page,
@@ -207,8 +206,11 @@ export const EgressList = () => {
 					},
 				}}
 				setPaginator={(p) => {
-					console.log("🚀 ~ file: index.tsx ~ line 199 ~ EgressList ~ p", p)
-					setPagination(p);
+					setPagination({
+						...pagination,
+						currentPage: p.current_page,
+						lastPages: p.last_page,
+					});
 					setTrigger(trigger + 1);
 				}}
 				primaryKeyIdentifier="id"

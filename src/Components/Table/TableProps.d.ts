@@ -1,4 +1,4 @@
-import { Filter } from "../../models/Paginator";
+import { Filter, Paginator } from "../../models/Paginator";
 
 declare type Sortable = {
 	name: string;
@@ -36,7 +36,7 @@ declare type TableProps = {
 	onUncheckRow?: (row: TableData) => void;
 	header?: TableHeader[];
 	paginator?: Paginator;
-	setPaginator?: (paginator: Paginator) => void;
+	setPaginator: (paginator: Paginator) => void;
 	filter?: Filter;
 	onFilter?: (filter: Filter | undefined) => void;
 	onSort?: (sortable: Sortable) => void;
