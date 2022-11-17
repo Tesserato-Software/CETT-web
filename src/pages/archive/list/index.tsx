@@ -1,12 +1,12 @@
-import { ClassNames } from '@emotion/react';
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
-import { api } from '../../../services/api'
-import { ListArchiveContainer } from './style'
-import {useNavigate } from "react-router-dom";
+import { ClassNames } from "@emotion/react";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { api } from "../../../services/api";
+import { ListArchiveContainer } from "./style";
+import { useNavigate } from "react-router-dom";
 
-interface ListArchive {  /* A gente ta tipando o que vai receber do back*/
-  id: number;
+interface ListArchive {
+    /* A gente ta tipando o que vai receber do back*/ id: number;
 }
 
 export const ListArchive = () => {
@@ -18,8 +18,8 @@ export const ListArchive = () => {
       .then((response) => {
         setArchiveData(response.data)
         console.log(response.data)
-      })
-  }, [])
+      });
+  }, []);
   return (
     <ListArchiveContainer>
       <div className="conteudo">
