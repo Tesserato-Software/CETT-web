@@ -55,6 +55,7 @@ function App() {
                 isDisabled={isDisabled} 
                 isDontLogged={isDontLogged}
                 user_hierarchy={user_hierarchy} 
+                is_super_user={userData?.is_super_user}
             />
         </userDataContext.Provider>    
     )
