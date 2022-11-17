@@ -23,7 +23,7 @@ export const SchoolCreate = () => {
                 return navigate('/school/list')
                 })
                 .catch(err => {
-                    toast.error('Erro ao criar os dados da escola.') 
+                    toast.error('Erro ao criar os dados da escola.'), { theme: 'colored' } 
                     console.error(err)
                 })
                 .finally(() => setIsLoading (false))
