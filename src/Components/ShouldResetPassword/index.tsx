@@ -21,15 +21,15 @@ export const ShouldResetPassword = ({ user_id }: { user_id?: number }) => {
 				password: formData.password.value,
 			})
 				.then(() => {
-					toast.success("Senha atualizada com sucesso!");
+					toast.success("Senha atualizada com sucesso!",{ theme: "colored" }); 
 					navigate("/egress/list");
 				})
 				.catch(err => {
 					console.error(err);
 					if(err.response.data.exists){
-						toast.error("A senha deve ser diferente de pelo menos 3 anteriores!");
+						toast.error("A senha deve ser diferente de pelo menos 3 anteriores!",{ theme: "colored" });
 					} else {
-						toast.error("Erro ao atualizar senha!")
+						toast.error("Erro ao atualizar senha!",{ theme: "colored" });
 					}
 				})
 				.finally(() => setIsLoading(false));
