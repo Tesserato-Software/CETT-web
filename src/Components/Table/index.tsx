@@ -20,36 +20,23 @@ export const Table = ({
 	customGrid,
 	actions,
 }: TableProps) => {
-	const [prevFilter, setPrevFilter] = useState<Filter | undefined>(filter),	
-		[prevPaginator, setPrevPaginator] = useState<{
-			currentPage: number;
-			totalPages?: number;
-		}>({ 
-			currentPage: paginator?.currentPage || 1,
-			totalPages: paginator?.totalPages || 1,
-		});
+	const [prevFilter, setPrevFilter] = useState<Filter | undefined>(filter)
 
 	useEffect(() => {
 		if (onFilter) onFilter(prevFilter);
 	}, [prevFilter]);
 
-	useEffect(() => {
-		if (setPaginator) setPaginator(prevPaginator);
-	}, [prevPaginator]);
-
 	return (
 		<TableContainer customGrid={customGrid} columnsQtd={columns.length}>
-			<section
-				className="pages"
-			>
+			<section className="pages">
 				{paginator && (
 					<>
 						<button
 							className="page"
 							onClick={() => {
-								setPrevPaginator({
-									...prevPaginator,
-									currentPage: 1,
+								setPaginator({
+									...paginator,
+									current_page: 1,
 								});
 							}}
 						>
@@ -58,29 +45,29 @@ export const Table = ({
 						<button
 							className="page"
 							onClick={() => {
-								setPrevPaginator({
-									...prevPaginator,
-									currentPage:
-										prevPaginator.currentPage - 1,
+								setPaginator({
+									...paginator,
+									current_page:
+										paginator.current_page - 1,
 								});
 							}}
 						>
 							{"<"}
 						</button>
 						{Array.from(
-							{ length: paginator.totalPages },
+							{ length: paginator.last_page || 1 },
 							(_, i) => i + 1
 						).map((page) => (
 							<button
 								className={`page ${
-									page === prevPaginator.currentPage
+									page === paginator.current_page
 										? "active"
 										: ""
 								}`}
 								onClick={() => {
-									setPrevPaginator({
-										...prevPaginator,
-										currentPage: page,
+									setPaginator({
+										...paginator,
+										current_page: page,
 									});
 								}}
 							>
@@ -90,10 +77,10 @@ export const Table = ({
 						<button
 							className="page"
 							onClick={() => {
-								setPrevPaginator({
-									...prevPaginator,
-									currentPage:
-										prevPaginator.currentPage + 1,
+								setPaginator({
+									...paginator,
+									current_page:
+										paginator.current_page + 1,
 								});
 							}}
 						>
@@ -102,10 +89,9 @@ export const Table = ({
 						<button
 							className="page"
 							onClick={() => {
-								setPrevPaginator({
-									...prevPaginator,
-									currentPage:
-										paginator.totalPages || paginator.lastPage,
+								setPaginator({
+									...paginator,
+									current_page: paginator.last_page,
 								});
 							}}
 						>

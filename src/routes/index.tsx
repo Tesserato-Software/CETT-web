@@ -319,11 +319,11 @@ export const MainRouts = ({
 									element={<SchoolCreate />}
 								/>
 								<Route
-									path="update"
+									path="update/:id"
 									element={<SchoolUpdate />}
 								/>
 								<Route
-									path="delete"
+									path="delete/:id"
 									element={<SchoolDelete />}
 								/>
 							</Route>

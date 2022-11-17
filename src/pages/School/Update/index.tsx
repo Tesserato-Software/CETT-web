@@ -4,7 +4,6 @@ import { Link, useParams, useNavigate } from 'react-router-dom'
 import { api } from '../../../services/api';
 import { toast } from 'react-toastify';
 
-
 export const SchoolUpdate = () => {
     const navigate = useNavigate()
     const { id } = useParams()
@@ -16,19 +15,22 @@ export const SchoolUpdate = () => {
             max: 50
         }
     })
+
     useEffect(() => {
         api.get(`school/get-school/${id}`)
         .then((response) => {
             const { name } = response.data[0]
             setFormData({
-                ...formData,
                 name: {
                     ...formData.name,
                     value: name
                 }
             })
         })
-        .catch(() => toast.error('Erro ao carregar escola!'))
+        .catch((err) => {
+            console.error(err);
+            toast.error('Erro ao carregar escola!', {theme: 'colored'})
+        })
         .finally(() => setIsLoading(false))
     }, [])
 
@@ -44,18 +46,10 @@ export const SchoolUpdate = () => {
             name: getValueData(formData, 'name'),
         })
         .then(() => {
-            setFormData({
-                name: {
-                    value: '',
-                    min: 4,
-                    max: 50
-                }
-            })
-        
-            toast.success('Escola atualizada com sucesso!');
-            return navigate('/school/list')
+            toast.success('Escola atualizada com sucesso!', {theme: 'colored'});
+            navigate('/school/list')
         })
-        .catch(() => toast.error('Erro ao atualizar escola!'))
+        .catch(() => toast.error('Erro ao atualizar escola!', {theme: 'colored'}))
         .finally(() => setIsLoading(false))
     }
 
@@ -82,7 +76,7 @@ export const SchoolUpdate = () => {
             />
             <div className='botoes'>
                 <Link to="/school/list" className="button">
-                        Voltar
+                    Voltar
                 </Link>
                 <button className="botao_update" onClick={handleSubmit}
                 >

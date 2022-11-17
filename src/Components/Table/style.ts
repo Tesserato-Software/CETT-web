@@ -7,6 +7,52 @@ export const TableContainer = styled.section<{
     width: 100%;
     height: 100%;
     color: #fff;
+    section.pages {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        max-width: 50%;
+        width: 100%;
+        overflow-x: auto;
+        gap: 10px;
+        padding-bottom: 10px;
+        // scroll
+        ::-webkit-scrollbar {
+            height: 5px;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(225, 225, 225, 0.2);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(225, 225, 225, 0.5);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(225, 225, 225, 0.7);
+            border-radius: 5px;
+        }
+        button.page {
+            min-width: 30px;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: 2px solid rgba(225, 225, 225, 0.2);
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 10px;
+            &:hover {
+                color: #ccc;
+            }
+            &.active {
+                background: rgba(225, 225, 225, 0.2);
+                border: 2px solid rgba(225, 225, 225, 0.2);
+            }
+        }
+    }
     header.root-header {
         display: flex;
         justify-content: space-between;
