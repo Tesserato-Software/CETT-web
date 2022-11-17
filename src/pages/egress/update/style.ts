@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const EgressUpdateContainer = styled.div`
+export const EgressCreateContainer = styled.div`
     padding: 4rem 8rem;
     display: flex;
     flex-direction: column;
@@ -22,19 +22,39 @@ export const EgressUpdateContainer = styled.div`
         gap: 20px;
         background-color: rgba(255, 255, 255, 0.5);
         border-radius: 10px;
-        input{
+        input, select{
             padding: .2rem .4rem;
             border-radius: 5px;
             border: none;
             outline: none;
         }
     }
-    button{
-        margin: 0 auto;
-        padding: .2rem .8rem;
-        border-radius: 5px;
-        border: none;
-        outline: none;
-        font-size: 1.4rem;
+    .buttonsContainer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        button{
+            background-color: #E13763;
+            margin: 0 auto;
+            padding: .2rem .8rem;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: #fff;
+        }
+        .Link {
+            margin: 0 auto;
+            padding: .2rem .8rem;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            font-size: 1.4rem;
+            text-decoration: none;
+            background-color: #344458;
+            color: #fff;
+        }
     }
 `;

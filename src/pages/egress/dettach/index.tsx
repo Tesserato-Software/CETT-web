@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../../../services/api";
 import { DetachArchiveDiv } from "./style";
 import { DashboarEgress } from "./../../../Components/DashBoardEgress/index";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 interface EgressesAndArchive {
     id: number;
@@ -16,12 +16,22 @@ export const DetachArchive = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [egress, setEgress] = useState<EgressesAndArchive[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        api.get(`/egress/dashboard-dettach-archive/${id}`).then((response) => {
-            setEgress(response.data.egressesAndArchive);
-            console.log(response.data.egressesAndArchive);
-        });
+        setIsLoading(true);
+        api.get(`/egress/dashboard-dettach-archive/${id}`)
+            .then((response) => {
+                setEgress(response.data.egressesAndArchive);
+            })
+            .catch((err) =>
+                toast.error(`Egresso não esta vinculado a nenhum arquivo!`, {
+                    theme: "colored",
+                })
+            )
+            .finally(() => {
+                setIsLoading(false);
+            });
     }, []);
 
     const onsubmit = () => {
@@ -30,12 +40,17 @@ export const DetachArchive = () => {
         })
             .then((response) => {
                 console.log(response);
+                toast.success(`Egresso desanexado do arquivo com sucesso!`, {
+                    theme: "colored",
+                });
             })
             .catch((error) => {
                 console.log(error);
+                toast.error(`Erro ao desanexar o egresso do arquivo!`, {
+                    theme: "colored",
+                });
             });
 
-        toast.success(`Egresso desanexado do arquivo com sucesso!`);
         return navigate(`/egress/list`);
     };
 
@@ -72,7 +87,9 @@ export const DetachArchive = () => {
                     CANCELAR
                 </button>
 
-                <button onClick={onsubmit}>DESANEXAR</button>
+                <button className="desanexar" onClick={onsubmit}>
+                    DESANEXAR
+                </button>
             </div>
         </DetachArchiveDiv>
     );

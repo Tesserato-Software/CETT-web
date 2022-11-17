@@ -42,7 +42,9 @@ export const InputExcel = () => {
 					})
 					.finally(() => setLoading(false));
 			} else {
-				toast.error("Selecione um arquivo!", { theme: "colored" });
+				toast.error("Selecione um arquivo!", { 
+					theme: "colored"
+				});
 			}
 		},
 		downloadTemplate = async () => {

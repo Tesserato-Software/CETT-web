@@ -65,11 +65,13 @@ export const ListItem = styled.li`
     justify-content: space-between;
 
     .LinkUpdate {
+        font-size: .99rem;
         text-decoration: none;
         color: #000;
         background-color: rgba(52, 68, 88, .5);
         border-radius: 8px;
         padding: .3rem;
+        border: 1px solid rgba(52, 68, 88, .5);
     }
 `
 

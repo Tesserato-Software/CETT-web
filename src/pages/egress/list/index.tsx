@@ -6,21 +6,30 @@ import { Egress } from "../../../models/Egress";
 import { Filter } from "../../../models/Paginator";
 import { api } from "../../../services/api";
 import { ListContainer } from "./style";
+import * as AiIcons from "react-icons/ai";
+import * as MdIcons from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 export const EgressList = () => {
 	const [egresses, setEgresses] = useState<Egress[]>(),
 		[isLoading, setIsLoading] = useState(true),
 		[filters, setFilters] = useState<Filter | undefined>(),
-		[pagination, setPagination] = useState();
+		[pagination, setPagination] = useState<{
+			currentPage: number;
+			totalPages?: number | undefined;
+			lastPage?: number | undefined;
+		}>({ currentPage: 1 }),
+		[trigger, setTrigger] = useState(0),
+		navigate = useNavigate();
 
 	useEffect(() => {
 		setIsLoading(true);
 
 		let final_filter: {
-				value: string | null;
-				operator: string;
-				column: string;
-			}[],
+			value: string | null;
+			operator: string;
+			column: string;
+		}[],
 			final_order: { column: string; direction: string };
 
 		if (filters && filters.columnIdentifier && filters.filter) {
@@ -32,7 +41,7 @@ export const EgressList = () => {
 							: filters.filter,
 					operator:
 						filters.columnIdentifier === "name" ||
-						filters.columnIdentifier === "responsible_name"
+							filters.columnIdentifier === "responsible_name"
 							? "ilike"
 							: "=",
 					column: filters.columnIdentifier,
@@ -50,10 +59,19 @@ export const EgressList = () => {
 		const bouncer = setTimeout(() => {
 			api.post("/egress/list", {
 				filters: final_filter,
+				pagination: {
+					page: pagination?.currentPage || 1,
+					per_page_limit: 16,
+				},
 				order: final_order,
 			})
 				.then((response) => {
-					setEgresses(response.data);
+					setEgresses(response.data.data);
+					setPagination({
+						...pagination,
+						totalPages: response.data.meta.last_page,
+						lastPage: response.data.meta.last_page,
+					});
 				})
 				.catch((error) => {
 					toast.error("Erro ao listar egressos", {
@@ -65,12 +83,12 @@ export const EgressList = () => {
 		}, 1000);
 
 		return () => clearTimeout(bouncer);
-	}, [filters]);
+	}, [filters, trigger]);
 
 	return (
 		<ListContainer>
 			<Table
-                isLoading={isLoading}
+				isLoading={isLoading}
 				columns={[
 					{
 						name: "ID",
@@ -106,7 +124,7 @@ export const EgressList = () => {
 					},
 					{
 						name: "CGM",
-						identifier: "CGM_id",
+						identifier: "cgm_id",
 						sortable: [
 							{
 								name: "Crescente",
@@ -146,6 +164,54 @@ export const EgressList = () => {
 						type: "string",
 					},
 				]}
+				actions={[
+					{
+						name: "Anexar ao arquivo",
+						icon: <MdIcons.MdSendAndArchive />,
+						onClick: (row: any) => {
+							navigate(`/egress/attach/${row.id}`);
+						}
+					},
+					{
+						name: "Desanexar do Arquivo",
+						icon: <AiIcons.AiFillFolderOpen />,
+						onClick: (row: any) => {
+							navigate(`/egress/dettach/${row.id}`);
+						},
+					},
+					{
+						name: "Editar",
+						icon: <MdIcons.MdModeEdit />,
+						onClick: (row: any) => {
+							navigate(`/egress/edit/${row.id}`);
+						},
+					},
+					{
+						name: "Excluir",
+						icon: <AiIcons.AiOutlineDelete />,
+						onClick: (row: any) => {
+							navigate(`/egress/delete/${row.id}`);
+						},
+					},
+				]}
+				paginator={{
+					total: pagination?.totalPages || 1,
+					currentPage: pagination?.currentPage || 1,
+					perPage: 12,
+					lastPage: pagination?.lastPage || 1,
+					onChange: (page: number) => {
+						setPagination({
+							...pagination,
+							currentPage: page,
+						});
+					},
+				}}
+				setPaginator={(p) => {
+					console.log("🚀 ~ file: index.tsx ~ line 199 ~ EgressList ~ p", p)
+					setPagination(p);
+					setTrigger(trigger + 1);
+				}}
+				primaryKeyIdentifier="id"
 				data={egresses}
 				onFilter={setFilters}
 			/>

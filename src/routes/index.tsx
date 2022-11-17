@@ -52,24 +52,26 @@ export const MainRouts = ({
 	user_id,
 	isDisabled,
 	isDontLogged,
-    user_hierarchy
-}:{ 
-    shouldResetPassword: boolean,
-    user_id: number,
-    isDisabled: boolean,
-    isDontLogged: boolean,
-    user_hierarchy: hierarchy | undefined
+	user_hierarchy,
+}: {
+	shouldResetPassword: boolean;
+	user_id: number;
+	isDisabled: boolean;
+	isDontLogged: boolean;
+	user_hierarchy: hierarchy | undefined;
 }) => {
 	const arr = window.location.pathname.split("/"),
-        { user } = useContext(userDataContext),
-        token = localStorage.getItem("@Auth:token")
+		{ user } = useContext(userDataContext),
+		token = localStorage.getItem("@Auth:token");
 
-    const hasPermission = (permission: 'can_update' | 'can_delete' | 'can_enable_users') => {
-        if (user_hierarchy) {
-            return user_hierarchy[permission]
-        }
-        return false
-    }
+	const hasPermission = (
+		permission: "can_update" | "can_delete" | "can_enable_users"
+	) => {
+		if (user_hierarchy) {
+			return user_hierarchy[permission];
+		}
+		return false;
+	};
 
 	const ValidateUser = () => {
 		if (isDontLogged) {
@@ -89,143 +91,257 @@ export const MainRouts = ({
 				</Routes>
 			);
 		}
-        if (isDisabled) {
+		if (isDisabled) {
 			return (
 				<Routes>
 					<Route path="user-disabled" element={<UserDisabled />} />
 				</Routes>
 			);
 		}
-        if (["delete"].includes(window.location.pathname)) {
-            return !hasPermission("can_delete") && <Unauthorized />  
-        }
-        if (["edit", "update", "dettach", "attach"].includes(window.location.pathname)) {
-            return !hasPermission("can_update") && <Unauthorized />
-        }
 	};
 
 	return (
-		<div style={{position: 'relative', minHeight: '100vh'}}>
+		<div style={{ position: "relative", minHeight: "100vh" }}>
 			<NavBar
-				title_json={window.location.pathname.split('/').slice(1).join('-')}
+				title_json={window.location.pathname
+					.split("/")
+					.slice(1)
+					.join("-")}
 				have_menu={!window.location.pathname.includes("login")}
 			/>
 
 			{ValidateUser()}
 
-            <div style={{paddingBottom: 'calc(120px * 2)'}}>
+			<div style={{ paddingBottom: "calc(120px * 2)" }}>
+				<Routes>
+					{!!token ? (
+						<>
+							<Route index path="/" element={<EgressList />} />
 
-                <Routes>
-                    {!!token ? <>
-                        <Route index path="/" element={<EgressList />} />
+							<Route path="login" element={<Login />} />
+							<Route
+								path="first-access"
+								element={<FirstAccess />}
+							/>
+							<Route
+								path="forget-password"
+								element={<ForgetPassword />}
+							/>
 
-                        <Route path="login" element={<Login />} />
-                        <Route path="first-access" element={<FirstAccess />} />
-                        <Route path="forget-password" element={<ForgetPassword />} />
+							<Route path="egress" element={<Egress />}>
+								<Route path="list" element={<EgressList />} />
+								<Route
+									path="create"
+									element={<CreateEgress />}
+								/>
+								<Route
+									path="edit/:id"
+									element={
+										hasPermission("can_update") ? (
+											<UpdateEgress />
+										) : (
+											<Unauthorized />
+										)
+									}
+								/>
+								<Route
+									path="delete/:id"
+									element={
+										hasPermission("can_delete") ? (
+											<DeleteEgress />
+										) : (
+											<Unauthorized />
+										)
+									}
+								/>
 
-                        <Route path="egress" element={<Egress />}>
-                            <Route path="list" element={<EgressList />} />
-                            <Route path="create" element={<CreateEgress />} />
-                            <Route path="edit" element={hasPermission("can_update") 
-                            ? <UpdateEgress /> 
-                            : <Unauthorized />} 
-                            />
-                            <Route path="delete/:id" element={hasPermission("can_delete") 
-                            ? <DeleteEgress /> 
-                            : <Unauthorized />} 
-                            />
+								{/* VINC BY ARCHIVE */}
+								<Route
+									path="dettach/:id"
+									element={
+										hasPermission("can_update") ? (
+											<DetachArchive />
+										) : (
+											<Unauthorized />
+										)
+									}
+								/>
+								<Route
+									path="attach/:id"
+									element={
+										hasPermission("can_update") ? (
+											<AttachArchive />
+										) : (
+											<Unauthorized />
+										)
+									}
+								/>
+							</Route>
 
-                            {/* VINC BY ARCHIVE */}
-                            <Route path="dettach/:id" element={hasPermission("can_update") 
-                            ? <DetachArchive /> 
-                            : <Unauthorized />} />
-                            <Route path="attach/:id" element={hasPermission("can_update") 
-                            ? <AttachArchive /> 
-                            : <Unauthorized />} />
-                        </Route>
+							<Route path="excel" element={<Excel />}>
+								<Route path="import" element={<InputExcel />} />
 
-                        <Route path="excel" element={<Excel />}>
-                            <Route path="import" element={<InputExcel />} />
+								<Route
+									path="export"
+									element={<ExportExcel />}
+								/>
+							</Route>
 
-                            <Route path="export" element={<ExportExcel />} />
-                        </Route>
+							<Route path="archive" element={<Archives />}>
+								<Route
+									path="create"
+									element={<CreateArchive />}
+								/>
+								<Route path="list" element={<ListArchive />} />
+								<Route
+									path="delete/:id"
+									element={
+										hasPermission("can_delete") ? (
+											<DeleteArchive />
+										) : (
+											<Unauthorized />
+										)
+									}
+								/>
 
-                        <Route path="archive" element={<Archives />}>
-                            <Route path="create" element={<CreateArchive />} />
-                            <Route path="list" element={<ListArchive />} />
-                            <Route path="delete/:id" element={hasPermission("can_delete") 
-                            ? <DeleteArchive /> 
-                            : <Unauthorized />} />
+								{/* VINC BY EGRESS */}
+								<Route
+									path="attach-egress/:id"
+									element={
+										hasPermission("can_update") ? (
+											<AttachEgress />
+										) : (
+											<Unauthorized />
+										)
+									}
+								/>
+								<Route
+									path="detach-egress/:id"
+									element={
+										hasPermission("can_update") ? (
+											<DetachEgress />
+										) : (
+											<Unauthorized />
+										)
+									}
+								/>
+							</Route>
 
-                            {/* VINC BY EGRESS */}
-                            <Route
-                                path="attach-egress/:id"
-                                element={hasPermission("can_update")
-                                ? <AttachEgress /> 
-                                : <Unauthorized />}
-                            />
-                            <Route path="detach-egress/:id" element={hasPermission("can_update")
-                            ? <DetachEgress /> 
-                            : <Unauthorized />} 
-                            />
-                        </Route>
+							<Route path="hierarchy" element={<Hierarchy />}>
+								<Route
+									path="list"
+									element={<HierarchyList />}
+								/>
+								<Route
+									path="create"
+									element={<CreateHierarchy />}
+								/>
+								<Route
+									path="update/:id"
+									element={
+										hasPermission("can_update") ? (
+											<UpdateHierarchy />
+										) : (
+											<Unauthorized />
+										)
+									}
+								/>
+								<Route
+									path="delete/:id"
+									element={
+										hasPermission("can_delete") ? (
+											<DeleteHierarchy />
+										) : (
+											<Unauthorized />
+										)
+									}
+								/>
+								<Route
+									path="add-user"
+									element={
+										hasPermission("can_update") ? (
+											<AttachUser />
+										) : (
+											<Unauthorized />
+										)
+									}
+								/>
+								<Route
+									path="remove-user"
+									element={
+										hasPermission("can_update") ? (
+											<DettachUser />
+										) : (
+											<Unauthorized />
+										)
+									}
+								/>
+							</Route>
 
-                        <Route path="hierarchy" element={<Hierarchy />}>
-                            <Route path="list" element={<HierarchyList />} />
-                            <Route path="create" element={<CreateHierarchy />} />
-                            <Route path="update/:id" element={hasPermission("can_update") 
-                            ? <UpdateHierarchy /> 
-                            : <Unauthorized />} 
-                            />
-                            <Route path="delete/:id" element={hasPermission("can_delete") 
-                            ? <DeleteHierarchy /> 
-                            : <Unauthorized />} 
-                            />
-                            <Route path="add-user" element={hasPermission("can_update") 
-                            ? <AttachUser /> 
-                            : <Unauthorized />} 
-                            />
-                            <Route path="remove-user" element={hasPermission("can_update") 
-                            ? <DettachUser /> 
-                            : <Unauthorized />} 
-                            />
-                        </Route>
+							<Route path="users" element={<Users />}>
+								<Route
+									path="create"
+									element={<UsersRegister />}
+								/>
+								<Route
+									path="list"
+									element={<UsersList user_id={user_id} />}
+								/>
+								<Route
+									path="list-disableds"
+									element={<UsersListDisableds />}
+								/>
+								<Route
+									path="update/:id"
+									element={
+										hasPermission("can_update") ? (
+											<UsersUpdate />
+										) : (
+											<Unauthorized />
+										)
+									}
+								/>
+								<Route
+									path="delete/:id"
+									element={
+										hasPermission("can_delete") ? (
+											<UsersDelete />
+										) : (
+											<Unauthorized />
+										)
+									}
+								/>
+							</Route>
+							<Route path="school" element={<School />}>
+								<Route path="list" element={<SchoolList />} />
+								<Route
+									path="create"
+									element={<SchoolCreate />}
+								/>
+								<Route
+									path="update"
+									element={<SchoolUpdate />}
+								/>
+								<Route
+									path="delete"
+									element={<SchoolDelete />}
+								/>
+							</Route>
+						</>
+					) : (
+						["login", "/"].map((path, index) => (
+							<Route
+								path={path}
+								index
+								key={index}
+								element={<Login />}
+							/>
+						))
+					)}
+				</Routes>
+			</div>
 
-                        <Route path="users" element={<Users />}>
-                            <Route path="create" element={<UsersRegister />} />
-                            <Route path="list" element={<UsersList user_id={user_id}/>} />
-                            <Route
-                                path="list-disableds"
-                                element={<UsersListDisableds />}
-                            />
-                            <Route path="update/:id" element={hasPermission("can_update") 
-                            ? <UsersUpdate /> 
-                            : <Unauthorized />} 
-                            />
-                            <Route path="delete/:id" element={hasPermission("can_delete") 
-                            ? <UsersDelete /> 
-                            : <Unauthorized />} 
-                            />
-                        </Route>
-                        <Route path="school" element={<School />}>
-                            <Route path="list" element={<SchoolList />} />
-                            <Route path="create" element={<SchoolCreate />} />
-                            <Route path="update/:id" element={<SchoolUpdate />} />
-                            <Route path="delete/:id" element={<SchoolDelete />} />
-                        </Route>
-                    </> : ["login", "/"].map((path, index) => (
-                            <Route
-                                path={path}
-                                index
-                                key={index}
-                                element={<Login />}
-                            />
-                        ))
-                    }
-                </Routes>
-            </div>
-
-            <Footer />
+			<Footer />
 		</div>
 	);
 };

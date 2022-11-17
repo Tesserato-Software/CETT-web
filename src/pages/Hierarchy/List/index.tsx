@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { DateTime } from "ts-luxon";
 import { api } from "../../../services/api";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 type users = {
 	id: number;
@@ -33,6 +34,9 @@ export const HierarchyList = () => {
 			})
 			.catch((error) => {
 				console.error(error);
+				toast.success("Algo não deu certo.", 
+				 	{ theme: "colored" }
+				);
 			})
 			.finally(() => {
 				setIsLoading(false);

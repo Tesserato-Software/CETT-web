@@ -16,24 +16,115 @@ export const Table = ({
 	onFilter,
 	onSort,
 	isLoading,
+	primaryKeyIdentifier,
 	customGrid,
+	actions,
 }: TableProps) => {
-	const [prevFilter, setPrevFilter] = useState<Filter | undefined>(filter);
+	const [prevFilter, setPrevFilter] = useState<Filter | undefined>(filter),	
+		[prevPaginator, setPrevPaginator] = useState<{
+			currentPage: number;
+			totalPages?: number;
+		}>({ 
+			currentPage: paginator?.currentPage || 1,
+			totalPages: paginator?.totalPages || 1,
+		});
 
 	useEffect(() => {
 		if (onFilter) onFilter(prevFilter);
 	}, [prevFilter]);
 
+	useEffect(() => {
+		if (setPaginator) setPaginator(prevPaginator);
+	}, [prevPaginator]);
+
 	return (
 		<TableContainer customGrid={customGrid} columnsQtd={columns.length}>
+			<section
+				className="pages"
+			>
+				{paginator && (
+					<>
+						<button
+							className="page"
+							onClick={() => {
+								setPrevPaginator({
+									...prevPaginator,
+									currentPage: 1,
+								});
+							}}
+						>
+							{"<<"}
+						</button>
+						<button
+							className="page"
+							onClick={() => {
+								setPrevPaginator({
+									...prevPaginator,
+									currentPage:
+										prevPaginator.currentPage - 1,
+								});
+							}}
+						>
+							{"<"}
+						</button>
+						{Array.from(
+							{ length: paginator.totalPages },
+							(_, i) => i + 1
+						).map((page) => (
+							<button
+								className={`page ${
+									page === prevPaginator.currentPage
+										? "active"
+										: ""
+								}`}
+								onClick={() => {
+									setPrevPaginator({
+										...prevPaginator,
+										currentPage: page,
+									});
+								}}
+							>
+								{page}
+							</button>
+						))}
+						<button
+							className="page"
+							onClick={() => {
+								setPrevPaginator({
+									...prevPaginator,
+									currentPage:
+										prevPaginator.currentPage + 1,
+								});
+							}}
+						>
+							{">"}
+						</button>
+						<button
+							className="page"
+							onClick={() => {
+								setPrevPaginator({
+									...prevPaginator,
+									currentPage:
+										paginator.totalPages || paginator.lastPage,
+								});
+							}}
+						>
+							{">>"}
+						</button>
+					</>
+				)}
+			</section>
 			<header className="root-header">
 				<aside>
 					<div>
 						<label>Pesquisar</label>
 						<input
 							type={
-								columns.find((column) => prevFilter?.columnIdentifier === column.identifier)?.type ||
-								"text"
+								columns.find(
+									(column) =>
+										prevFilter?.columnIdentifier ===
+										column.identifier
+								)?.type || "text"
 							}
 							placeholder="Pesquisar"
 							onChange={(e) =>
@@ -122,46 +213,83 @@ export const Table = ({
 			</header>
 			<section className="table-grid">
 				<header className="grid-header">
-					{columns?.map((column, index) => (
-						<span key={index} title={column.name}>
-							{column.name}
-						</span>
-					))}
+					<aside className="columns">
+						{columns?.map((column, index) => (
+							<span key={index} title={column.name}>
+								{column.name}
+							</span>
+						))}
+					</aside>
+					{actions && (
+						<aside
+							className="actions"
+							style={{
+								width: `calc(${
+									(actions?.length || 0) * 30
+								}px + ${actions?.length || 0 * 1}rem)`,
+							}}
+						>
+							<span>Ações</span>
+						</aside>
+					)}
 				</header>
 				<div className="grid">
-					{!isLoading ? data?.map((row, row_index) => (
-						<React.Fragment key={row_index}>
-							{columns?.map((column, index) => {
-								let value = row[column.identifier];
+					{!isLoading ? (
+						data?.map((row, row_index) => (
+							<div className="pre-row">
+								<div className="row" key={row_index}>
+									{columns?.map((column, index) => {
+										let value = row[column.identifier];
 
-								if (column?.formatter) {
-									value = column?.formatter(value);
-								}
+										if (column?.formatter) {
+											value = column?.formatter(value);
+										}
 
-								return (
-									<span key={index} title={value}>
-										{value}
-									</span>
-								);
-							})}
-						</React.Fragment>
-					)) : <>
-						{Array.from(Array(15)).map((_, index) => (
-							<React.Fragment key={index}>
-								{columns?.map((column, index) => (
-									<Skeleton key={index}
-									variant='text'
-									animation='wave'
-									style={{
-										borderBottom: 'none',
-										width: "85%",
-										height: "70%",
-										transform: "scale(1, 1)",
-									}} />
-								))}
-							</React.Fragment>
-						))}
-					</>}
+										return (
+											<span key={index} title={value}>
+												{value}
+											</span>
+										);
+									})}
+								</div>
+								{actions && (
+									<div className="actions">
+										{actions?.map((action, index) => (
+											<button
+												key={index}
+												title={action.name}
+												onClick={() =>
+													action.onClick(row)
+												}
+											>
+												{action.icon}
+											</button>
+										))}
+									</div>
+								)}
+							</div>
+						))
+					) : (
+						<>
+							{Array.from(Array(15)).map((_, index) => (
+								<div className="row" key={index}>
+									{columns?.map((column, index) => (
+										<Skeleton
+											key={index}
+											variant="text"
+											animation="wave"
+											style={{
+												borderBottom: "none",
+												width: "85%",
+												height: "70%",
+												transform: "scale(1, 1)",
+											}}
+										/>
+									))}
+								</div>
+							))}
+						</>
+					)}
 				</div>
 			</section>
 		</TableContainer>

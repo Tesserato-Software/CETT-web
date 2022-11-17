@@ -14,10 +14,14 @@ export const UsersDelete = () => {
         setIsLoading(true)
         api.delete(`user/delete/${id}`)
         .then(() => {
-            toast.success('Usuário deletado com sucesso!')
+            toast.success('Usuário deletado com sucesso!', 
+                { theme: 'colored' }
+            );
             navigate('/users/list')
         })
-        .catch(() => toast.error('Erro ao deletar usuário!'))
+        .catch(() => toast.error('Erro ao deletar usuário!', 
+            { theme: 'colored' }
+        ))
         .finally(() => setIsLoading(false))
     }
 

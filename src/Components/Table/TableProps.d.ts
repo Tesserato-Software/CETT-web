@@ -24,11 +24,13 @@ declare type TableHeader = {
 
 declare type Actions = {
     name: string;
+	icon?: JSX.Element;
     onClick: (row: any) => void;
 };
 
 declare type TableProps = {
 	columns: Column[];
+	primaryKeyIdentifier?: string;
 	data: any[] | undefined;
 	onCheckRow?: (row: TableData) => void;
 	onUncheckRow?: (row: TableData) => void;

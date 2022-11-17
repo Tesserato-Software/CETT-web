@@ -40,9 +40,15 @@ export const CreateEgress = () => {
                         archive_id: undefined,
                         responsible_name: '',
                     })
+                    toast.success('Egresso criado com sucesso!', 
+                        { theme: 'colored' }
+                    );
                 })
                 .catch(err => {
                     console.error(err)
+                    toast.error('Erro ao criar egresso!',
+                        { theme: 'colored' }
+                    );
                 })
                 .finally(() => setIsLoading({
                     ...isLoading,
@@ -60,8 +66,8 @@ export const CreateEgress = () => {
                 setArchives(res.data)
             })
             .catch(err => {
-                toast.error('Erro ao listar arquivos', {
-                    theme: 'colored'
+                toast.error('Erro ao listar arquivos', 
+                    {theme: 'colored'
                 })
                 console.error(err)
             })

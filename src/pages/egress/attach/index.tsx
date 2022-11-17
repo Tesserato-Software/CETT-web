@@ -44,7 +44,9 @@ export const AttachArchive = () => {
 
 	const onsubmit = () => {
 		if (archiveId === 0) {
-			return toast.error("Selecione um arquivo");
+			return toast.error("Selecione um arquivo",
+				{ theme: "colored" }			
+			);
 		}
 
 		api.post(`/egress/attach-archives/${archiveId}`, {
@@ -53,12 +55,17 @@ export const AttachArchive = () => {
 
 			.then((response) => {
 				console.log(response);
+				toast.success(`Egresso anexado ao arquivo ${archiveId} com sucesso!`,
+					{ theme: "colored" }
+				);
 			})
 			.catch((error) => {
 				console.log(error);
+				toast.error(`Erro ao anexar egresso ao arquivo ${archiveId}!`,
+					{ theme: "colored" }
+				);
 			});
 
-		toast.success(`Egresso anexado ao arquivo ${archiveId} com sucesso!`);
 
 		return navigate(`/egress/list`);
 	};
@@ -101,7 +108,7 @@ export const AttachArchive = () => {
 			</div>
 
 			<div className="container-button">
-				<button onClick={onsubmit}>ANEXAR</button>
+				<button className="anexar" onClick={onsubmit}>ANEXAR</button>
 				<button
 					className="voltar"
 					onClick={() => navigate(`/egress/list`)}
