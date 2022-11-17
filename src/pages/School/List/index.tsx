@@ -29,7 +29,7 @@ export const SchoolList = () => {
         setIsLoading(true)
         api.get('school/list')
         .then(response => setSchool(response.data))
-        .catch(() => toast.error('Erro ao buscar as escolas!'))
+        .catch(() => toast.error('Erro ao buscar as escolas!', { theme: 'colored' }))
         .finally(() => setIsLoading(false))
     }, [])
 
