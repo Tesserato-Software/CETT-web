@@ -6,6 +6,8 @@ import { formData } from "../../models/User";
 import { initialStateFormData } from "../../utils/constants/Users";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
+import { validateLength } from '../../utils/formValidator'
+
 
 export const ShouldResetPassword = ({ user_id }: { user_id?: number }) => {
 	const [formData, setFormData] = useState<formData>({
@@ -13,6 +15,20 @@ export const ShouldResetPassword = ({ user_id }: { user_id?: number }) => {
 	});
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const navigate = useNavigate();
+
+	const isInvalidPassword = 
+	!validateLength(
+        formData.password.value,
+        formData.password.min,
+        formData.password.max
+    ) ||
+    !validateLength(
+        formData.confirmPassword.value,
+        formData.confirmPassword.min,
+        formData.confirmPassword.max
+    ) ||
+    formData.password.value !==
+        formData.confirmPassword.value
 
 	const onSubmit = () => {
 		if (user_id) {
@@ -74,7 +90,7 @@ export const ShouldResetPassword = ({ user_id }: { user_id?: number }) => {
 			<ContainerButton>
 				<button
 					className="Link"
-					disabled={isLoading}
+					disabled={isLoading || isInvalidPassword}
 					onClick={onSubmit}
 				>
 					Resetar
