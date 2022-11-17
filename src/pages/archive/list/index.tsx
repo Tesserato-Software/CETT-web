@@ -20,13 +20,6 @@ export const ListArchive = () => {
         console.log(response.data)
       })
   }, [])
-  const onDelete = () =>{
-    navigate(`archive/delete/`)
-  }
-  const onAttach = () =>{
-    
-    navigate(`attach-egress/`)
-  }
   return (
     <ListArchiveContainer>
       <div className="conteudo">
