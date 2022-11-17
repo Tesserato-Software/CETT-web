@@ -124,7 +124,7 @@ export const EgressList = () => {
 					},
 					{
 						name: "CGM",
-						identifier: "CGM_id",
+						identifier: "cgm_id",
 						sortable: [
 							{
 								name: "Crescente",
@@ -165,15 +165,6 @@ export const EgressList = () => {
 					},
 				]}
 				actions={[
-
-					{
-						name: "Editar",
-						icon: <MdIcons.MdModeEdit />,
-						onClick: (row: any) => {
-							navigate(`/egress/edit/${row.id}`);
-						},
-					},
-
 					{
 						name: "Anexar ao arquivo",
 						icon: <MdIcons.MdSendAndArchive />,
@@ -186,6 +177,13 @@ export const EgressList = () => {
 						icon: <AiIcons.AiFillFolderOpen />,
 						onClick: (row: any) => {
 							navigate(`/egress/dettach/${row.id}`);
+						},
+					},
+					{
+						name: "Editar",
+						icon: <MdIcons.MdModeEdit />,
+						onClick: (row: any) => {
+							navigate(`/egress/edit/${row.id}`);
 						},
 					},
 					{
