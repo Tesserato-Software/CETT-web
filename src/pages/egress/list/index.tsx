@@ -53,7 +53,7 @@ export const EgressList = () => {
 
 		if (filters && filters.columnIdentifier && filters.type) {
 			final_order = {
-				column: filters.columnIdentifier,
+				column: filters.columnIdentifier === 'cgm_id' ? 'CGM_id' : filters.columnIdentifier,
 				direction: filters.type,
 			};
 		}
