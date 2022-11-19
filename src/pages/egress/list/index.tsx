@@ -46,14 +46,16 @@ export const EgressList = () => {
 						filters.columnIdentifier === "responsible_name"
 							? "ilike"
 							: "=",
-					column: filters.columnIdentifier,
+					column: filters.columnIdentifier === 'cgm_id'
+						? 'CGM_id'
+						: filters.columnIdentifier,
 				},
 			];
 		}
 
 		if (filters && filters.columnIdentifier && filters.type) {
 			final_order = {
-				column: filters.columnIdentifier === 'cgm_id' ? 'CGM_id' : filters.columnIdentifier,
+				column: filters.columnIdentifier,
 				direction: filters.type,
 			};
 		}
