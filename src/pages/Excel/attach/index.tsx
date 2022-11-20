@@ -30,7 +30,7 @@ export const InputExcel = () => {
 						console.error(err);
 						if (err.response.data.errors) {
 							toast.error(
-								"Erro em alguns egressos. Os que não estiverem listados abaixos, foram cridos",
+								"Erro em alguns egressos. Os que não estiverem listados abaixos, foram criados",
 								{ theme: "colored" }
 							);
 							setErrors(err.response.data.errors);

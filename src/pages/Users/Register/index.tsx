@@ -18,8 +18,9 @@ export const UsersRegister = () => {
 	});
 	const [roles, setRoles] = useState<any>([]);
 	const navigate = useNavigate();
-	const mailformatBr = /^[a-z0-9.]+@[a-z0-9]+.[edu | com]+(.[br]+)$/g
-	const mailformat = /^[a-z0-9.]+@[a-z0-9]+(.[com]+)$/g
+	const mailformatBr = /^[a-z0-9.]{3,}+@[a-z0-9]{3,}+.[edu | com]+(.[br]+)$/g
+	const mailformat = /^[a-z0-9.]{3,}+@[a-z0-9]{3,}+(.[com]+)$/g
+	const passwordFormat = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/g
 
 	const isInvalidPassword = formData.password.value !== formData.confirmPassword.value;
 	const isInvalidEmail = !(formData.email.value.match(mailformatBr) 
@@ -64,6 +65,14 @@ export const UsersRegister = () => {
 			setIsLoading(false);
 
 			return toast.error("E-mail inválido!")
+		}
+		if ((formData.email.min >= formData.email.value.length) || 
+		(formData.email.value.length >= formData.email.max)) {
+			setIsLoading(false);
+
+			return toast.error(`O e-mail deve conter entre ${formData.email.min} 
+			e ${formData.email.max} caracteres!`, 
+			{ theme: "colored", toastId: 'invalid-email'})
 		}
 		if(isInvalidPassword) {
 			setIsLoading(false);
