@@ -3,6 +3,7 @@ export const titles: {
 } = {
     "archive-create": "Criar arquivo",
     "egress-list": "Lista de Egressos",
+    "egress-list-disableds": "Lista de Egressos Excluídos",
     "egress-create": "Cadastrar Egresso",
     "archive-list": "Lista de Arquivos",
     "users-list": "Lista de Usuários",
