@@ -29,6 +29,7 @@ export const Login = () => {
 					"@Auth:token",
 					JSON.stringify(response.data.token)
 				);
+				localStorage.removeItem("@Login:attempts");
 				toast.success("Login realizado com sucesso!", {
 					theme: "colored",
 				});
