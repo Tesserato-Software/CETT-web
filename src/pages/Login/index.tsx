@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { api } from "../../services/api";
 import { LoginDiv } from "./style";
 import logoImage from "../../assets/loginImage.png";
+import * as AiIcons from 'react-icons/ai';
 
 export const Login = () => {
 	const [data, setData] = useState<{
@@ -14,6 +15,7 @@ export const Login = () => {
 			password: "",
 		}),
 		[isLoading, setIsLoading] = useState(false),
+		[isPasswordHidden, setIsPasswordHidden] = useState(false),
 		navigate = useNavigate();
 
 	const onSubmit = () => {
@@ -82,17 +84,31 @@ export const Login = () => {
 							onChange={(e) =>
 								setData({ ...data, email: e.target.value })
 							}
+							onKeyPress={(e) => {
+								if (e.key === "Enter") onSubmit();
+							}}
 						/>
 					</div>
 					<div className="form-group last">
 						<label htmlFor="password">Password</label>
 						<input
-							type="password"
+							type={isPasswordHidden ? "password" : "text"}
 							id="password"
 							onChange={(e) =>
 								setData({ ...data, password: e.target.value })
 							}
+							onKeyPress={(e) => {
+								if (e.key === "Enter") onSubmit();
+							}}
 						/>
+						{isPasswordHidden
+							? <AiIcons.AiOutlineEye
+								onClick={() => setIsPasswordHidden(false)}
+							/>
+							: <AiIcons.AiOutlineEyeInvisible
+								onClick={() => setIsPasswordHidden(true)}
+							/>
+						}
 					</div>
 					<button
 						onClick={onSubmit}
