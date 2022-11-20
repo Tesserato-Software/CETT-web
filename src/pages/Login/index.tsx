@@ -59,6 +59,7 @@ export const Login = () => {
 							{ theme: "colored" }
 						);
 						api.post("auth/login-failure", { email: data.email });
+						localStorage.setItem('@Login:attempts', JSON.stringify(0))
 						return;
 					} else {
 						localStorage.setItem(
