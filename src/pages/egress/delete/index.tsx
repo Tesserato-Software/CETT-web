@@ -20,11 +20,11 @@ export const DeleteEgress = () => {
         [egress, setEgress] = useState<Egress>(),
         navigate = useNavigate(),
         onDelete = () => {
-            const isSoftDelete = egress?.deleted_at && user?.hierarchy.can_delete ? `egress/hard-delete/${egress.id}`
+            const isHardDelete = egress?.deleted_at && user?.hierarchy.can_delete ? `egress/hard-delete/${egress.id}`
                 : `/egress/delete/${id}` 
 
             setIsLoading({ ...isLoading, delete: true })
-            api.delete(isSoftDelete)
+            api.post(isHardDelete)
                 .then(() => {
                     toast.success('Egresso excluído com sucesso!', { theme: 'colored' })
                     setIsLoading({ ...isLoading, delete: false })

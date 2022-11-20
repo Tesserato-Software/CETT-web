@@ -117,6 +117,10 @@ export const MainRouts = ({
 
 			<div style={{ paddingBottom: "calc(120px * 2)" }}>
 				<Routes>
+					<Route
+						path="should-reset-password"
+						element={<ShouldResetPassword user_id={user?.id} />}
+					/>
 					{!!token ? (
 						<>
 							<Route index path="/" element={<EgressList />} />

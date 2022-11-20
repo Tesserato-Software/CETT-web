@@ -50,7 +50,17 @@ export const LoginDiv = styled.div`
                     margin-top: 10%;
                 }
                 &.last {
+                    position: relative;
                     margin-bottom: 10%;
+                    svg {
+                        color: #000;
+                        position: absolute;
+                        right: 0;
+                        top: 50%;
+                        margin-right: 1rem;
+                        font-size: 1.5rem;
+                        cursor: pointer;
+                    }
                 }
                 input {
                     width: 100%;

@@ -79,8 +79,8 @@ export const UsersRegister = () => {
 
 			return toast.error("A senha e a confirmação de senha devem ser correspondentes!")
 		}	
-		if ((formData.password.min >= formData.password.value.length) || 
-		(formData.password.value.length >= formData.password.max)) {
+		if ((formData.password.min > formData.password.value.length) || 
+		(formData.password.value.length > formData.password.max)) {
 			setIsLoading(false);
 
 			return toast.error(`A senha deve estar entre ${formData.password.min} 

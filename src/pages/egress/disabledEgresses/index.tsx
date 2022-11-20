@@ -191,7 +191,7 @@ export const DisabledEgresses = () => {
 						name: "Excluir",
 						icon: <AiIcons.AiOutlineDelete />,
 						onClick: (row: any) => {
-                            navigate(`egress/delete/${row.id}`);
+                            navigate(`/egress/delete/${row.id}`);
 						},
 					},
 				]}

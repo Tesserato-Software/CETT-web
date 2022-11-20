@@ -38,7 +38,7 @@ export const RightBar = ({
 						name: "Listar",
 						link: "/egress/list",
 					},
-					user?.hierarchy.can_delete ? {
+					user?.hierarchy?.can_delete ? {
 						name: "Listar Inativos",
 						link: "/egress/list-disableds",
 					} : null,
@@ -68,7 +68,7 @@ export const RightBar = ({
 						name: "Listar",
 						link: "/users/list",
 					},
-					user?.hierarchy.can_enable_users ? {
+					user?.hierarchy?.can_enable_users ? {
 						name: "Listar Inativos",
 						link: "/users/list-disableds",
 					} : null,
