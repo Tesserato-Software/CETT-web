@@ -46,6 +46,7 @@ import { Unauthorized } from "../Components/Unauthorized";
 import { hierarchy } from "../models/User";
 import { userDataContext } from "../App";
 import { useContext } from "react";
+import { DisabledEgresses } from "../pages/egress/disabledEgresses";
 
 export const MainRouts = ({
 	shouldResetPassword,
@@ -148,13 +149,13 @@ export const MainRouts = ({
 								/>
 								<Route
 									path="delete/:id"
-									element={
-										hasPermission("can_delete") ? (
-											<DeleteEgress />
-										) : (
-											<Unauthorized />
-										)
-									}
+									element={<DeleteEgress />}
+								/>
+								<Route 
+									path="list-disableds"
+									element={hasPermission("can_delete") ? 
+									<DisabledEgresses /> 
+									: <Unauthorized />}
 								/>
 
 								{/* VINC BY ARCHIVE */}

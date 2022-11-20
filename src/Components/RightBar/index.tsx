@@ -38,6 +38,10 @@ export const RightBar = ({
 						name: "Listar",
 						link: "/egress/list",
 					},
+					user?.hierarchy?.can_delete ? {
+						name: "Listar Inativos",
+						link: "/egress/list-disableds",
+					} : null,
 				],
 			},
 			{

@@ -9,4 +9,5 @@ declare export type Egress = {
     archive_id?: number,
     school_id: number,
     updated_at?: string,
+    deleted_at?: string, 
 }

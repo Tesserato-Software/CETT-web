@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Egress } from '../../../models/Egress'
 import { api } from '../../../services/api'
 import { DeleteContainer } from './style'
+import { userDataContext } from "../../../App";
+
 
 export const DeleteEgress = () => {
+    const { user } = useContext(userDataContext)
     const { id } = useParams(),
         [isLoading, setIsLoading] = useState<{
             loading: boolean
@@ -17,8 +20,11 @@ export const DeleteEgress = () => {
         [egress, setEgress] = useState<Egress>(),
         navigate = useNavigate(),
         onDelete = () => {
+            const isSoftDelete = egress?.deleted_at && user?.hierarchy.can_delete ? `egress/hard-delete/${egress.id}`
+                : `/egress/delete/${id}` 
+
             setIsLoading({ ...isLoading, delete: true })
-            api.delete(`/egress/delete/${id}`)
+            api.delete(isSoftDelete)
                 .then(() => {
                     toast.success('Egresso excluído com sucesso!', { theme: 'colored' })
                     setIsLoading({ ...isLoading, delete: false })

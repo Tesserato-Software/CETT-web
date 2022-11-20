@@ -18,12 +18,19 @@ export const UsersRegister = () => {
 	});
 	const [roles, setRoles] = useState<any>([]);
 	const navigate = useNavigate();
+	const mailformatBr = /^[a-z0-9.]+@[a-z0-9]+.[edu | com]+(.[br]+)$/g
+	const mailformat = /^[a-z0-9.]+@[a-z0-9]+(.[com]+)$/g
+
+	const isInvalidPassword = formData.password.value !== formData.confirmPassword.value;
+	const isInvalidEmail = !(formData.email.value.match(mailformatBr) 
+	|| formData.email.value.match(mailformat))
+
 
 	const isInvalidLength =
 		!validateLength(
-			formData.full_name.value,
-			formData.full_name.min,
-			formData.full_name.max
+		formData.full_name.value,
+		formData.full_name.min,
+		formData.full_name.max,
 		) ||
 		!validateLength(
 			formData.email.value,
@@ -39,8 +46,7 @@ export const UsersRegister = () => {
 			formData.confirmPassword.value,
 			formData.confirmPassword.min,
 			formData.confirmPassword.max
-		) ||
-		formData.password.value !== formData.confirmPassword.value;
+		)
 
 	useEffect(() => {
 		api.get("hierarchy/list")
@@ -54,6 +60,25 @@ export const UsersRegister = () => {
 
 	const handleSubmit = () => {
 		setIsLoading(true);
+		if(isInvalidEmail) {
+			setIsLoading(false);
+
+			return toast.error("E-mail inválido!")
+		}
+		if(isInvalidPassword) {
+			setIsLoading(false);
+
+			return toast.error("A senha e a confirmação de senha devem ser correspondentes!")
+		}	
+		if ((formData.password.min > formData.password.value.length) || 
+		(formData.password.value.length > formData.password.max)) {
+			setIsLoading(false);
+
+			return toast.error(`A senha deve estar entre ${formData.password.min} 
+			e ${formData.password.max} caracteres!`, 
+			{ theme: "colored", toastId: 'invalid-password'})
+		}
+
 		api.post("user/create", {
 			hierarchy_id: getValueData(formData, "hierarchy_id") || roles[0].id,
 			full_name: getValueData(formData, "full_name"),
