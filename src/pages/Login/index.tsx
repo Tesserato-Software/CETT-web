@@ -38,25 +38,17 @@ export const Login = () => {
 			.catch((error) => {
 				console.log(error);
 
-				console.log(error?.response?.data?.errors?.includes({
-					field: "email",
-					message: "exists validation failure",
-					rule: "exists",
-				}));
-
 				if (
-					error?.response?.data?.errors &&
-					!error?.response?.data?.errors?.includes({
-						field: "email",
-						message: "exists validation failure",
-						rule: "exists",
-					})
+					error?.response?.data?.errors
+					&& !error?.response?.data?.errors
+						?.filter((e: any) => e.rule === "exists")
+						.length
 					&& !!data.email
 				) {
 					if (+attempts > 3) {
 						toast.error(
 							"Você excedeu o número de tentativas, seu usuário será inativado e sua senha será resetada. Por favor contate o seu administrador.",
-							{ theme: "colored" }
+							{ theme: "colored", autoClose: false },
 						);
 						api.post("auth/login-failure", { email: data.email });
 						return;
