@@ -11,12 +11,12 @@ export const initialStateFormData = {
     },
     password: {
         value: '',
-        min: 8,
+        min: 10,
         max: 30
     },
     confirmPassword: {
         value: '',
-        min: 8,
+        min: 10,
         max: 30
     },
     hierarchy_id: {

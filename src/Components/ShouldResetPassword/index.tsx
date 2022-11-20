@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, ContainerButton } from "./style";
 import { getEventValueFormData } from "../../utils/getFormData";
@@ -16,23 +16,25 @@ export const ShouldResetPassword = ({ user_id }: { user_id?: number }) => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const navigate = useNavigate();
 
-	const isInvalidPassword = 
-	!validateLength(
-        formData.password.value,
-        formData.password.min,
-        formData.password.max
-    ) ||
-    !validateLength(
-        formData.confirmPassword.value,
-        formData.confirmPassword.min,
-        formData.confirmPassword.max
-    ) ||
-    formData.password.value !==
-        formData.confirmPassword.value
+	const isInvalidPassword = formData.password.value !== formData.confirmPassword.value
 
 	const onSubmit = () => {
 		if (user_id) {
 			setIsLoading(true);
+			if(isInvalidPassword) {
+				setIsLoading(false);
+	
+				return toast.error("A senha e a confirmação de senha devem ser correspondentes!")
+			}	
+			if ((formData.password.min > formData.password.value.length) || 
+			(formData.password.value.length > formData.password.max)) {
+				setIsLoading(false);
+	
+				return toast.error(`A senha deve estar entre ${formData.password.min} 
+				e ${formData.password.max} caracteres!`, 
+				{ theme: "colored", toastId: 'invalid-password'})
+			}
+
 			api.post(`/user/psw-storage/${user_id}`, {
 				password: formData.password.value,
 			})
@@ -90,7 +92,7 @@ export const ShouldResetPassword = ({ user_id }: { user_id?: number }) => {
 			<ContainerButton>
 				<button
 					className="Link"
-					disabled={isLoading || isInvalidPassword}
+					disabled={isLoading}
 					onClick={onSubmit}
 				>
 					Resetar
