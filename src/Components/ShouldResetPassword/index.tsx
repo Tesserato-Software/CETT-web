@@ -7,11 +7,16 @@ import { initialStateFormData } from "../../utils/constants/Users";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
 import { validateLength } from '../../utils/formValidator'
+import * as AiIcons from 'react-icons/ai';
 
 
 export const ShouldResetPassword = ({ user_id }: { user_id?: number }) => {
 	const [formData, setFormData] = useState<formData>({
 		...initialStateFormData,
+	});
+	const [passwordsHidden, setPasswordsHidden] = useState({
+		password: true,
+		confirm: true
 	});
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const navigate = useNavigate();
@@ -24,7 +29,7 @@ export const ShouldResetPassword = ({ user_id }: { user_id?: number }) => {
 			if(isInvalidPassword) {
 				setIsLoading(false);
 	
-				return toast.error("A senha e a confirmação de senha devem ser correspondentes!")
+				return toast.error("A senha e a confirmação de senha devem ser correspondentes!", { theme: "colored" })
 			}	
 			if ((formData.password.min > formData.password.value.length) || 
 			(formData.password.value.length > formData.password.max)) {
@@ -47,7 +52,7 @@ export const ShouldResetPassword = ({ user_id }: { user_id?: number }) => {
 					if(err.response.data.exists){
 						toast.error("A senha deve ser diferente de pelo menos 3 anteriores!",{ theme: "colored" });
 					} else {
-						toast.error("Erro ao atualizar senha!",{ theme: "colored" });
+						toast.error("Erro ao atualizar senha!", { theme: "colored" });
 					}
 				})
 				.finally(() => setIsLoading(false));
@@ -56,46 +61,76 @@ export const ShouldResetPassword = ({ user_id }: { user_id?: number }) => {
 
 	return (
 		<Container>
-			<h3>Necessário Resetar a senha!</h3>
-			<input
-				className="input"
-				type="password"
-				onChange={(event) => {
-					setFormData({
-						...getEventValueFormData(formData, "password", event),
-					});
-				}}
-				min={formData.password.min}
-				max={formData.password.max}
-				name="password"
-				placeholder="Senha"
-				disabled={isLoading}
-			/>
-			<input
-				className="input"
-				type="password"
-				onChange={(event) => {
-					setFormData({
-						...getEventValueFormData(
-							formData,
-							"confirmPassword",
-							event
-						),
-					});
-				}}
-				min={formData.confirmPassword.min}
-				max={formData.confirmPassword.max}
-				name="confirmPassword"
-				placeholder="Confirme a Senha"
-				disabled={isLoading}
-			/>
+			<h3>Necessário Redefinir a senha!</h3>
+			<div className="row">
+				<input
+					className="input"
+					type={passwordsHidden.password ? "password" : 'text'}
+					onChange={(event) => {
+						setFormData({
+							...getEventValueFormData(formData, "password", event),
+						});
+					}}
+					onKeyPress={(e) => {
+						if (e.key === "Enter") onSubmit();
+					}}
+					min={formData.password.min}
+					max={formData.password.max}
+					name="password"
+					placeholder="Senha"
+					disabled={isLoading}
+				/>
+				{passwordsHidden.password
+					? <AiIcons.AiOutlineEye
+						onClick={() => setPasswordsHidden({...passwordsHidden, password: false})}
+					/>
+					: <AiIcons.AiOutlineEyeInvisible
+						onClick={() => setPasswordsHidden({...passwordsHidden, password: true})}
+					/>
+				}
+			</div>
+			<div className="row">
+				<input
+					className="input"
+					type={passwordsHidden.confirm ? "password" : 'text'}
+					onChange={(event) => {
+						setFormData({
+							...getEventValueFormData(
+								formData,
+								"confirmPassword",
+								event
+							),
+						});
+					}}
+					onKeyPress={(e) => {
+						if (e.key === "Enter") onSubmit();
+					}}
+					min={formData.confirmPassword.min}
+					max={formData.confirmPassword.max}
+					name="confirmPassword"
+					placeholder="Confirme a Senha"
+					disabled={isLoading}
+				/>
+				{passwordsHidden.confirm
+					? <AiIcons.AiOutlineEye
+						onClick={() => setPasswordsHidden({...passwordsHidden, confirm: false})}
+					/>
+					: <AiIcons.AiOutlineEyeInvisible
+						onClick={() => setPasswordsHidden({...passwordsHidden, confirm: true})}
+					/>
+				}
+			</div>
 			<ContainerButton>
 				<button
 					className="Link"
-					disabled={isLoading}
+					disabled={(isLoading || (
+						(formData.password.value.length < formData.password.min) ||
+						(formData.password.value.length > formData.password.max) ||
+						(formData.password.value !== formData.confirmPassword.value)
+					))}
 					onClick={onSubmit}
 				>
-					Resetar
+					{isLoading ? 'Carregando...' : 'Redefinir'}
 				</button>
 			</ContainerButton>
 		</Container>

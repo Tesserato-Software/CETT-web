@@ -3,6 +3,7 @@ export const titles: {
 } = {
     "archive-create": "Criar arquivo",
     "egress-list": "Lista de Egressos",
+    "egress-list-disableds": "Lista de Egressos Excluídos",
     "egress-create": "Cadastrar Egresso",
     "archive-list": "Lista de Arquivos",
     "users-list": "Lista de Usuários",
@@ -32,5 +33,6 @@ export const titles: {
     "should-reset-password": "Redefinir Senha",
     "archive-attach-egress": "Vincular Arquivo ao Egresso",
     "archive-detach-egress": "Desvincular Arquivo do Egresso",
-    "excel-import": "Anexar arquivo de egresso"
+    "excel-import": "Anexar arquivo de egresso",
+    "excel-export": "Exportar arquivo de egresso",
 }

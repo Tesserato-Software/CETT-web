@@ -26,8 +26,7 @@ export const CreateHierarchy = () => {
             onSubmit = () => {
                 setIsLoading(true);
                 api.post('/hierarchy/create', {...hierarchyData })
-                .then(res => {
-                        console.log(res.data)
+                .then(() => {
                         setHierarchyData({
                             name: '',
                             can_update: false,

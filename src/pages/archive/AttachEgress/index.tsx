@@ -60,7 +60,7 @@ export const AttachEgress = () => {
                                     <th>ID ARQUIVO</th>
                                 </tr>
                             </thead>
-                            <tr>{archives?.id && <td>{archives?.id}</td>}</tr>
+                            <tr><td>{archives?.id}</td></tr>
                         </table>
                     </div>
                     <div className="btn">

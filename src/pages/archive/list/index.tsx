@@ -6,7 +6,8 @@ import { ListArchiveContainer } from "./style";
 import { useNavigate } from "react-router-dom";
 
 interface ListArchive {
-    /* A gente ta tipando o que vai receber do back*/ id: number;
+    /* tipagem do que será recebido pelo back-end */ 
+    id: number;
 }
 
 export const ListArchive = () => {
@@ -17,7 +18,6 @@ export const ListArchive = () => {
     api.get('archive/list')
       .then((response) => {
         setArchiveData(response.data)
-        console.log(response.data)
       });
   }, []);
   return (

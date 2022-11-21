@@ -11,15 +11,13 @@ export const DeleteArchive = () => {
         onSubmit = () => {
             setIsLoading(true);
             api.delete(`/archive/delete/${id}`)
-                .then(response => {
-                    console.log(response.data)
+                .then(() => {
                     toast.success(`Arquivo ${id} Deletado com Sucesso`, { theme: 'colored' })
                     setTimeout(() => {
                         navigate("/archive/list");
                     }, 500);
                 })
-                .catch((err: any) => {
-                    console.error(err)
+                .catch(() => {
                     toast.error('Erro ao Deletar', 
                     { theme: 'colored' }
                     )
@@ -27,16 +25,13 @@ export const DeleteArchive = () => {
                 .finally(() => setIsLoading(false))
         }
 
-    console.log(localStorage.getItem('@Auth:token'))
-
-
     return (
         <DeleteArchiveContainer>
             <section>
                 <h1>Deletar caixa: {id} </h1>
                 <aside>
                     <Link to={'/archive/list'}>Não</Link>
-                    <button onClick={onSubmit} className='confirm'>Sim</button>
+                    <button onClick={onSubmit} className='confirm' disabled={isLoading}>Sim</button>
                 </aside>
             </section>
         </DeleteArchiveContainer>
