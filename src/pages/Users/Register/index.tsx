@@ -91,7 +91,7 @@ export const UsersRegister = () => {
 		let email = formData.email.value.split("@");
 		if(email[0].length < 3 || email[0].length > 3) {
 			setIsLoading(false);
-			toast.error("O e-mail deve conter 3 letras antes e depois do @!", {theme: "colored"})
+			return toast.error("O e-mail deve conter 3 letras antes e depois do @!", {theme: "colored"})
 		}
 
 		api.post("user/create", {
