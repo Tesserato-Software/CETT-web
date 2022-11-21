@@ -24,7 +24,6 @@ export const Login = () => {
 		setIsLoading(true);
 		api.post("/auth/login", data)
 			.then((response) => {
-				console.log(response);
 				localStorage.setItem(
 					"@Auth:token",
 					JSON.stringify(response.data.token)
@@ -39,13 +38,11 @@ export const Login = () => {
 				}, 500);
 			})
 			.catch((error) => {
-				console.log(error);
-
 				if (
-					error?.response?.data?.errors
+					((error?.response?.data?.errors
 					&& !error?.response?.data?.errors
 						?.filter((e: any) => e.rule === "exists")
-						.length
+						.length) || !error?.response?.data?.up__unhashed)
 					&& !!data.email
 				) {
 					if (+attempts > 3) {

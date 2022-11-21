@@ -5,9 +5,6 @@ import { api } from "./../../../services/api";
 import { toast } from "react-toastify";
 import { DetachEgressDiv } from "./style";
 
-interface Archives {
-    id: number;
-}
 interface Egresses {
     id: number;
     arq_id: number;
@@ -26,16 +23,14 @@ export const DetachEgress = () => {
             .then((response) => {
                 setEgresses(response.data.egresses);
             })
-            .catch((err) => {
+            .catch(() => {
                 toast.error(
                     "Erro ao listar, verifique se este arquivo existe.",
                     { theme: "colored" }
                 );
-                console.error(err);
             });
     }, []);
 
-    console.log(egressId);
     const onSubmit = () => {
         api.post(`/archive/dettach-egress`, {
             egress: egressId,

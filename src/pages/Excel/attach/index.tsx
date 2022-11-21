@@ -20,14 +20,12 @@ export const InputExcel = () => {
 
 				// Endpoint para enviar arquivos
 				api.post("egress/import-excel", formData)
-					.then((res) => {
-						console.log(res.data);
+					.then(() => {
 						toast.success("Arquivo enviado com sucesso!", {
 							theme: "colored",
 						});
 					})
 					.catch((err) => {
-						console.error(err);
 						if (err.response.data.errors) {
 							toast.error(
 								"Erro em alguns egressos. Os que não estiverem listados abaixos, foram criados",

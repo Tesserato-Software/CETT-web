@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { api } from '../../../services/api';
 import { AttachContainer, UserSection } from './style';
@@ -25,14 +25,12 @@ export const AttachUser = () => {
       .get('user/list')
       .then((response) => {
         ListUser(response.data);
-        console.log(response.data);
       })
-      .catch((error) => {
+      .catch(() => {
         toast.error(
 					"Ops, algo de errado não deu certo ao atualizar a hierarquia.",
 					{ theme: "colored" }
 				);
-        console.error(error);
       });
   }, []);
 
@@ -41,10 +39,9 @@ export const AttachUser = () => {
       .get('hierarchy/list')
       .then((response) => {
         ShowHierarchy(response.data);
-        console.log(response.data);
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
+        toast.error("Erro ao buscar hierarquias!", { theme: "colored" })
       });
   }, []);
   return (
@@ -55,7 +52,7 @@ export const AttachUser = () => {
             <UserSection>
               <h1 className="user">Hierarquia: {hitem.name}</h1>
               <ul>
-              {user?.map((uitem, index) => {
+              {user?.map((uitem) => {
                 if (uitem.hierarchy[0]?.id == hitem.id) {
                   return (
                     <li>

@@ -31,7 +31,6 @@ export const UsersListDisableds = () => {
     const [userEnabled, setUserEnabled] = useState<boolean>(false)
 
     const enableUser = (userId: number) => {
-        console.log(userId)
         setIsLoading(true)
         api.post(`user/re-enable/${userId}`)
         .then(() => {

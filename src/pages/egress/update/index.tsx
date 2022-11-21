@@ -36,8 +36,7 @@ export const UpdateEgress = () => {
                 update: true
             });
             api.post(`/egress/update/${id}`, {...egressData, CGM_id: Number(egressData.CGM_id)})
-                .then(res => {
-                    console.log(res.data)
+                .then(() => {
                     setEgressData({
                         name: '',
                         CGM_id: '',
@@ -66,14 +65,12 @@ export const UpdateEgress = () => {
     useEffect(() => {
         api.get('archive/list')
             .then(res => {
-                console.log(res.data)
                 setArchives(res.data)
             })
-            .catch(err => {
+            .catch(() => {
                 toast.error('Erro ao listar arquivos', 
                     {theme: 'colored'}
                 )
-                console.error(err)
             })
             .finally(() => setIsLoading({
                 ...isLoading,

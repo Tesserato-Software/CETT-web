@@ -38,14 +38,12 @@ export const DetachArchive = () => {
         api.post(`/egress/dettach-archives`, {
             egress: [+(id || 0)],
         })
-            .then((response) => {
-                console.log(response);
+            .then(() => {
                 toast.success(`Egresso desanexado do arquivo com sucesso!`, {
                     theme: "colored",
                 });
             })
-            .catch((error) => {
-                console.log(error);
+            .catch(() => {
                 toast.error(`Erro ao desanexar o egresso do arquivo!`, {
                     theme: "colored",
                 });

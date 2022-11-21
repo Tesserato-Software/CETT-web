@@ -25,7 +25,6 @@ type users = {
         .get('user/list')
         .then((response) => {
           ListUser(response.data);
-          console.log(response.data);
         })
         .catch((error) => {
           toast.error(
@@ -41,7 +40,6 @@ type users = {
         .get('hierarchy/list')
         .then((response) => {
           ShowHierarchy(response.data);
-          console.log(response.data);
         })
         .catch((error) => {
           console.error(error);

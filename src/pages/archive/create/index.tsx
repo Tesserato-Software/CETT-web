@@ -10,14 +10,12 @@ export const CreateArchive = () => {
         onSubmit = () => {
             setIsLoading(true);
             api.post("/archive/create")
-                .then((response) => {
-                    console.log(response.data);
+                .then(() => {
                     toast.success("Caixa de arquivos criada com sucesso!",
                     { theme: "colored" }
                     );
                 })
-                .catch((err: any) => {
-                    console.error(err);
+                .catch(() => {
                     toast.error("Erro ao criar caixa de arquivos!",
                     { theme: "colored" }
                     );
@@ -29,22 +27,7 @@ export const CreateArchive = () => {
     return (
         <CreateArchiveContainer>
             <div className="but">
-                {/* <div className="conteudo">
-          <div>
-            <div>
-              <h2>Caixa [id]</h2>  <span>[id menor] - [id maior</span>
-            </div>
-
-            <div>
-              <h2>Caixa [id]</h2>  <span>[id menor] - [id maior</span>
-            </div>
-
-            <div>
-              <h2>Caixa [id]</h2>  <span>[id menor] - [id maior</span>
-            </div>
-           </div> 
-        </div> */}
-                <button onClick={onSubmit}>Criar nova caixa</button>
+                <button onClick={onSubmit} disabled={isLoading}>Criar nova caixa</button>
             </div>
         </CreateArchiveContainer>
     );

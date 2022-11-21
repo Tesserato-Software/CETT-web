@@ -30,7 +30,7 @@ export const AttachArchive = () => {
 				setArchives(response.data.archives);
 				setEgress(response.data.egresses);
 			})
-			.catch((err) => console.log(err))
+			.catch(() => toast.error("Ocorreu um erro ao buscar arquivo ou egresso!"))
 			.finally(() => {
 				setIsLoading(false);
 			});
@@ -39,8 +39,6 @@ export const AttachArchive = () => {
 	const onChangeArchive = (event: any) => {
 		setarchiveId(event.target.value);
 	};
-
-	console.log(archiveId);
 
 	const onsubmit = () => {
 		if (archiveId === 0) {
@@ -53,14 +51,12 @@ export const AttachArchive = () => {
 			egress: [+(id || 0)],
 		})
 
-			.then((response) => {
-				console.log(response);
+			.then(() => {
 				toast.success(`Egresso anexado ao arquivo ${archiveId} com sucesso!`,
 					{ theme: "colored" }
 				);
 			})
-			.catch((error) => {
-				console.log(error);
+			.catch(() => {
 				toast.error(`Erro ao anexar egresso ao arquivo ${archiveId}!`,
 					{ theme: "colored" }
 				);

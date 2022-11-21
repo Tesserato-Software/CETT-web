@@ -30,8 +30,7 @@ export const CreateEgress = () => {
                 create: true
             });
             api.post('/egress/create', {...egressData, CGM_id: Number(egressData.CGM_id)})
-                .then(res => {
-                    console.log(res.data)
+                .then(() => {
                     setEgressData({
                         name: '',
                         CGM_id: '',
