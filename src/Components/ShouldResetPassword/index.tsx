@@ -40,6 +40,15 @@ export const ShouldResetPassword = ({ user_id }: { user_id?: number }) => {
 				{ theme: "colored", toastId: 'invalid-password'})
 			}
 
+			let hard_pass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/
+			if (!hard_pass.test(formData.password.value)) {
+				setIsLoading(false);
+
+				return toast.error(`A senha deve conter pelo menos 8 caracteres,
+				uma letra maiúscula, uma letra minúscula, um número e um caractere especial!`,
+				{ theme: "colored", toastId: 'invalid-password'})
+			}
+
 			api.post(`/user/psw-storage/${user_id}`, {
 				password: formData.password.value,
 			})
