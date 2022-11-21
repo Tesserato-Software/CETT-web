@@ -87,6 +87,13 @@ export const UsersRegister = () => {
 			{ theme: "colored", toastId: 'invalid-password'})
 		}
 
+		// email com 3 letras antes do @ e 3 depois
+		let email = formData.email.value.split("@");
+		if(email[0].length < 3 || email[0].length > 3) {
+			setIsLoading(false);
+			toast.error("O e-mail deve conter 3 letras antes e depois do @!", {theme: "colored"})
+		}
+
 		api.post("user/create", {
 			hierarchy_id: getValueData(formData, "hierarchy_id") || roles[0].id,
 			full_name: getValueData(formData, "full_name"),
