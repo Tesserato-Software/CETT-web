@@ -55,72 +55,75 @@ export const HierarchyList = () => {
 						alignItems: "center",
 						justifyContent: "center",
 						width: "100%",
+						gap: '15px',
+						marginTop: '30px'
 					}}
 				>
 					{list?.map((item) => {
 						return (
-							<>
-								<div
+							<div
+								style={{
+									backgroundColor: "#D9D9D9",
+									border: "1px solid white",
+									width: "60%",
+									display: "flex",
+									justifyContent: "space-between",
+									padding: "10px",
+									borderRadius: "8px",
+								}}
+								key={item.id}
+							>
+								<span
 									style={{
-										backgroundColor: "#D9D9D9",
-										border: "1px solid white",
-										width: "60%",
-										display: "flex",
-										justifyContent: "space-between",
-										margin: "1rem auto 1rem auto",
-										padding: "10px",
-										borderRadius: "8px",
+										color: "black",
+										width: "25rem",
 									}}
-									key={item.id}
 								>
-									<span
-										style={{
-											color: "black",
-											width: "25rem",
-										}}
-									>
-										{item.name}
-									</span>
+									{item.name}
+								</span>
 
-									<span
+								<span
+									style={{
+										color: "green",
+									}}
+								>
+									<span>Usuários: </span>
+									{item.users?.length}
+								</span>
+								<div>
+									<Link
 										style={{
-											color: "green",
+											marginRight: "30px",
+											padding: "5px 10px",
+											backgroundColor: "rgb(169, 169, 169)",
+											color: "white",
+											border: "none",
+											textDecoration: "none",
+											borderRadius: "8px"
 										}}
+										className="LinkUpdate"
+										to={`/hierarchy/update/${item.id}`}
 									>
-										<span>Usuários: </span>
-										{item.users?.length}
-									</span>
-									<div>
-										<Link
-											style={{
-												border: "2px solid black",
-												marginRight: "30px",
-												padding: "5px",
-												backgroundColor: "#6f6fe9",
-												color: "white",
-											}}
-											className="LinkUpdate"
-											to={`/hierarchy/update/${item.id}`}
-										>
-											Editar
-										</Link>
+										Editar
+									</Link>
 
-										<Link
-											style={{
-												border: "2px solid black",
-												marginRight: "30px",
-												padding: "5px",
-												backgroundColor: "#f04b4b",
-												color: "white",
-											}}
-											className="LinkUpdate"
-											to={`/hierarchy/delete/${item.id}`}
-										>
-											Remover
-										</Link>
-									</div>
+									<Link
+										style={{
+											marginRight: "30px",
+											padding: "5px 10px",
+											backgroundColor: "rgb(225, 55, 99)",
+											color: "white",
+											border: "none",
+											textDecoration: "none",
+											borderRadius: "8px"
+										}}
+										className="LinkUpdate"
+										to={`/hierarchy/delete/${item.id}`}
+									>
+										Remover
+									</Link>
 								</div>
-							</>
+							</div>
 						);
 					})}
 				</div>

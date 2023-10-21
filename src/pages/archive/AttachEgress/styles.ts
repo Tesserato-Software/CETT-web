@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const EgressDiv = styled.div`
+    color: #ffff;
     .one {
         display: flex;
         flex-direction: column;
@@ -46,6 +47,7 @@ export const EgressDiv = styled.div`
     .btn {
         display: flex;
         justify-content: center;
+        gap: 15px;
     }
     button {
         width: 10.5rem;
@@ -57,6 +59,7 @@ export const EgressDiv = styled.div`
         font-weight: 500;
         color: #ffff;
         cursor: pointer;
+        border: none;
     }
     .second-container {
         margin: 5px auto;
@@ -83,7 +86,7 @@ export const EgressDiv = styled.div`
     }
     .second-table {
         border-radius: 8px;
-        width: 20%;
+        width: 100%;
         text-align: center;
     }
 `;
