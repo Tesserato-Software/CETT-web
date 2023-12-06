@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      VITE_API_URL: ${{ secrets.VITE_API_URL }}
+      VITE_APP_API_URL: ${{ secrets.VITE_APP_API_URL }}
 
     steps:
     - name: Checkout Repository
