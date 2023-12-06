@@ -8,18 +8,55 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     env:
       VITE_API_URL: ${{ vars.VITE_API_URL }}
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout Repository
+      uses: actions/checkout@v4
 
-    - name: Use Node.js 18
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    - name: Cache node modules
+      id: cache-yarn
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: $ {{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-build-${{ env.cache-name }}\
+          -${{ hashFiles('**/yarn.lock') }}
+        restore-keys:
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+
+    - if: ${{ steps.cache-yarn.outputs.cache-hit != 'true' }}
+      name: List the state of node modules
+      continue-on-error: true
+      run: yarn list
+
+    - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
         node-version: 18
-    - run: |
-        yarn install
-        yarn build
+
+    - name: Install Dependencies
+      run: yarn install
+
+    - name: Build React Application
+      run: yarn build
+
+    - name: Deploy to VPS
+      uses: easingthemes/ssh-deploy@main
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        ARGS: "-rlgoDzvc -i --delete"
+        SOURCE: "dist/"
+        REMOTE_HOST: ${{ secrets.SSH_HOST }}
+        REMOTE_USER: ${{ secrets.SSH_USERNAME }}
+        TARGET: ${{ secrets.REMOTE_TARGET }}
