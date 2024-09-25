@@ -26,7 +26,7 @@ export const UsersRegister = () => {
 	const isInvalidEmail = !(formData.email.value.match(mailformatBr) 
 	|| formData.email.value.match(mailformat))
 
-
+	// jogar fora
 	const isInvalidLength =
 		!validateLength(
 		formData.full_name.value,
@@ -88,11 +88,11 @@ export const UsersRegister = () => {
 		}
 
 		// email com 3 letras antes do @ e 3 depois
-		let email = formData.email.value.split("@");
-		if(email[0].length < 3 || email[0].length > 3) {
-			setIsLoading(false);
-			return toast.error("O e-mail deve conter 3 letras antes e depois do @!", {theme: "colored"})
-		}
+		// let email = formData.email.value.split("@");
+		// if(email[0].length < 3 || email[0].length > 3) {
+		// 	setIsLoading(false);
+		// 	return toast.error("O e-mail deve conter 3 letras antes e depois do @!", {theme: "colored"})
+		// }
 
 		api.post("user/create", {
 			hierarchy_id: getValueData(formData, "hierarchy_id") || roles[0].id,

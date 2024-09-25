@@ -62,7 +62,6 @@ export const AttachArchive = () => {
 				);
 			});
 
-
 		return navigate(`/egress/list`);
 	};
 
