@@ -1,7 +1,7 @@
 # To run
 
 .env file: </br>
-`VITE_API_URL=`
+`VITE_APP_API_URL=`
 
 Terminal: </br>
 `npm i` </br>
